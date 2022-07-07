@@ -12,13 +12,12 @@ exports.db = db
 exports.save = async function (collectionName, data, docId=undefined) {
     const collection = db.collection(collectionName);
     const doc = docId ? collection.doc(docId) : collection.doc();
-    console.log('saving')
     await doc.set(data);
 }
 
-exports.update = async function (collectionName, data, docId=undefined) {
+exports.update = async function (collectionName, data, docId) {
     const collection = db.collection(collectionName);
-    const doc = docId ? collection.doc(docId) : collection.doc();
+    const doc = collection.doc(docId);
     await doc.update(data);
 }
 

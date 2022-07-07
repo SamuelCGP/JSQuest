@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const dotenv = require('dotenv');
-const verifyJWT = require('./src/middlewares/verifyJWT');
+const verifyJWT = require('./src/middlewares/verifyJWT.js');
 dotenv.config({ path: "./src/config/.env"});
 
 const userRouter = require("./src/routes/user.js");

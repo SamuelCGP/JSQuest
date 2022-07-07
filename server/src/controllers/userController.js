@@ -3,26 +3,26 @@ const userModel = require("../models/userModel.js");
 const jwt = require("jsonwebtoken");
 
 exports.register = async function (req, res) {
-	const salt = await bcrypt.genSalt();
+	const salt = await bcrypt.genSalt(10);
 	const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
 	userModel.create(req.body.username, req.body.email, hashedPassword)
         .then(() => {
             res.status(200).json({message: "User successfully registered"});
         }, error => {
-            res.status(400).send(error);
+            res.status(400).json({message: error});
         });
 };
 
 exports.login = async function (req, res) {
     const body = req.body;
     const user = await userModel.getByEmail(body.email)
-    const userData = user.data();
     if(user) {
+        const userData = user.data();
         const isPasswordValid = await bcrypt.compare(body.password, userData.password);
         if(isPasswordValid) {
             const userId = userData.id          
-            const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
+            const token = jwt.sign({ userId: userId }, process.env.JWT_SECRET, {
                 expiresIn: 300
             });
             res.status(200).json({message: "Login successful", token });
@@ -32,4 +32,74 @@ exports.login = async function (req, res) {
     } else {
         res.status(404).json({message: "User does not exist"});
     }
+}
+
+//recebe o email do usuário para enviar o link de reset de senha
+exports.forgotPassword = async function (req, res, next) {
+    const body = req.body;
+    const email = body.email;
+
+    const user = await userModel.getByEmail(email)
+
+    if(user) {
+        //usuário existe
+
+        const userData = user.data();
+        console.log(user.id)
+        const userId = user.id;
+        const password = userData.password;
+        const secret = process.env.JWT_SECRET + password;
+        const token = jwt.sign({email, userId}, secret, {expiresIn: '15m'});
+        const link = `http://localhost:3001/reset-password/${userId}/${token}`
+
+        req.toEmailAdress = email
+        req.emailSubject = "JSQuest Password Reset"
+        req.emailMessage = `You recently requesty a password reset for your account at our website. Click the following link to choose a new password:<br/> ${link}`
+        next(); //passa o controle para o middleware sendEmail
+        res.status(200).json({message: "Reset link sent to email"});
+
+    } else {
+        res.status(404).json({message: "User does not exist"});
+    }
+}
+
+exports.verifyUserId = async function (req, res, next) {
+    const userId = req.params.userId;
+
+    const user = await userModel.getById(userId);
+    if(user) {
+        const userData = user.data();
+        req.password = userData.password;
+        next();
+        if(!res.headersSent) res.status(200).json({message: "Access granted"})
+    } else {
+        res.status(404).json({message: "Invalid user ID"});
+    }
+}
+
+exports.resetPassword = async function (req, res, next) {
+
+    const newPassword = req.body.newPassword;
+
+    const userId = req.body.userId;
+
+    const user = await userModel.getById(userId);
+    if(user) {
+        console.log('user')
+        const userData = user.data();
+        req.password = userData.password;
+        console.log(userData.password)
+        next();
+        if(!res.headersSent) {
+            const salt = await bcrypt.genSalt(10);
+            const hashedNewPassword = await bcrypt.hash(newPassword, salt);
+        
+            userModel.updateById(req.userId, {password: hashedNewPassword});
+        
+            res.status(200).json({message: "Password updated successfully"});
+        }
+    }else {
+        res.status(404).json({message: "Invalid user ID"});
+    }
+
 }
