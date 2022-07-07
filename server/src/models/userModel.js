@@ -1,9 +1,11 @@
-const { save, db } = require("../../firestore.js");
+const { save, db, getDocById, update} = require("../../firestore.js");
 
 const userCollectionName = "users";
 
 async function create(username, email, password) {
-	if (!getByEmail(email))
+	const userExists = await getByEmail(email)
+
+	if (!userExists)
 		await save(userCollectionName, { username, email, password });
 	else throw "User already exists";
 }
@@ -18,4 +20,14 @@ async function getByEmail(email) {
 	else return snapshot.docs[0];
 }
 
-module.exports = { create, getByEmail };
+async function getById(id) {
+	const user = await getDocById(userCollectionName, id);
+	if(user.exists) return user;
+	else return false;
+}
+
+async function updateById(id, data) {
+	await update(userCollectionName, data, id);
+}
+
+module.exports = { create, getByEmail, getById, updateById };
