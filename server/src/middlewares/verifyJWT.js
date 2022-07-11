@@ -9,7 +9,7 @@ module.exports = function (req, res, next) {
         jwt.verify(token, process.env.JWT_SECRET, (error, decoded) => {
             if(error) res.status(401).json({message: "Invalid access token"})
             else {
-                req.userId = decoded.id;
+                req.userId = decoded.userId;
                 next();
             }
         })

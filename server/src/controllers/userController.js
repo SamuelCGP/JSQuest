@@ -3,12 +3,13 @@ const userModel = require("../models/userModel.js");
 const jwt = require("jsonwebtoken");
 
 exports.register = async function (req, res) {
+    const body = req.body;
 	const salt = await bcrypt.genSalt(10);
-	const hashedPassword = await bcrypt.hash(req.body.password, salt);
+	const hashedPassword = await bcrypt.hash(body.password, salt);
 
-	userModel.create(req.body.username, req.body.email, hashedPassword)
+	userModel.create(body.username, body.email, hashedPassword)
         .then(() => {
-            res.status(200).json({message: "User successfully registered"});
+            res.status(201).json({message: "User successfully registered"});
         }, error => {
             res.status(400).json({message: error});
         });
@@ -22,7 +23,7 @@ exports.login = async function (req, res) {
         const isPasswordValid = await bcrypt.compare(body.password, userData.password);
         if(isPasswordValid) {
             const userId = userData.id          
-            const token = jwt.sign({ userId: userId }, process.env.JWT_SECRET, {
+            const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
                 expiresIn: 300
             });
             res.status(200).json({message: "Login successful", token });
@@ -50,7 +51,7 @@ exports.forgotPassword = async function (req, res, next) {
         const password = userData.password;
         const secret = process.env.JWT_SECRET + password;
         const token = jwt.sign({email, userId}, secret, {expiresIn: '15m'});
-        const link = `http://localhost:3001/reset-password/${userId}/${token}`
+        const link = `http://localhost:3000/reset-password/${userId}/${token}`
 
         req.toEmailAdress = email
         req.emailSubject = "JSQuest Password Reset"

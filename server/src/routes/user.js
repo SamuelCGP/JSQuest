@@ -9,17 +9,24 @@ const userController = require('../controllers/userController.js');
 const sendEmail = require('../middlewares/sendEmail.js');
 const verifyPasswordResetJWT = require('../middlewares/verifyPasswordResetJWT.js');
 
+//recebe o ID do usuário (pelo url param) e o token de reset de senha (pelo header x-access-token)
+//caso o id do usuário seja invalido, retorna o código 404
+//caso o token seja invalido, retorna o codigo 401
 router.get('/verify-password-reset-token/:userId', userController.verifyUserId, verifyPasswordResetJWT);
-//registrar usuário
+
+//registrar usuário -> recebe um formulário com os campos "username", "email" e "password"
+//caso o usuário já exista, retorna o código 400
 router.post('/register', upload.none(), userController.register);
 
-//realizar login do usuário
+//realizar login do usuário -> recebe um formulário com os campos "email" e "password"
+//caso o usuário não exista, retorna o código 404
+//caso a senha esteja incorreta, retorna o código 401
 router.post('/login', upload.none(), userController.login)
 
-//esqueceu a senha
+//recebe o email do usuário para enviar o link de reset de senha
 router.post('/forgot-password', upload.none(), userController.forgotPassword, sendEmail);
 
-
+//recebe o "userId" e "newPassword" no body, e o token de reset de senha (pelo header x-access-token)
 router.post('/reset-password', upload.none(), userController.resetPassword, verifyPasswordResetJWT)
 
 module.exports = router;
