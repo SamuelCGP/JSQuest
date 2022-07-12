@@ -23,14 +23,14 @@ const AuthStyles: StyleSheet = {
         backgroundColor: ColorPalette.navyBlue,
         borderRadius: '30px'
     },
-    loginCard: {
+    authCard: {
         width: '30%',
         height: '100%',
         backgroundColor: ColorPalette.white,
         borderRadius: '30px',
         transition: '1s'
     },
-    loginCardHover: {
+    authCardHover: {
         width: '30%',
         height: '100%',
         backgroundColor: ColorPalette.white,

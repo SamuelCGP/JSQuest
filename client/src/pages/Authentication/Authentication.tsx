@@ -2,15 +2,15 @@ import React, { useEffect } from 'react';
 import AuthStyles from "./Authentication.styles";
 
 function Authentication() {
-    const [isLoginCardHover, setIsLoginCardHover] = React.useState(false);
-    const [loginCardStyle, setLoginCardStyle] = React.useState(AuthStyles.loginCard);
+    const [isSigned, setIsLoginCardHover] = React.useState(true);
+    const [authCardStyle, setLoginCardStyle] = React.useState(AuthStyles.authCard);
 
     useEffect(() => {
-      if(isLoginCardHover){
-        setLoginCardStyle(AuthStyles.loginCardHover);
+      if(!isSigned){
+        setLoginCardStyle(AuthStyles.authCardHover);
       }
       else{
-        setLoginCardStyle(AuthStyles.loginCard);
+        setLoginCardStyle(AuthStyles.authCard);
       }
     });
 
@@ -18,8 +18,8 @@ function Authentication() {
       <div style={AuthStyles.authentication}>
         <h1 style={AuthStyles.title}>JSQuest</h1>
         <div style={AuthStyles.mainContainer}>
-          <div style={loginCardStyle} onMouseEnter={() => {
-            setIsLoginCardHover(!isLoginCardHover);
+          <div style={authCardStyle} onMouseEnter={() => {
+            setIsLoginCardHover(!isSigned);
           }}></div>
         </div>
       </div>
