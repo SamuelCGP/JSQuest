@@ -6,33 +6,32 @@ interface TextFieldProps{
 }
 
 function TextField(props: TextFieldProps){
-    const [fieldAttributes, setFieldAttributes] = React.useState({
-        type: '',
+    const fieldAttributes = {
+        type: props.type,
         fieldType: 'text',
         placeholder: 'Digite alguma coisa',
         style: TextFieldStyles.textField
-    });
-    useEffect(() => {
-        const Type = props.type;
-        const copyOfFieldAttributes = Object.assign({}, fieldAttributes);
+    };
 
-        switch(Type){
-            case 'username':
-                copyOfFieldAttributes.fieldType = 'text';
-                copyOfFieldAttributes.placeholder = 'Digite seu nome de usuário';
-                copyOfFieldAttributes.style = TextFieldStyles.textFieldBig;
-                setFieldAttributes(copyOfFieldAttributes);
-                break;
-            case 'password':
-                copyOfFieldAttributes.fieldType = 'password';
-                copyOfFieldAttributes.placeholder = 'Digite sua senha';
-                copyOfFieldAttributes.style = TextFieldStyles.textFieldBig;
-                setFieldAttributes(copyOfFieldAttributes);
-                break;
-            default:
-                break;
-        }
-    });
+    switch(fieldAttributes.type){
+        case 'username':
+            fieldAttributes.fieldType = 'text';
+            fieldAttributes.placeholder = 'Digite seu nome';
+            fieldAttributes.style = TextFieldStyles.textFieldBig;
+            break;
+        case 'email':
+            fieldAttributes.fieldType = 'email';
+            fieldAttributes.placeholder = 'Digite seu email';
+            fieldAttributes.style = TextFieldStyles.textFieldBig;
+            break;
+        case 'password':
+            fieldAttributes.fieldType = 'password';
+            fieldAttributes.placeholder = 'Digite sua senha';
+            fieldAttributes.style = TextFieldStyles.textFieldBig;
+            break;
+        default:
+            break;
+    }
     return(
         <input type={fieldAttributes.fieldType} style={ fieldAttributes.style } placeholder={fieldAttributes.placeholder}></input>
     );

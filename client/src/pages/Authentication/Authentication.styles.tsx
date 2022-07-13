@@ -33,7 +33,7 @@ const AuthStyles: StyleSheet = {
         justifyContent: 'center',
         alignItems: 'center'
     },
-    authCardHover: {
+    authCardSignUp: {
         width: '30%',
         height: '100%',
         backgroundColor: ColorPalette.white,
