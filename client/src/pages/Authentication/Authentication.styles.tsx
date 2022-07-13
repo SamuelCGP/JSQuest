@@ -28,7 +28,10 @@ const AuthStyles: StyleSheet = {
         height: '100%',
         backgroundColor: ColorPalette.white,
         borderRadius: '30px',
-        transition: '1s'
+        transition: '1s',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     authCardHover: {
         width: '30%',
@@ -36,7 +39,10 @@ const AuthStyles: StyleSheet = {
         backgroundColor: ColorPalette.white,
         borderRadius: '30px',
         marginLeft: '70%',
-        transition: '1s'
+        transition: '1s',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 };
 

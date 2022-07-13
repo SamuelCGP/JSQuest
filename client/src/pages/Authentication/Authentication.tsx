@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import SignIn from '../../components/SignIn/SignIn';
 import AuthStyles from "./Authentication.styles";
 
 function Authentication() {
@@ -18,9 +19,9 @@ function Authentication() {
       <div style={AuthStyles.authentication}>
         <h1 style={AuthStyles.title}>JSQuest</h1>
         <div style={AuthStyles.mainContainer}>
-          <div style={authCardStyle} onMouseEnter={() => {
-            setIsLoginCardHover(!isSigned);
-          }}></div>
+          <div style={authCardStyle} /*onMouseEnter={() => {setIsLoginCardHover(!isSigned);}}*/ >
+            <SignIn />
+          </div>
         </div>
       </div>
     );
