@@ -18,13 +18,13 @@ const AuthStyles: StyleSheet = {
         textAlign: 'center',
     },
     mainContainer: {
-        width: '80vw',
+        width: '70vw',
         height: '70vh',
         backgroundColor: ColorPalette.navyBlue,
         borderRadius: '30px'
     },
     authCard: {
-        width: '30%',
+        width: '35%',
         height: '100%',
         backgroundColor: ColorPalette.white,
         borderRadius: '30px',

@@ -7,10 +7,6 @@ function Authentication() {
     const [isSigned, setIsSigned] = React.useState(true);
     const [authCardStyle, setLoginCardStyle] = React.useState(AuthStyles.authCard);
 
-    useEffect(() => {
-      console.log("IsSigned: " + isSigned)
-    });
-
     function handleVisibilityChanges(){
       const isSignedVAR = !isSigned;
       setIsSigned(isSignedVAR);

@@ -11,10 +11,6 @@ interface SignInProps {
 }
 
 function SignIn(props: SignInProps){
-    useEffect(() => {
-        console.log("SignIN: " + props.isVisible)
-    });
-
     return(
         <div style={props.isVisible ? SignInStyles.signIn : {display: 'none'} }>
             <h1 style={SignInStyles.title}>Login</h1>

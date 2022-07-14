@@ -11,9 +11,6 @@ interface SignUpProps {
 }
 
 function SignUp(props: SignUpProps){
-    useEffect(() => {
-        console.log("SignUP: " + props.isVisible)
-    });
 
     return(
         <div style={props.isVisible ? SignUpStyles.signUp : {display: 'none'} }>
