@@ -1,34 +1,16 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
+import * as User from '../../server/user'
 
 function Home() {
-    const [response, setResponse] = React.useState('');
-    const serverURL = 'http://localhost:3001/';
+    const [response, setResponse] = React.useState();
 
-    const options = {
-        url: 'http://localhost:3001/user/login',
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=UTF-8'
-        },
-        data: {
-          email: 'test',
-          password: 'test'
-        }
-    };
-
-    axios(options) // retorna um objeto
-    .then((res) => {
-        console.log(res);
-    })
-    .catch((error) => {
-        console.log(error);
-    });
+    User.login('test', 'test').then(response => setResponse(response));
 
     return ( 
         <div style={ {color: 'white', fontSize: '20px', padding: '20px'} }>
             <h1>This is a test</h1>
-            <p>{response}</p>
+            <p>Status: {response}</p>
         </div> 
     );
 }
