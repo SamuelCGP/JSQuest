@@ -4,11 +4,6 @@ import axios from 'axios';
 function Home() {
     const [response, setResponse] = React.useState('');
     const serverURL = 'http://localhost:3001/';
-    let testRES: any;
-
-    useEffect(() => {
-        console.log(testRES);
-    })
 
     const options = {
         url: 'http://localhost:3001/user/login',
