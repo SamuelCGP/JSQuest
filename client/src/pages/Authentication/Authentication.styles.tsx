@@ -1,6 +1,6 @@
 import React from "react";
-import StyleSheet from "../utils/StyleSheet";
-import ColorPalette from "../utils/ColorPalette";
+import StyleSheet from "../../utils/StyleSheet";
+import ColorPalette from "../../utils/ColorPalette";
 
 const AuthStyles: StyleSheet = {
     authentication: {
@@ -18,25 +18,31 @@ const AuthStyles: StyleSheet = {
         textAlign: 'center',
     },
     mainContainer: {
-        width: '80vw',
+        width: '70vw',
         height: '70vh',
         backgroundColor: ColorPalette.navyBlue,
         borderRadius: '30px'
     },
-    loginCard: {
-        width: '30%',
+    authCard: {
+        width: '35%',
         height: '100%',
         backgroundColor: ColorPalette.white,
         borderRadius: '30px',
-        transition: '1s'
+        transition: '1s',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    loginCardHover: {
+    authCardSignUp: {
         width: '30%',
         height: '100%',
         backgroundColor: ColorPalette.white,
         borderRadius: '30px',
         marginLeft: '70%',
-        transition: '1s'
+        transition: '1s',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 };
 
