@@ -1,7 +1,8 @@
 
 const firebaseConfig = require('./src/config/serviceAccountKey.json');
 
-const firebase = require('firebase-admin')
+const firebase = require('firebase-admin');
+const { sign } = require('jsonwebtoken');
 firebase.initializeApp({
     credential: firebase.credential.cert(firebaseConfig)
 });
@@ -23,6 +24,16 @@ exports.update = async function (collectionName, data, docId) {
 
 exports.getCollection = async function (collectionName) {
     return await db.collection(collectionName).get()
+}
+
+exports.getAllFromCollection = async function (collectionName) {
+    const collection = await exports.getCollection(collectionName);
+    const docs = [];
+    collection.forEach(doc => {
+        docs.push({id: doc.id, data: doc.data()});
+    })
+
+    return docs;
 }
 
 exports.getDocById = async function (collectionName, docId) {
