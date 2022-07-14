@@ -14,7 +14,7 @@ function SignIn(props: SignInProps){
     return(
         <div style={props.isVisible ? SignInStyles.signIn : {display: 'none'} }>
             <h1 style={SignInStyles.title}>Login</h1>
-            <TextField type="username"></TextField>
+            <TextField type="email"></TextField>
             <TextField type="password"></TextField>
             <div style={SignInStyles.groupButtonAndForgotPassword}>
                 <Button version="primary" style={SignInStyles.signInButton}>Entrar</Button>

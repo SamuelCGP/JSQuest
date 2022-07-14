@@ -18,7 +18,6 @@ function Home() {
     };
 
     axios(options) // retorna um objeto
-    //.post(`${serverURL}user/login`, JSON.stringify({ email: 'test', password: 'test' }))
     .then((res) => {
         console.log(res);
     })
