@@ -20,7 +20,7 @@ function SignIn(props: SignInProps){
                 <Button version="primary" style={SignInStyles.signInButton}>Entrar</Button>
                 <Link style={SignInStyles.forgotPassword} to={"/"}>Esqueci minha senha</Link>
             </div>
-            <h3 style={SignInStyles.signUpCall}>Não possui uma conta? <span onClick={props.onVisibilityChange} style={{color: ColorPalette.orange, cursor: "pointer"}}>Registre-se</span></h3>
+            <h3 style={SignInStyles.signUpCall}>Não tem uma conta? <span onClick={props.onVisibilityChange} style={{color: ColorPalette.orange, cursor: "pointer"}}>Registre-se</span></h3>
         </div>
     );
 }
