@@ -20,7 +20,9 @@ router.get('/all', userController.getAllUsers);
 //recebe o id ou email do usuário via query params (ex: http://localhost:3001/user?id=aksajkasjk 
 //ou http://localhost:3001/user?email=test)
 router.get('/', userController.getUser);
+
 //registrar usuário -> recebe um formulário com os campos "username", "email" e "password"
+//caso o registro seja bem-sucedido, retorna o código 201
 //caso o usuário já exista, retorna o código 400
 router.post('/register', upload.none(), userController.register);
 
