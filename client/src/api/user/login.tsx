@@ -17,10 +17,10 @@ export async function login(userEmail: string, userPassword: string){
     //tratar retorno
     const response = await axios(options)
         .then((res) => {
-            return res.statusText;
+            return res.status;
         })
         .catch((error) => {
-            return error.response.statusText;
+            return error.response.status;
         });
     
     return response;

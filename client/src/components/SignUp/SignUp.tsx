@@ -8,6 +8,7 @@ import ColorPalette from '../../utils/ColorPalette';
 interface SignUpProps {
     onVisibilityChange: MouseEventHandler,
     onSubmit: any,
+    message: string,
     isVisible: boolean
 }
 
@@ -40,6 +41,7 @@ function SignUp(props: SignUpProps){
             <TextField onChange={(evt:any) => updateInputValue(evt)} type="username" value={emailValue}></TextField>
             <TextField onChange={(evt:any) => updateInputValue(evt)} type="email" value={emailValue}></TextField>
             <TextField onChange={(evt:any) => updateInputValue(evt)} type="password" value={emailValue}></TextField>
+            <p style={SignUpStyles.message}>{props.message}</p>
             <Button onClick={() => { props.onSubmit(getFields()) }} version="primary" style={SignUpStyles.signUpButton}>Entrar</Button>
             <h3 style={SignUpStyles.signInCall}>Já possui uma conta? 
                 <span onClick={props.onVisibilityChange} style={{color: ColorPalette.orange, cursor: "pointer"}}> Faça login</span>

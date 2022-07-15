@@ -4,11 +4,11 @@ import Button from '../Button/Button';
 import SignInStyles from './SignIn.styles';
 import { Link } from 'react-router-dom';
 import ColorPalette from '../../utils/ColorPalette';
-import * as User from '../../api/user'
 
 interface SignInProps {
     onVisibilityChange: MouseEventHandler,
     onSubmit: any,
+    message: string,
     isVisible: boolean
 }
 
@@ -41,6 +41,7 @@ function SignIn(props: SignInProps){
             <TextField onChange={(evt:any) => updateInputValue(evt)} type="email" value={emailValue}></TextField>
             <TextField onChange={(evt:any) => updateInputValue(evt)} type="password" value={passswordValue}></TextField>
             <div style={SignInStyles.groupButtonAndForgotPassword}>
+                <p style={SignInStyles.message} >{props.message}</p>
                 <Button onClick={() => { props.onSubmit(getFields()) }} version="primary" style={SignInStyles.signInButton}>Entrar</Button>
                 <Link style={SignInStyles.forgotPassword} to={"/"}>Esqueci minha senha</Link>
             </div>
