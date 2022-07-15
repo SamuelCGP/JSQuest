@@ -61,13 +61,13 @@ function Authentication() {
           message = 'Usuário não cadastrado';
           break;
         default:
-          message = 'Erro desconhecido';
+          message = 'Erro desconhecido ' + status;
       }
 
       setSignInMessage(message);
     }
 
-    function handleRegisterSubmit(input: any){
+    async function handleRegisterSubmit(input: any){
       let message: string = '';
       let status: number = 102;
 
@@ -77,6 +77,25 @@ function Authentication() {
         setSignUpMessage(message);
         return;
       }
+
+      const response: any = await User.register(input.username, input.email, input.password)
+        .then(response => {return response});
+
+      status = response;
+
+      switch(status){
+        case 201:
+          message = 'Cadastro bem-sucedido';
+          setRedirect('/home');
+          break;
+        case 400:
+          message = 'Usuário já cadastrado';
+          break;
+        default:
+          message = 'Erro desconhecido ' + status;
+      }
+  
+      setSignUpMessage(message);
     }
 
     return (

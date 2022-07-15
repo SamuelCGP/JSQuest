@@ -18,10 +18,10 @@ export async function register(username: string, userEmail: string, userPassword
     // tratar retorno
     const response = await axios(options)
         .then((res) => {
-            return res;
+            return res.status;
         })
         .catch((error) => {
-            return error;
+            return error.response.status;
         });
     
     return response;
