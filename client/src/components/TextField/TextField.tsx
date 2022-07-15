@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { ChangeEvent, useEffect } from 'react';
 import TextFieldStyles from './TextField.styles'
 
 interface TextFieldProps{
-    type: string
+    type: string,
+    value: string,
+    onChange: any
 }
 
 function TextField(props: TextFieldProps){
@@ -33,7 +35,14 @@ function TextField(props: TextFieldProps){
             break;
     }
     return(
-        <input type={fieldAttributes.fieldType} style={ fieldAttributes.style } placeholder={fieldAttributes.placeholder}></input>
+        <input 
+            name={fieldAttributes.fieldType} 
+            value={props.value}
+            type={fieldAttributes.fieldType} 
+            style={ fieldAttributes.style } 
+            placeholder={fieldAttributes.placeholder}
+            onChange={(evt) => props.onChange(evt)}
+        ></input>
     );
 }
 
