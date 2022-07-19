@@ -5,7 +5,7 @@ function Home() {
     const [responseLogin, setResponseLogin] = React.useState();
     const [responseRegister, setResponseRegister] = React.useState();
 
-    User.login('user2', 'user2').then(response => setResponseLogin(response));
+    User.login('test', 'test').then(response => setResponseLogin(response));
 
     return ( 
         <div style={ {color: 'white', fontSize: '20px', padding: '20px'} }>

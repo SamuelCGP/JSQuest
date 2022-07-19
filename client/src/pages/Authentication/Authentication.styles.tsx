@@ -18,28 +18,28 @@ const AuthStyles: StyleSheet = {
         textAlign: 'center',
     },
     mainContainer: {
-        width: '70vw',
+        width: '55vw',
         height: '70vh',
         backgroundColor: ColorPalette.navyBlue,
         borderRadius: '30px'
     },
     authCard: {
-        width: '35%',
+        width: '50%',
         height: '100%',
         backgroundColor: ColorPalette.white,
         borderRadius: '30px',
-        transition: '1s',
+        transition: '.8s ease-out',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center'
     },
     authCardSignUp: {
-        width: '30%',
+        width: '50%',
         height: '100%',
         backgroundColor: ColorPalette.white,
         borderRadius: '30px',
-        marginLeft: '70%',
-        transition: '1s',
+        marginLeft: '50%',
+        transition: '.8s ease-out',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center'

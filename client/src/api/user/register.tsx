@@ -1,28 +1,21 @@
-import * as enviroment from '../config/enviroment';
-import axios from 'axios';
+import * as enviroment from "../config/enviroment";
+import axios from "axios";
+import { HTTPMethods, makeRequest } from "./http";
 
-export async function register(username: string, userEmail: string, userPassword: string){
-    const options = {
-        url: `${enviroment.SERVER_URL}user/register`,
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=UTF-8'
-        },
-        data: {
-          username: username,
-          email: userEmail,
-          password: userPassword
-        }
-    };
+export async function register(
+	username: string,
+	userEmail: string,
+	userPassword: string
+) {
+	const data = {
+		username: username,
+		email: userEmail,
+		password: userPassword,
+	};
 
-    // tratar retorno
-    const response = await axios(options)
-        .then((res) => {
-            return res.status;
-        })
-        .catch((error) => {
-            return error.response.status;
-        });
-    
-    return response;
+	const headers = {
+		"Content-Type": "application/json;charset=UTF-8",
+	};
+
+	return await makeRequest(HTTPMethods.POST, "user/register", headers, data);
 }
