@@ -7,20 +7,45 @@ import ColorPalette from '../../utils/ColorPalette';
 
 interface SignInProps {
     onVisibilityChange: MouseEventHandler,
+    onSubmit: any,
+    message: string,
     isVisible: boolean
 }
 
 function SignIn(props: SignInProps){
+
+    const [emailValue, setEmailValue] = React.useState('');
+    const [passswordValue, setPasswordValue] = React.useState('');
+
+    function updateInputValue(field: any){
+        const fieldName = field.target.name;
+        const fieldValue = field.target.value;
+
+        switch(fieldName){
+            case 'email':
+                setEmailValue(fieldValue);
+                break;
+            case 'password':
+                setPasswordValue(fieldValue);
+                break;
+        }
+    }
+
+    function getFields(){
+        return { email: emailValue, password: passswordValue }
+    }
+
     return(
         <div style={props.isVisible ? SignInStyles.signIn : {display: 'none'} }>
             <h1 style={SignInStyles.title}>Login</h1>
-            <TextField type="username"></TextField>
-            <TextField type="password"></TextField>
+            <TextField onChange={(evt:any) => updateInputValue(evt)} type="email" value={emailValue}></TextField>
+            <TextField onChange={(evt:any) => updateInputValue(evt)} type="password" value={passswordValue}></TextField>
             <div style={SignInStyles.groupButtonAndForgotPassword}>
-                <Button version="primary" style={SignInStyles.signInButton}>Entrar</Button>
+                <p style={SignInStyles.message} >{props.message}</p>
+                <Button onClick={() => { props.onSubmit(getFields()) }} version="primary" style={SignInStyles.signInButton}>Entrar</Button>
                 <Link style={SignInStyles.forgotPassword} to={"/"}>Esqueci minha senha</Link>
             </div>
-            <h3 style={SignInStyles.signUpCall}>Não possui uma conta? <span onClick={props.onVisibilityChange} style={{color: ColorPalette.orange, cursor: "pointer"}}>Registre-se</span></h3>
+            <h3 style={SignInStyles.signUpCall}>Não tem uma conta? <span onClick={props.onVisibilityChange} style={{color: ColorPalette.orange, cursor: "pointer"}}>Registre-se</span></h3>
         </div>
     );
 }

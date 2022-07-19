@@ -18,6 +18,11 @@ const SignUpStyles: StyleSheet = {
     textFields: {
         padding: '20px',
     },
+    message: {
+        fontFamily: 'consolas',
+        color: 'red',
+        margin: '5px'
+    },
     signUpButton: {
         padding: '20px',
         fontSize: '1em',

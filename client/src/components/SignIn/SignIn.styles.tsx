@@ -22,6 +22,11 @@ const SignInStyles: StyleSheet = {
         display: 'flex',
         flexDirection: 'column'
     },
+    message: {
+        fontFamily: 'consolas',
+        color: 'red',
+        margin: '5px'
+    },
     signInButton: {
         padding: '20px',
         fontSize: '1em',
