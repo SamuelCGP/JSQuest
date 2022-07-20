@@ -3,13 +3,14 @@ import StyleSheet from "../../utils/StyleSheet";
 import ColorPalette from "../../utils/ColorPalette";
 
 const SignInStyles: StyleSheet = {
+    motherDiv: {
+        width: '80%',
+    },
     title: {
         fontFamily: 'verdana',
         userSelect: 'none'
     },
     signIn: {
-        width: '80%',
-        height: '80%',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
@@ -21,11 +22,6 @@ const SignInStyles: StyleSheet = {
     groupButtonAndForgotPassword: {
         display: 'flex',
         flexDirection: 'column'
-    },
-    message: {
-        fontFamily: 'consolas',
-        color: 'red',
-        margin: '5px'
     },
     signInButton: {
         padding: '20px',
