@@ -55,7 +55,7 @@ exports.forgotPassword = async function (req, res, next) {
 		const userId = user.id;
 		const password = userData.password;
 		const secret = process.env.JWT_SECRET + password;
-		const token = jwt.sign({ email, userId }, secret, { expiresIn: "15m" });
+		const token = jwt.sign({ email, userId }, secret, { expiresIn: "5m" });
 		const link = `http://localhost:3000/reset-password/${userId}/${token}`;
 
 		req.toEmailAdress = email;

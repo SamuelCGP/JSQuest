@@ -32,9 +32,12 @@ router.post('/register', upload.none(), userController.register);
 router.post('/login', upload.none(), userController.login);
 
 //recebe o email do usuário para enviar o link de reset de senha
+//retorna 404 se o email for inválido
 router.post('/forgot-password', upload.none(), userController.forgotPassword, sendEmail);
 
 //recebe o "userId" e "newPassword" no body, e o token de reset de senha (pelo header x-access-token)
+//retorna 401 se o token for inválido
+//retorna 404 se o userId for inválido
 router.post('/reset-password', upload.none(), userController.resetPassword, verifyPasswordResetJWT);
 
 
