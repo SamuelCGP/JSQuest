@@ -53,7 +53,7 @@ function SignUp(props: SignUpProps) {
 	// }
 
 	return (
-		<div style={props.isVisible ? SignUpStyles.signUp : { display: "none" }}>
+		<div style={props.isVisible ? SignUpStyles.motherDiv : { display: "none" }}>
 			<Formik
 				initialValues={{
 					username: "",
@@ -68,30 +68,30 @@ function SignUp(props: SignUpProps) {
 				}}
 			>
 				{({ isSubmitting }) => (
-					<Form>
+					<Form style={SignUpStyles.signUp}>
 						<h1 style={SignUpStyles.title}>Cadastro</h1>
 						<Field
-							style={TextFieldStyles.textFieldBig}
+							style={TextFieldStyles.textField}
 							name="username"
 							placeholder="Digite seu nome de usuário"
 						></Field>
 						<ErrorMessage name="username" component="div" />
 						<Field
-							style={TextFieldStyles.textFieldBig}
+							style={TextFieldStyles.textField}
 							name="email"
 							placeholder="Digite seu email"
 							type="email"
 						></Field>
 						<ErrorMessage name="email" component="div" />
 						<Field
-							style={TextFieldStyles.textFieldBig}
+							style={TextFieldStyles.textField}
 							name="password"
 							placeholder="Digite sua senha"
 							type="password"
 						></Field>
 						<ErrorMessage name="password" component="div" />
 						<Field
-							style={TextFieldStyles.textFieldBig}
+							style={TextFieldStyles.textField}
 							name="confirm_password"
 							placeholder="Confirme sua senha"
 							type="password"

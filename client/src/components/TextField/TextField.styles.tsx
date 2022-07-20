@@ -8,8 +8,8 @@ const TextFieldStyles: StyleSheet = {
         backgroundColor: "#cdd6e3",
         borderRadius: '3px',
         border: 'none',
-        padding: '0.75em 1em',
-        margin: '0 1em',
+        padding: '1em 1em',
+        margin: '0.5em 1em',
         outline: 'none',
         fontFamily: 'consolas'
     },
@@ -18,7 +18,7 @@ const TextFieldStyles: StyleSheet = {
         borderRadius: '3px',
         border: 'none',
         padding: '1.5em 1em',
-        margin: '0 1em',
+        margin: '1em 1em',
         outline: 'none',
         fontSize: '1em',
         fontFamily: 'consolas'

@@ -43,7 +43,7 @@ function SignIn(props: SignInProps) {
 	// }
 
 	return (
-		<div style={props.isVisible ? SignInStyles.signIn : { display: "none" }}>
+		<div style={props.isVisible ? SignInStyles.motherDiv : { display: "none" }}>
 			<Formik
 				initialValues={{ email: "", password: "" }}
                 validationSchema={SignInSchema}
@@ -53,7 +53,7 @@ function SignIn(props: SignInProps) {
 				}}
 			>
 				{({ isSubmitting }) => (
-					<Form>
+					<Form style={SignInStyles.signIn} >
 						<h1 style={SignInStyles.title}>Login</h1>
 						<Field
 							type="email"
@@ -61,14 +61,14 @@ function SignIn(props: SignInProps) {
 							name="email"
 							placeholder="Digite seu email"
 						/>
-						<ErrorMessage name="email" component="div" />
+						<ErrorMessage name="email" component="div"/>
 						<Field
 							style={TextFieldStyles.textFieldBig}
 							type="password"
 							name="password"
 							placeholder="Digite sua senha"
 						/>
-						<ErrorMessage name="password" component="div" />
+						<ErrorMessage name="password" component="div"/>
 						<div style={SignInStyles.groupButtonAndForgotPassword}>
 							<p style={SignInStyles.message}>{props.message}</p>
 							<Button

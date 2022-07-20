@@ -3,13 +3,14 @@ import StyleSheet from "../../utils/StyleSheet";
 import ColorPalette from "../../utils/ColorPalette";
 
 const SignUpStyles: StyleSheet = {
+    motherDiv: {
+        width: '80%',
+    },
     title: {
         fontFamily: 'verdana',
         userSelect: 'none'
     },
     signUp: {
-        width: '80%',
-        height: '80%',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
