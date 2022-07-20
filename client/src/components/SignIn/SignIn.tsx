@@ -7,6 +7,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import ColorPalette from "../../utils/ColorPalette";
 import TextFieldStyles from "../TextField/TextField.styles";
 import * as Yup from "yup";
+import FormMessage from "../FormMessage/FormMessage";
 
 interface SignInProps {
 	onVisibilityChange: MouseEventHandler;
@@ -61,16 +62,16 @@ function SignIn(props: SignInProps) {
 							name="email"
 							placeholder="Digite seu email"
 						/>
-						<ErrorMessage name="email" component="div"/>
+						<ErrorMessage name="email" component={FormMessage}/>
 						<Field
 							style={TextFieldStyles.textFieldBig}
 							type="password"
 							name="password"
 							placeholder="Digite sua senha"
 						/>
-						<ErrorMessage name="password" component="div"/>
+						<ErrorMessage name="password" component={FormMessage}/>
 						<div style={SignInStyles.groupButtonAndForgotPassword}>
-							<p style={SignInStyles.message}>{props.message}</p>
+							<FormMessage>{props.message}</FormMessage>
 							<Button
 								type="submit"
                                 disabled={isSubmitting}

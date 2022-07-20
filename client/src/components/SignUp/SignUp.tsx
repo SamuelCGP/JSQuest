@@ -7,6 +7,7 @@ import ColorPalette from "../../utils/ColorPalette";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import TextFieldStyles from "./../TextField/TextField.styles";
 import * as Yup from "yup";
+import FormMessage from "../FormMessage/FormMessage";
 
 interface SignUpProps {
 	onVisibilityChange: MouseEventHandler;
@@ -75,29 +76,29 @@ function SignUp(props: SignUpProps) {
 							name="username"
 							placeholder="Digite seu nome de usuário"
 						></Field>
-						<ErrorMessage name="username" component="div" />
+						<ErrorMessage name="username" component={FormMessage} />
 						<Field
 							style={TextFieldStyles.textField}
 							name="email"
 							placeholder="Digite seu email"
 							type="email"
 						></Field>
-						<ErrorMessage name="email" component="div" />
+						<ErrorMessage name="email" component={FormMessage} />
 						<Field
 							style={TextFieldStyles.textField}
 							name="password"
 							placeholder="Digite sua senha"
 							type="password"
 						></Field>
-						<ErrorMessage name="password" component="div" />
+						<ErrorMessage name="password" component={FormMessage} />
 						<Field
 							style={TextFieldStyles.textField}
 							name="confirm_password"
 							placeholder="Confirme sua senha"
 							type="password"
 						></Field>
-						<ErrorMessage name="confirm_password" component="div" />
-						<p style={SignUpStyles.message}>{props.message}</p>
+						<ErrorMessage name="confirm_password" component={FormMessage} />
+						<FormMessage>{props.message}</FormMessage>
 						<Button
 							type="submit"
 							disabled={isSubmitting}
