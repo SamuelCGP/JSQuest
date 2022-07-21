@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { } from "react";
 import SignIn from "../../components/SignIn/SignIn";
 import SignUp from "../../components/SignUp/SignUp";
 import AuthStyles from "./Authentication.styles";
@@ -46,7 +46,7 @@ function Authentication() {
 						onSubmit={async (input: Object) => {
 							const message = await handleLoginSubmit(input);
 							setSignInMessage(message);
-							if (message == "Acesso permitido") setRedirect("/home");
+							if (message === "Acesso permitido") setRedirect("/home");
 						}}
 						message={signInMessage}
 						isVisible={isSigned}

@@ -1,8 +1,6 @@
-import React, { MouseEventHandler, useEffect } from "react";
+import React, { MouseEventHandler } from "react";
 import SignUpStyles from "./SignUp.styles";
-import TextField from "../TextField/TextField";
 import Button from "../Button/Button";
-import { Link } from "react-router-dom";
 import ColorPalette from "../../utils/ColorPalette";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import TextFieldStyles from "./../TextField/TextField.styles";

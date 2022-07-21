@@ -1,5 +1,4 @@
-import React, { MouseEventHandler, useEffect } from "react";
-import TextField from "../TextField/TextField";
+import React, { MouseEventHandler } from "react";
 import Button from "../Button/Button";
 import SignInStyles from "./SignIn.styles";
 import { Link } from "react-router-dom";
