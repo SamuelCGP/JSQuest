@@ -1,6 +1,11 @@
 import { MouseEventHandler, useState } from "react";
 import Button from "../Button/Button";
-import { ForgotPassword, SignInForm, SignUpCall, SignInField } from "./SignIn.styles";
+import {
+	ForgotPassword,
+	SignInForm,
+	SignUpCall,
+	SignInField,
+} from "./SignIn.styles";
 import { ErrorMessage, Formik } from "formik";
 import * as Yup from "yup";
 import FormMessage from "../FormMessage/FormMessage";
@@ -77,10 +82,11 @@ function SignIn(props: SignInProps) {
 								Esqueci minha senha
 							</ForgotPassword>
 						</Column>
-						<SignUpCall>
-							Não tem uma conta?
-						</SignUpCall>
-						<SignUpCall clickable onClick={props.onVisibilityChange}>
+						<SignUpCall>Não tem uma conta?</SignUpCall>
+						<SignUpCall
+							clickable
+							onClick={props.onVisibilityChange}
+						>
 							Registre-se
 						</SignUpCall>
 					</SignInForm>

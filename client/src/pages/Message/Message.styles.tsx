@@ -1,31 +1,24 @@
 import StyleSheet from "../../utils/StyleSheet";
 import ColorPalette from "../../utils/ColorPalette";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { Container } from "../../components/Global";
 
-const MessageStyles: StyleSheet = {
-    wrapper: {
-        width: '100vw',
-        height: '100vh',
-        textAlign: 'center'
-    },
-    title: {
-        fontSize: '3em',
-        color: ColorPalette.orange,
-        fontFamily: 'consolas',
-        margin: '0',
-        padding: '50px'
-    },
-    message: {
-        fontSize: '2em',
-        color: ColorPalette.white,
-        fontFamily: 'consolas',
-        margin: '20px'
-    },
-    link: {
-        fontSize: '1em',
-        color: ColorPalette.orange,
-        fontFamily: 'consolas',
-        margin: '20px'
-    }
-};
+export const CenterContainer = styled(Container)`
+	text-align: center;
+	user-select: none;
+`;
 
-export default MessageStyles;
+export const MessageTag = styled.p`
+	font-size: 2em;
+	color: ${ColorPalette.white};
+	font-family: consolas;
+	margin: 20px;
+`;
+
+export const LinkBack = styled(Link)`
+	font-size: 1em;
+	color: ${ColorPalette.orange};
+	font-family: consolas;
+	margin: 20px;
+`;

@@ -11,7 +11,8 @@ function App() {
 		<Router>
 			<GlobalStyle />
 			<Routes>
-				<Route path="*" element={<Message message={"404"} />} />
+				<Route path="*" element={<Message />} />
+				<Route path="/message/:messageType" element={<Message />} />
 				<Route path="/" element={<Authentication />} />
 				<Route
 					path="/reset-password/:userId/:token"
