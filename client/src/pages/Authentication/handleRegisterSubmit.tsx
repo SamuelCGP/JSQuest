@@ -26,6 +26,9 @@ export default async (input: any) => {
 		case 400:
 			message = "Usuário já cadastrado";
 			break;
+		case 0:
+			message = "Sem conexão com o servidor";
+			break;
 		default:
 			message = "Erro desconhecido " + status;
 	}

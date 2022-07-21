@@ -17,7 +17,6 @@ export async function makeRequest(
 		...(headers ? { headers } : {}),
 	})
 		.then((res) => {
-            console.log(res);
 			return res.status;
 		})
 		.catch((error) => {
