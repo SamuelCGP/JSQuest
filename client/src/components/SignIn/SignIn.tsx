@@ -1,7 +1,6 @@
-import React, { FormEvent, MouseEventHandler, useState } from "react";
+import { MouseEventHandler, useState } from "react";
 import Button from "../Button/Button";
 import SignInStyles from "./SignIn.styles";
-import { Link } from "react-router-dom";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import ColorPalette from "../../utils/ColorPalette";
 import TextFieldStyles from "../TextField/TextField.styles";
@@ -74,7 +73,7 @@ function SignIn(props: SignInProps) {
 						>
 							{isSubmitting ? "Aguarde..." : "Entrar"}
 						</Button>
-						<a
+						<p
 							onClick={() => {
 								const email = emailValue;
 								props.onForgotPassword(email);
@@ -82,7 +81,7 @@ function SignIn(props: SignInProps) {
 							style={SignInStyles.forgotPassword}
 						>
 							Esqueci minha senha
-						</a>
+						</p>
 					</div>
 					<h3 style={SignInStyles.signUpCall}>Não tem uma conta? </h3>
 					<h3>

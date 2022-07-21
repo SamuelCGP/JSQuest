@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, MainHeading, Row, Section } from "../../components/Global";
+import { Container, MainHeading } from "../../components/Global";
 import SignIn from "../../components/SignIn/SignIn";
 import SignUp from "../../components/SignUp/SignUp";
 import { MainContainer, AuthCard } from "./Authentication.styles";
@@ -10,9 +10,9 @@ import handleForgotPassword from "./handleForgotPassword";
 
 function Authentication() {
 	const [isSigned, setIsSigned] = useState(true);
+	const [redirect, setRedirect] = useState("");
 	const [signInMessage, setSignInMessage] = useState("⠀");
 	const [signUpMessage, setSignUpMessage] = useState("⠀");
-	const [redirect, setRedirect] = useState("");
 
 	if (redirect) return <Navigate to={redirect} />;
 

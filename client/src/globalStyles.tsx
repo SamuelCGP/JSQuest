@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import ColorPalette from "./utils/ColorPalette";
 
 export const GlobalStyle = createGlobalStyle`

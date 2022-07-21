@@ -1,4 +1,3 @@
-import React from "react";
 import styled, { css } from "styled-components";
 import ColorPalette from "../../utils/ColorPalette";
 
@@ -15,7 +14,7 @@ const Button = styled.button`
 	margin: 0 1em;
 	font-weight: bold;
 	${(p: ButtonProps) =>
-		p.version == "primary" &&
+		p.version === "primary" &&
 		css`
 			background-color: ${ColorPalette.navyBlue};
 			border: 2px solid ${ColorPalette.navyBlue};
