@@ -1,13 +1,10 @@
-import React, { MouseEventHandler, useEffect } from "react";
-import SignUpStyles from "./SignUp.styles";
-import TextField from "../TextField/TextField";
+import { MouseEventHandler } from "react";
+import { SignUpForm, SignUpField, SignInCall } from "./SignUp.styles";
 import Button from "../Button/Button";
-import { Link } from "react-router-dom";
-import ColorPalette from "../../utils/ColorPalette";
-import { Formik, Field, Form, ErrorMessage } from "formik";
-import TextFieldStyles from "./../TextField/TextField.styles";
+import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import FormMessage from "../FormMessage/FormMessage";
+import { Heading } from "../Global";
 
 interface SignUpProps {
 	onVisibilityChange: MouseEventHandler;
@@ -32,8 +29,8 @@ const SignUpSchema = Yup.object().shape({
 });
 
 function SignUp(props: SignUpProps) {
-	return (
-		<div style={props.isVisible ? SignUpStyles.motherDiv : { display: "none" }}>
+	if (props.isVisible)
+		return (
 			<Formik
 				initialValues={{
 					username: "",
@@ -48,59 +45,57 @@ function SignUp(props: SignUpProps) {
 				}}
 			>
 				{({ isSubmitting }) => (
-					<Form style={SignUpStyles.signUp}>
-						<h1 style={SignUpStyles.title}>Cadastro</h1>
-						<Field
-							style={TextFieldStyles.textField}
+					<SignUpForm>
+						<Heading inverse mb={"10px"}>
+							Cadastro
+						</Heading>
+						<SignUpField
 							name="username"
 							placeholder="Digite seu nome de usuário"
-						></Field>
+						></SignUpField>
 						<ErrorMessage name="username" component={FormMessage} />
-						<Field
-							style={TextFieldStyles.textField}
+						<SignUpField
 							name="email"
 							placeholder="Digite seu email"
 							type="email"
-						></Field>
+						></SignUpField>
 						<ErrorMessage name="email" component={FormMessage} />
-						<Field
-							style={TextFieldStyles.textField}
+						<SignUpField
 							name="password"
 							placeholder="Digite sua senha"
 							type="password"
-						></Field>
+						></SignUpField>
 						<ErrorMessage name="password" component={FormMessage} />
-						<Field
-							style={TextFieldStyles.textField}
+						<SignUpField
 							name="confirm_password"
 							placeholder="Confirme sua senha"
 							type="password"
-						></Field>
-						<ErrorMessage name="confirm_password" component={FormMessage} />
+						></SignUpField>
+						<ErrorMessage
+							name="confirm_password"
+							component={FormMessage}
+						/>
 						<FormMessage>{props.message}</FormMessage>
 						<Button
 							type="submit"
 							disabled={isSubmitting}
-							version="primary"
-							style={SignUpStyles.signUpButton}
+							primary
+							padding={"20px"}
+							fontSize={"1em"}
+							mb={"10px"}
 						>
 							{isSubmitting ? "Aguarde..." : "Registrar"}
 						</Button>
-						<h3 style={SignUpStyles.signInCall}>
-							Já possui uma conta?
-							<span
-								onClick={props.onVisibilityChange}
-								style={{ color: ColorPalette.orange, cursor: "pointer" }}
-							>
-								{" "}
-								Faça login
-							</span>
-						</h3>
-					</Form>
+						<SignInCall>Já possui uma conta?</SignInCall>
+						<SignInCall clickable onClick={props.onVisibilityChange}>
+							Faça login
+						</SignInCall>
+					</SignUpForm>
 				)}
 			</Formik>
-		</div>
-	);
+		);
+
+	return <></>;
 }
 
 export default SignUp;

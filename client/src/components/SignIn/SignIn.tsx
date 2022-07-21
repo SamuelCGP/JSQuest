@@ -1,82 +1,94 @@
-import React, { MouseEventHandler, useEffect } from "react";
-import TextField from "../TextField/TextField";
+import { MouseEventHandler, useState } from "react";
 import Button from "../Button/Button";
-import SignInStyles from "./SignIn.styles";
-import { Link } from "react-router-dom";
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import ColorPalette from "../../utils/ColorPalette";
-import TextFieldStyles from "../TextField/TextField.styles";
+import { ForgotPassword, SignInForm, SignUpCall, SignInField } from "./SignIn.styles";
+import { ErrorMessage, Formik } from "formik";
 import * as Yup from "yup";
 import FormMessage from "../FormMessage/FormMessage";
+import { Column, Heading } from "../Global";
 
 interface SignInProps {
 	onVisibilityChange: MouseEventHandler;
 	onSubmit: Function;
+	onForgotPassword: Function;
 	message: string;
 	isVisible: boolean;
 }
 
 const SignInSchema = Yup.object().shape({
-    email: Yup.string().email("Email inválido").required("Email necessário"),
-    password: Yup.string().required("Senha necessária")
-})
+	email: Yup.string().email("Email inválido").required("Email necessário"),
+	password: Yup.string().required("Senha necessária"),
+});
 
 function SignIn(props: SignInProps) {
-	return (
-		<div style={props.isVisible ? SignInStyles.motherDiv : { display: "none" }}>
+	const [emailValue, setEmailValue] = useState();
+
+	const handleChanges = (event: any) => {
+		const target = event.target;
+		if (target.name === "email") {
+			setEmailValue(target.value);
+		}
+	};
+
+	if (props.isVisible)
+		return (
 			<Formik
 				initialValues={{ email: "", password: "" }}
-                validationSchema={SignInSchema}
+				validationSchema={SignInSchema}
 				onSubmit={(values, { setSubmitting }) => {
 					props.onSubmit(values);
-                    setSubmitting(false);
+					setSubmitting(false);
 				}}
 			>
 				{({ isSubmitting }) => (
-					<Form style={SignInStyles.signIn} >
-						<h1 style={SignInStyles.title}>Login</h1>
-						<Field
+					<SignInForm onChange={handleChanges}>
+						<Heading inverse mb={"10px"}>
+							Login
+						</Heading>
+						<SignInField
 							type="email"
-							style={TextFieldStyles.textFieldBig}
 							name="email"
 							placeholder="Digite seu email"
 						/>
-						<ErrorMessage name="email" component={FormMessage}/>
-						<Field
-							style={TextFieldStyles.textFieldBig}
+						<ErrorMessage name="email" component={FormMessage} />
+						<SignInField
 							type="password"
 							name="password"
 							placeholder="Digite sua senha"
 						/>
-						<ErrorMessage name="password" component={FormMessage}/>
-						<div style={SignInStyles.groupButtonAndForgotPassword}>
+						<ErrorMessage name="password" component={FormMessage} />
+						<Column margin={"0 0 2rem 0"}>
 							<FormMessage>{props.message}</FormMessage>
 							<Button
 								type="submit"
-                                disabled={isSubmitting}
-								version="primary"
-								style={SignInStyles.signInButton}
+								disabled={isSubmitting}
+								primary
+								padding={"20px"}
+								fontSize={"1em"}
+								mb={"10px"}
 							>
-								{isSubmitting? "Aguarde..." : "Entrar"}
+								{isSubmitting ? "Aguarde..." : "Entrar"}
 							</Button>
-							<Link style={SignInStyles.forgotPassword} to={"/"}>
-								Esqueci minha senha
-							</Link>
-						</div>
-						<h3 style={SignInStyles.signUpCall}>
-							Não tem uma conta?{" "}
-							<span
-								onClick={props.onVisibilityChange}
-								style={{ color: ColorPalette.orange, cursor: "pointer" }}
+							<ForgotPassword
+								onClick={() => {
+									const email = emailValue;
+									props.onForgotPassword(email);
+								}}
 							>
-								Registre-se
-							</span>
-						</h3>
-					</Form>
+								Esqueci minha senha
+							</ForgotPassword>
+						</Column>
+						<SignUpCall>
+							Não tem uma conta?
+						</SignUpCall>
+						<SignUpCall clickable onClick={props.onVisibilityChange}>
+							Registre-se
+						</SignUpCall>
+					</SignInForm>
 				)}
 			</Formik>
-		</div>
-	);
+		);
+
+	return <></>;
 }
 
 export default SignIn;

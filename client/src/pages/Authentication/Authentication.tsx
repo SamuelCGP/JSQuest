@@ -1,19 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
+import { Container, MainHeading } from "../../components/Global";
 import SignIn from "../../components/SignIn/SignIn";
 import SignUp from "../../components/SignUp/SignUp";
-import AuthStyles from "./Authentication.styles";
+import { MainContainer, AuthCard } from "./Authentication.styles";
 import { Navigate } from "react-router-dom";
 import handleRegisterSubmit from "./handleRegisterSubmit";
 import handleLoginSubmit from "./handleLoginSubmit";
+import handleForgotPassword from "./handleForgotPassword";
 
 function Authentication() {
-	const [isSigned, setIsSigned] = React.useState(true);
-	const [signInMessage, setSignInMessage] = React.useState("⠀");
-	const [signUpMessage, setSignUpMessage] = React.useState("⠀");
-	const [authCardStyle, setLoginCardStyle] = React.useState(
-		AuthStyles.authCard
-	);
-	const [redirect, setRedirect] = React.useState("");
+	const [isSigned, setIsSigned] = useState(true);
+	const [redirect, setRedirect] = useState("");
+	const [signInMessage, setSignInMessage] = useState("⠀");
+	const [signUpMessage, setSignUpMessage] = useState("⠀");
 
 	if (redirect) return <Navigate to={redirect} />;
 
@@ -21,17 +20,31 @@ function Authentication() {
 		const newIsSigned = !isSigned;
 		setIsSigned(newIsSigned);
 
-    if(newIsSigned) setLoginCardStyle(AuthStyles.authCard);
-    else setLoginCardStyle(AuthStyles.authCardSignUp);
-
 		setSignInMessage("⠀");
 		setSignUpMessage("⠀");
 	}
 	return (
-		<div style={AuthStyles.authentication}>
-			<h1 style={AuthStyles.title}>JSQuest</h1>
-			<div style={AuthStyles.mainContainer}>
-				<div style={authCardStyle}>
+		<Container>
+			<MainHeading>JSQuest</MainHeading>
+			<MainContainer>
+				<AuthCard isSigned={isSigned}>
+					<SignIn
+						onSubmit={async (input: Object) => {
+							const message = await handleLoginSubmit(input);
+							setSignInMessage(message);
+							if (message === "Acesso permitido")
+								setRedirect("/home");
+						}}
+						onForgotPassword={async (email: string) => {
+							const message = await handleForgotPassword(email);
+							setSignInMessage(message);
+						}}
+						message={signInMessage}
+						isVisible={isSigned}
+						onVisibilityChange={() => {
+							handleVisibilityChanges();
+						}}
+					/>
 					<SignUp
 						onSubmit={async (input: Object) => {
 							setSignUpMessage(await handleRegisterSubmit(input));
@@ -42,21 +55,9 @@ function Authentication() {
 							handleVisibilityChanges();
 						}}
 					/>
-					<SignIn
-						onSubmit={async (input: Object) => {
-							const message = await handleLoginSubmit(input);
-							setSignInMessage(message);
-							if (message == "Acesso permitido") setRedirect("/home");
-						}}
-						message={signInMessage}
-						isVisible={isSigned}
-						onVisibilityChange={() => {
-							handleVisibilityChanges();
-						}}
-					/>
-				</div>
-			</div>
-		</div>
+				</AuthCard>
+			</MainContainer>
+		</Container>
 	);
 }
 
