@@ -31,7 +31,9 @@ const SignInStyles: StyleSheet = {
     forgotPassword: {
         fontFamily: 'consolas',
         color: ColorPalette.orange,
-        userSelect: 'none'
+        userSelect: 'none',
+        cursor: 'pointer',
+        textDecoration: 'underline'
     },
     signUpCall: {
         fontFamily: 'consolas',
