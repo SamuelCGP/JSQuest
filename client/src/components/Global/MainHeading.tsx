@@ -11,4 +11,5 @@ export const MainHeading = styled.h1`
 	width: 100%;
 	letter-spacing: 4px;
 	text-align: center;
+	user-select: none;
 `;

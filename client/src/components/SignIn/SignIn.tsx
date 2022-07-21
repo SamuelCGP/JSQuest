@@ -1,11 +1,10 @@
 import { MouseEventHandler, useState } from "react";
 import Button from "../Button/Button";
-import SignInStyles from "./SignIn.styles";
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import ColorPalette from "../../utils/ColorPalette";
-import TextFieldStyles from "../TextField/TextField.styles";
+import { ForgotPassword, SignInForm, SignUpCall, SignInField } from "./SignIn.styles";
+import { ErrorMessage, Formik } from "formik";
 import * as Yup from "yup";
 import FormMessage from "../FormMessage/FormMessage";
+import { Column, Heading } from "../Global";
 
 interface SignInProps {
 	onVisibilityChange: MouseEventHandler;
@@ -30,75 +29,66 @@ function SignIn(props: SignInProps) {
 		}
 	};
 
-	return (
-		<Formik
-			initialValues={{ email: "", password: "" }}
-			validationSchema={SignInSchema}
-			onSubmit={(values, { setSubmitting }) => {
-				props.onSubmit(values);
-				setSubmitting(false);
-			}}
-		>
-			{({ isSubmitting }) => (
-				<Form
-					onChange={handleChanges}
-					style={
-						props.isVisible
-							? SignInStyles.signIn
-							: { display: "none" }
-					}
-				>
-					<h1 style={SignInStyles.title}>Login</h1>
-					<Field
-						type="email"
-						style={TextFieldStyles.textFieldBig}
-						name="email"
-						placeholder="Digite seu email"
-					/>
-					<ErrorMessage name="email" component={FormMessage} />
-					<Field
-						style={TextFieldStyles.textFieldBig}
-						type="password"
-						name="password"
-						placeholder="Digite sua senha"
-					/>
-					<ErrorMessage name="password" component={FormMessage} />
-					<div style={SignInStyles.groupButtonAndForgotPassword}>
-						<FormMessage>{props.message}</FormMessage>
-						<Button
-							type="submit"
-							disabled={isSubmitting}
-							version="primary"
-							style={SignInStyles.signInButton}
-						>
-							{isSubmitting ? "Aguarde..." : "Entrar"}
-						</Button>
-						<p
-							onClick={() => {
-								const email = emailValue;
-								props.onForgotPassword(email);
-							}}
-							style={SignInStyles.forgotPassword}
-						>
-							Esqueci minha senha
-						</p>
-					</div>
-					<h3 style={SignInStyles.signUpCall}>Não tem uma conta? </h3>
-					<h3>
-						<span
-							onClick={props.onVisibilityChange}
-							style={{
-								color: ColorPalette.orange,
-								cursor: "pointer",
-							}}
-						>
+	if (props.isVisible)
+		return (
+			<Formik
+				initialValues={{ email: "", password: "" }}
+				validationSchema={SignInSchema}
+				onSubmit={(values, { setSubmitting }) => {
+					props.onSubmit(values);
+					setSubmitting(false);
+				}}
+			>
+				{({ isSubmitting }) => (
+					<SignInForm onChange={handleChanges}>
+						<Heading inverse mb={"10px"}>
+							Login
+						</Heading>
+						<SignInField
+							type="email"
+							name="email"
+							placeholder="Digite seu email"
+						/>
+						<ErrorMessage name="email" component={FormMessage} />
+						<SignInField
+							type="password"
+							name="password"
+							placeholder="Digite sua senha"
+						/>
+						<ErrorMessage name="password" component={FormMessage} />
+						<Column margin={"0 0 2rem 0"}>
+							<FormMessage>{props.message}</FormMessage>
+							<Button
+								type="submit"
+								disabled={isSubmitting}
+								primary
+								padding={"20px"}
+								fontSize={"1em"}
+								mb={"10px"}
+							>
+								{isSubmitting ? "Aguarde..." : "Entrar"}
+							</Button>
+							<ForgotPassword
+								onClick={() => {
+									const email = emailValue;
+									props.onForgotPassword(email);
+								}}
+							>
+								Esqueci minha senha
+							</ForgotPassword>
+						</Column>
+						<SignUpCall>
+							Não tem uma conta?
+						</SignUpCall>
+						<SignUpCall clickable onClick={props.onVisibilityChange}>
 							Registre-se
-						</span>
-					</h3>
-				</Form>
-			)}
-		</Formik>
-	);
+						</SignUpCall>
+					</SignInForm>
+				)}
+			</Formik>
+		);
+
+	return <></>;
 }
 
 export default SignIn;

@@ -1,11 +1,10 @@
-import React, { MouseEventHandler } from "react";
-import SignUpStyles from "./SignUp.styles";
+import { MouseEventHandler } from "react";
+import { SignUpForm, SignUpField, SignInCall } from "./SignUp.styles";
 import Button from "../Button/Button";
-import ColorPalette from "../../utils/ColorPalette";
-import { Formik, Field, Form, ErrorMessage } from "formik";
-import TextFieldStyles from "./../TextField/TextField.styles";
+import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import FormMessage from "../FormMessage/FormMessage";
+import { Heading } from "../Global";
 
 interface SignUpProps {
 	onVisibilityChange: MouseEventHandler;
@@ -30,87 +29,73 @@ const SignUpSchema = Yup.object().shape({
 });
 
 function SignUp(props: SignUpProps) {
-	return (
-		<Formik
-			initialValues={{
-				username: "",
-				email: "",
-				password: "",
-				confirm_password: "",
-			}}
-			validationSchema={SignUpSchema}
-			onSubmit={(values, { setSubmitting }) => {
-				props.onSubmit(values);
-				setSubmitting(false);
-			}}
-		>
-			{({ isSubmitting }) => (
-				<Form
-					style={
-						props.isVisible
-							? SignUpStyles.signUp
-							: { display: "none" }
-					}
-				>
-					<h1 style={SignUpStyles.title}>Cadastro</h1>
-					<Field
-						style={TextFieldStyles.textField}
-						name="username"
-						placeholder="Digite seu nome de usuário"
-					></Field>
-					<ErrorMessage name="username" component={FormMessage} />
-					<Field
-						style={TextFieldStyles.textField}
-						name="email"
-						placeholder="Digite seu email"
-						type="email"
-					></Field>
-					<ErrorMessage name="email" component={FormMessage} />
-					<Field
-						style={TextFieldStyles.textField}
-						name="password"
-						placeholder="Digite sua senha"
-						type="password"
-					></Field>
-					<ErrorMessage name="password" component={FormMessage} />
-					<Field
-						style={TextFieldStyles.textField}
-						name="confirm_password"
-						placeholder="Confirme sua senha"
-						type="password"
-					></Field>
-					<ErrorMessage
-						name="confirm_password"
-						component={FormMessage}
-					/>
-					<FormMessage>{props.message}</FormMessage>
-					<Button
-						type="submit"
-						disabled={isSubmitting}
-						version="primary"
-						style={SignUpStyles.signUpButton}
-					>
-						{isSubmitting ? "Aguarde..." : "Registrar"}
-					</Button>
-					<h3 style={SignUpStyles.signInCall}>
-						Já possui uma conta?
-					</h3>
-					<h3>
-						<span
-							onClick={props.onVisibilityChange}
-							style={{
-								color: ColorPalette.orange,
-								cursor: "pointer",
-							}}
+	if (props.isVisible)
+		return (
+			<Formik
+				initialValues={{
+					username: "",
+					email: "",
+					password: "",
+					confirm_password: "",
+				}}
+				validationSchema={SignUpSchema}
+				onSubmit={(values, { setSubmitting }) => {
+					props.onSubmit(values);
+					setSubmitting(false);
+				}}
+			>
+				{({ isSubmitting }) => (
+					<SignUpForm>
+						<Heading inverse mb={"10px"}>
+							Cadastro
+						</Heading>
+						<SignUpField
+							name="username"
+							placeholder="Digite seu nome de usuário"
+						></SignUpField>
+						<ErrorMessage name="username" component={FormMessage} />
+						<SignUpField
+							name="email"
+							placeholder="Digite seu email"
+							type="email"
+						></SignUpField>
+						<ErrorMessage name="email" component={FormMessage} />
+						<SignUpField
+							name="password"
+							placeholder="Digite sua senha"
+							type="password"
+						></SignUpField>
+						<ErrorMessage name="password" component={FormMessage} />
+						<SignUpField
+							name="confirm_password"
+							placeholder="Confirme sua senha"
+							type="password"
+						></SignUpField>
+						<ErrorMessage
+							name="confirm_password"
+							component={FormMessage}
+						/>
+						<FormMessage>{props.message}</FormMessage>
+						<Button
+							type="submit"
+							disabled={isSubmitting}
+							primary
+							padding={"20px"}
+							fontSize={"1em"}
+							mb={"10px"}
 						>
-							{" "}
+							{isSubmitting ? "Aguarde..." : "Registrar"}
+						</Button>
+						<SignInCall>Já possui uma conta?</SignInCall>
+						<SignInCall clickable onClick={props.onVisibilityChange}>
 							Faça login
-						</span>
-					</h3>
-				</Form>
-			)}
-		</Formik>
-	);
+						</SignInCall>
+					</SignUpForm>
+				)}
+			</Formik>
+		);
+
+	return <></>;
 }
 
 export default SignUp;

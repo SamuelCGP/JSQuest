@@ -1,43 +1,36 @@
-import StyleSheet from "../../utils/StyleSheet";
 import ColorPalette from "../../utils/ColorPalette";
+import styled from "styled-components";
+import { Form, Field } from "formik";
 
-const SignInStyles: StyleSheet = {
-	motherDiv: {
-		width: "80%",
-	},
-	title: {
-		fontFamily: "verdana",
-		userSelect: "none",
-	},
-	signIn: {
-		display: "flex",
-		flexDirection: "column",
-		justifyContent: "space-between",
-		textAlign: "center",
-	},
-	textFields: {
-		padding: "20px",
-	},
-	groupButtonAndForgotPassword: {
-		display: "flex",
-		flexDirection: "column",
-	},
-	signInButton: {
-		padding: "20px",
-		fontSize: "1em",
-		marginBottom: "10px",
-	},
-	forgotPassword: {
-		fontFamily: "consolas",
-		color: ColorPalette.orange,
-		userSelect: "none",
-		cursor: "pointer",
-		textDecoration: "underline",
-	},
-	signUpCall: {
-		fontFamily: "consolas",
-		userSelect: "none",
-	},
-};
+export const ForgotPassword = styled.p`
+	font-family: consolas;
+	color: ${ColorPalette.orange};
+	user-select: none;
+	cursor: pointer;
+	text-decoration: underline;
+`;
 
-export default SignInStyles;
+export const SignUpCall = styled.h3`
+	font-family: consolas;
+	user-select: none;
+	color: ${(props: {clickable?: boolean}) => props.clickable ? ColorPalette.orange : ""};
+	cursor: ${(props: {clickable?: boolean}) => props.clickable ? "pointer" : ""};
+`;
+
+export const SignInForm = styled(Form)`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	text-align: center;
+`;
+
+export const SignInField = styled(Field)`
+	background-color: #cdd6e3;
+	border-radius: 3px;
+	border: none;
+	padding: 1.5em 1em;
+	margin: 1em 1em;
+	outline: none;
+	font-size: 1em;
+	font-family: consolas;
+`;
