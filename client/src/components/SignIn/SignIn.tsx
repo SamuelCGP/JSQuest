@@ -2,14 +2,7 @@ import React, { FormEvent, MouseEventHandler, useState } from "react";
 import Button from "../Button/Button";
 import SignInStyles from "./SignIn.styles";
 import { Link } from "react-router-dom";
-import {
-	ErrorMessage,
-	Field,
-	Form,
-	Formik,
-	useFormik,
-	validateYupSchema,
-} from "formik";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import ColorPalette from "../../utils/ColorPalette";
 import TextFieldStyles from "../TextField/TextField.styles";
 import * as Yup from "yup";
