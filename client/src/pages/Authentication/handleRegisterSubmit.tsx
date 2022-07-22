@@ -3,11 +3,11 @@ export default async (input: any) => {
 	let message: string = "";
 	let status: number = 102;
 
-	if (input.email == "" || input.password == "") {
-		message = "Preencha todos os campos";
-		status = 400;
-		return message;
-	}
+	// if (input.email === "" || input.password === "") {
+	// 	message = "Preencha todos os campos";
+	// 	status = 400;
+	// 	return message;
+	// }
 
 	const response: any = await User.register(
 		input.username,
@@ -25,6 +25,9 @@ export default async (input: any) => {
 			break;
 		case 400:
 			message = "Usuário já cadastrado";
+			break;
+		case 0:
+			message = "Sem conexão com o servidor";
 			break;
 		default:
 			message = "Erro desconhecido " + status;

@@ -37,7 +37,9 @@ function Authentication() {
 						}}
 						onForgotPassword={async (email: string) => {
 							const message = await handleForgotPassword(email);
-							setSignInMessage(message);
+							if (!message.includes("/"))
+								setSignInMessage(message);
+							else setRedirect(message);
 						}}
 						message={signInMessage}
 						isVisible={isSigned}
