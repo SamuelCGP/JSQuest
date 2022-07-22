@@ -1,5 +1,3 @@
-import * as enviroment from "../config/enviroment";
-import axios from "axios";
 import { HTTPMethods, makeRequest } from "./http";
 
 export async function register(

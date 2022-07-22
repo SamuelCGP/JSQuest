@@ -1,4 +1,3 @@
-import StyleSheet from "../../utils/StyleSheet";
 import ColorPalette from "../../utils/ColorPalette";
 import styled from "styled-components";
 import { Link } from "react-router-dom";

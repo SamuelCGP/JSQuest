@@ -14,6 +14,10 @@ function Message() {
 			title = "Você deveria jogar mais o jogo da memória";
 			message = "Um link de reset de senha foi enviado em seu email";
 			break;
+		case "passwordResetSuccessful":
+			title = "Sua senha foi atualizada";
+			message = "Volte e faça login";
+			break;
 		case "verifyEmail":
 			title = "Só falta um passo para confirmar o seu cadastro!";
 			message =

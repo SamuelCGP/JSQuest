@@ -87,7 +87,10 @@ function SignUp(props: SignUpProps) {
 							{isSubmitting ? "Aguarde..." : "Registrar"}
 						</Button>
 						<SignInCall>Já possui uma conta?</SignInCall>
-						<SignInCall clickable onClick={props.onVisibilityChange}>
+						<SignInCall
+							clickable
+							onClick={props.onVisibilityChange}
+						>
 							Faça login
 						</SignInCall>
 					</SignUpForm>

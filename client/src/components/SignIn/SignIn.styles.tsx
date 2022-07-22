@@ -13,8 +13,10 @@ export const ForgotPassword = styled.p`
 export const SignUpCall = styled.h3`
 	font-family: consolas;
 	user-select: none;
-	color: ${(props: {clickable?: boolean}) => props.clickable ? ColorPalette.orange : ""};
-	cursor: ${(props: {clickable?: boolean}) => props.clickable ? "pointer" : ""};
+	color: ${(props: { clickable?: boolean }) =>
+		props.clickable ? ColorPalette.orange : ""};
+	cursor: ${(props: { clickable?: boolean }) =>
+		props.clickable ? "pointer" : ""};
 `;
 
 export const SignInForm = styled(Form)`
