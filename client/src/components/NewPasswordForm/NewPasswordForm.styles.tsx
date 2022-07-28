@@ -21,14 +21,3 @@ export const NewPasswordFormTag = styled(Form)`
 	justify-content: space-between;
 	text-align: center;
 `;
-
-export const NewPasswordField = styled(Field)`
-	background-color: #cdd6e3;
-	border-radius: 3px;
-	border: none;
-	padding: 1.5em 1em;
-	margin: 1em 1em;
-	outline: none;
-	font-size: 1em;
-	font-family: consolas;
-`;

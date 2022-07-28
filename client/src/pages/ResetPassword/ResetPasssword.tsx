@@ -11,7 +11,6 @@ import {
 import ColorPalette from "../../utils/ColorPalette";
 import NewPasswordForm from "../../components/NewPasswordForm/NewPasswordForm";
 import { MainContainer } from "./ResetPassword.styles";
-import FormMessage from "../../components/FormMessage/FormMessage";
 
 function ResetPassword() {
 	const { userId } = useParams();

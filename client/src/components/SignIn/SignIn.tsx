@@ -3,13 +3,13 @@ import Button from "../Button/Button";
 import {
 	ForgotPassword,
 	SignInForm,
-	SignUpCall,
-	SignInField,
+	SignUpCall
 } from "./SignIn.styles";
 import { ErrorMessage, Formik } from "formik";
 import * as Yup from "yup";
 import FormMessage from "../FormMessage/FormMessage";
 import { Column, Heading } from "../Global";
+import TextField from '../TextField/TextField';
 
 interface SignInProps {
 	onVisibilityChange: MouseEventHandler;
@@ -49,13 +49,13 @@ function SignIn(props: SignInProps) {
 						<Heading inverse mb={"10px"}>
 							Login
 						</Heading>
-						<SignInField
+						<TextField
 							type="email"
 							name="email"
 							placeholder="Digite seu email"
 						/>
 						<ErrorMessage name="email" component={FormMessage} />
-						<SignInField
+						<TextField
 							type="password"
 							name="password"
 							placeholder="Digite sua senha"
