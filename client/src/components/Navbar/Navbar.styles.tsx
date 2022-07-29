@@ -102,13 +102,13 @@ export const LinkText = styled.span`
 		background-color: ${ColorPalette.black};
 		color: white;
 		white-space: nowrap;
-		padding: 10px 15px;
+		border: 10px solid black;
 		border-radius: 7px;
 		&::before{
 			content: "";
 			position: absolute;
-			top: 15%;
-			right: 92%;
+			top: -25%;
+			right: 102%;
 			border: 15px solid;
 			border-color: transparent ${ColorPalette.black} transparent transparent;
 		}
