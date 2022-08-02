@@ -4,12 +4,20 @@ import { GlobalStyle } from "./globalStyles";
 import Authentication from "./pages/Authentication/Authentication";
 import ResetPassword from "./pages/ResetPassword/ResetPasssword";
 import Home from "./pages/Home/Home";
+import Chapter from "./pages/Chapter/Chapter"
 import Message from "./pages/Message/Message";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
 	return (
 		<Router>
 			<GlobalStyle />
+
+			<Routes>
+				<Route path="/home" element={<Navbar />} />
+				<Route path="/chapter" element={<Navbar />} />
+			</Routes>
+
 			<Routes>
 				<Route path="*" element={<Message />} />
 				<Route path="/message/:messageType" element={<Message />} />
@@ -19,6 +27,7 @@ function App() {
 					element={<ResetPassword />}
 				/>
 				<Route path="/home" element={<Home />} />
+				<Route path="/chapter" element={<Chapter />} />
 			</Routes>
 		</Router>
 	);

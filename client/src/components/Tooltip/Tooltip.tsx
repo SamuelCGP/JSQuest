@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import { idText } from "typescript";
 import ColorPalette from "../../utils/ColorPalette";
 
 interface TooltipProps {
