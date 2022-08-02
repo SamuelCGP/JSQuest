@@ -10,6 +10,6 @@ export const MainContainer = styled(Container)`
         margin-left: 5rem;
         padding: 1rem;
         display: flex;
-        
+        max-width: calc(100vw - 5rem );
     }
 `;
