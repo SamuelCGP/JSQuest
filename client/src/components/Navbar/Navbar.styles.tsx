@@ -1,6 +1,7 @@
 import ColorPalette from "../../utils/ColorPalette";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Tooltip from "../Tooltip/Tooltip";
 import { SiJavascript } from "react-icons/si";
 import { AiFillHome } from "react-icons/ai";
 import { ImBook } from "react-icons/im";
@@ -36,13 +37,12 @@ export const NavNav = styled.ul`
 	}
 `;
 
-interface NavItemProps{
-	mInvisible?: boolean
+interface NavItemProps {
+	mInvisible?: boolean;
 }
 
 export const NavItem = styled.li`
-	display: ${(props: NavItemProps) =>
-			props.mInvisible ? "none" : ""};
+	display: ${(props: NavItemProps) => (props.mInvisible ? "none" : "")};
 	width: 100%;
 	@media (min-width: 900px) {
 		display: list-item;
@@ -55,22 +55,21 @@ export const LastItem = styled(NavItem)`
 	}
 `;
 
-interface HLProps{
-	mInvisible?: boolean, dInvisible?: boolean
+interface HLProps {
+	mInvisible?: boolean;
+	dInvisible?: boolean;
 }
 
 export const HorizontalLine = styled.hr`
-	display: ${(props: HLProps) =>
-			props.mInvisible ? "none" : "block"};
+	display: ${(props: HLProps) => (props.mInvisible ? "none" : "block")};
 	background-color: #7e7f84;
-	width: .1rem;
+	width: 0.1rem;
 	height: 80%;
 	border: none;
 	@media (min-width: 900px) {
-		display: ${(props: HLProps) =>
-			props.dInvisible ? "none" : "block"};
+		display: ${(props: HLProps) => (props.dInvisible ? "none" : "block")};
 		width: 80%;
-		height: .1rem;
+		height: 0.1rem;
 	}
 `;
 
@@ -93,26 +92,10 @@ export const NavLink = styled(Link)`
 	}
 `;
 
-export const LinkText = styled.span`
+export const LinkText = styled(Tooltip)`
 	display: none;
 	@media (min-width: 900px) {
-		position: absolute;
-		left: 125%;
-		top: 25%;
-		background-color: ${ColorPalette.black};
-		color: white;
-		white-space: nowrap;
-		border: 10px solid black;
-		border-radius: 7px;
-		&::before{
-			content: "";
-			position: absolute;
-			top: -25%;
-			right: 102%;
-			border: 15px solid;
-			border-color: transparent ${ColorPalette.black} transparent transparent;
-		}
-		${NavLink}:hover &{
+		${NavLink}:hover & {
 			display: block;
 		}
 	}
@@ -145,16 +128,15 @@ export const ProfileIcon = styled(FaUserCircle)`
 	}
 `;
 
-interface ConfigIconProps{
-	rotation?: boolean
+interface ConfigIconProps {
+	rotation?: boolean;
 }
 
 export const ConfigIcon = styled(BsGearFill)`
-	transition: ${(props: ConfigIconProps) =>
-		props.rotation ? ".5s" : ""};
-	${NavItem}:hover &{
+	transition: ${(props: ConfigIconProps) => (props.rotation ? ".5s" : "")};
+	${NavItem}:hover & {
 		transform: ${(props: ConfigIconProps) =>
-		props.rotation ? "rotate(90deg)" : ""};
+			props.rotation ? "rotate(90deg)" : ""};
 	}
 	width: 2.5rem;
 	height: 2.5rem;
