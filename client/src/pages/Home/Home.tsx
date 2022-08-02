@@ -1,5 +1,5 @@
 import { MainContainer } from "./Home.styles";
-import { Container, MainHeading, Heading } from "../../components/Global";
+import { Container, MainHeading, Heading } from "../../components";
 import { Lorem } from "../../utils/Lorem";
 import { Link } from "react-router-dom";
 
