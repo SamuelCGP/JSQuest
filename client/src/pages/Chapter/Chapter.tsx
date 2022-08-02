@@ -1,11 +1,10 @@
-import { MainContainer } from "./Chapter.styles";
-import { Container, MainHeading, Heading } from "../../components/Global";
-import { Lorem } from "../../utils/Lorem";
+import { MainContainer, ResizableContainer } from "./Chapter.styles";
 
 function Chapter() {
 	return (
 		<MainContainer>
-
+			<ResizableContainer></ResizableContainer>
+			<ResizableContainer></ResizableContainer>
 		</MainContainer>
 	);
 }
