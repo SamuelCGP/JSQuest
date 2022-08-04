@@ -15,11 +15,11 @@ const verifyPasswordResetJWT = require('../middlewares/verifyPasswordResetJWT.js
 router.get('/verify-password-reset-token/:userId', userController.verifyUserId, verifyPasswordResetJWT);
 
 //retorna todos os usuários cadastrados
-router.get('/all', userController.getAllUsers);
+router.get('/all', userController.getAll);
 
 //recebe o id ou email do usuário via query params (ex: http://localhost:3001/user?id=aksajkasjk 
 //ou http://localhost:3001/user?email=test)
-router.get('/', userController.getUser);
+router.get('/', userController.getOne);
 
 //registrar usuário -> recebe um formulário com os campos "username", "email" e "password"
 //caso o registro seja bem-sucedido, retorna o código 201

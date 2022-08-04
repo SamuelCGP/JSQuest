@@ -107,7 +107,7 @@ exports.resetPassword = async function (req, res, next) {
 	}
 };
 
-exports.getUser = async function (req, res) {
+exports.getOne = async function (req, res) {
     const queryId = req.query.id;
     const queryEmail = req.query.email;
 
@@ -120,10 +120,10 @@ exports.getUser = async function (req, res) {
     } else return res.status(400).json({message: "Missing id or email query params"});
 
     res.status(404).json({message: "User not found"});
-
+	
 }
 
-exports.getAllUsers = async function (req, res) {
+exports.getAll = async function (req, res) {
 	const users = await userModel.getAll();
 	res.status(200).json({ users });
 };
