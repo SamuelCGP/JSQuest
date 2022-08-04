@@ -1,10 +1,11 @@
 import { MouseEventHandler } from "react";
-import { SignUpForm, SignUpField, SignInCall } from "./SignUp.styles";
+import { SignUpForm, SignInCall } from "./SignUp.styles";
 import Button from "../Button/Button";
 import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import FormMessage from "../FormMessage/FormMessage";
 import { Heading } from "../Global";
+import TextField from '../TextField/TextField';
 
 interface SignUpProps {
 	onVisibilityChange: MouseEventHandler;
@@ -49,28 +50,32 @@ function SignUp(props: SignUpProps) {
 						<Heading inverse mb={"10px"}>
 							Cadastro
 						</Heading>
-						<SignUpField
+						<TextField
+							small
 							name="username"
 							placeholder="Digite seu nome de usuário"
-						></SignUpField>
+						/>
 						<ErrorMessage name="username" component={FormMessage} />
-						<SignUpField
+						<TextField
+							small
 							name="email"
 							placeholder="Digite seu email"
 							type="email"
-						></SignUpField>
+						/>
 						<ErrorMessage name="email" component={FormMessage} />
-						<SignUpField
+						<TextField
+							small
 							name="password"
 							placeholder="Digite sua senha"
 							type="password"
-						></SignUpField>
+						/>
 						<ErrorMessage name="password" component={FormMessage} />
-						<SignUpField
+						<TextField
+							small
 							name="confirm_password"
 							placeholder="Confirme sua senha"
 							type="password"
-						></SignUpField>
+						/>
 						<ErrorMessage
 							name="confirm_password"
 							component={FormMessage}

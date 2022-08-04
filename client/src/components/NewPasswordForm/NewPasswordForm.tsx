@@ -4,9 +4,9 @@ import Button from "../Button/Button";
 import FormMessage from "../FormMessage/FormMessage";
 import {
 	LockIcon,
-	NewPasswordFormTag,
-	NewPasswordField,
+	NewPasswordFormTag
 } from "./NewPasswordForm.styles";
+import TextField from "../../components/TextField/TextField";
 
 const NewPasswordSchema = Yup.object().shape({
 	new_password: Yup.string()
@@ -39,17 +39,17 @@ function NewPasswordForm(props: NewPasswordFormProps) {
 			{({ isSubmitting }) => (
 				<NewPasswordFormTag>
 					<LockIcon />
-					<NewPasswordField
+					<TextField
 						name="new_password"
 						placeholder="Digite sua senha"
 						type="password"
-					></NewPasswordField>
+					/>
 					<ErrorMessage name="new_password" component={FormMessage} />
-					<NewPasswordField
+					<TextField
 						name="confirm_new_password"
 						placeholder="Confirme sua senha"
 						type="password"
-					></NewPasswordField>
+					/>
 					<ErrorMessage
 						name="confirm_new_password"
 						component={FormMessage}

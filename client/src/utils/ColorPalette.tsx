@@ -8,7 +8,9 @@ interface ColorPaletteObject{
     blueWhite: Color,
     blueGray: Color,
     white: Color,
-    orange: Color
+    orange: Color,
+    yellowOrange: Color,
+    black: Color
 }
 
 const ColorPalette: ColorPaletteObject = {
@@ -19,7 +21,9 @@ const ColorPalette: ColorPaletteObject = {
     blueWhite: "#a3a9f5",
     blueGray: "#787ca9",
     white: "#e0eaf8",
-    orange: "#f25929"
+    orange: "#f25929",
+    yellowOrange: "#f2bc29",
+    black: "#030716"
 }
 
 export default ColorPalette;

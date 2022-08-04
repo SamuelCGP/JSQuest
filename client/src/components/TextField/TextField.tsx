@@ -1,53 +1,18 @@
-import React, { ChangeEvent, useEffect } from "react";
-import TextFieldStyles from "./TextField.styles";
+import { Field } from "formik";
+import styled from "styled-components";
 
-interface TextFieldProps {
-	type: string;
-	value: string;
-	onChange: any;
-}
-
-function TextField(props: TextFieldProps) {
-	const fieldAttributes = {
-		type: props.type,
-		fieldType: "text",
-		name: "",
-		placeholder: "Digite alguma coisa",
-		style: TextFieldStyles.textField,
-	};
-
-	switch (fieldAttributes.type) {
-		case "username":
-			fieldAttributes.fieldType = "text";
-			fieldAttributes.name = "username";
-			fieldAttributes.placeholder = "Digite seu nome";
-			fieldAttributes.style = TextFieldStyles.textFieldBig;
-			break;
-		case "email":
-			fieldAttributes.fieldType = "email";
-			fieldAttributes.name = "email";
-			fieldAttributes.placeholder = "Digite seu email";
-			fieldAttributes.style = TextFieldStyles.textFieldBig;
-			break;
-		case "password":
-			fieldAttributes.fieldType = "password";
-			fieldAttributes.name = "password";
-			fieldAttributes.placeholder = "Digite sua senha";
-			fieldAttributes.style = TextFieldStyles.textFieldBig;
-			break;
-		default:
-			break;
-	}
-	return (
-		<input
-			name={fieldAttributes.name}
-			value={props.value}
-			type={fieldAttributes.fieldType}
-			style={fieldAttributes.style}
-			placeholder={fieldAttributes.placeholder}
-			onChange={(evt) => props.onChange(evt)}
-		></input>
-	);
-}
+export const TextField = styled(Field)`
+	background-color: #cdd6e3;
+	border-radius: 3px;
+	border: none;
+	padding: ${(props: { small?: boolean }) =>
+		props.small ? "1em 1em" : "1.5em 1em"};
+	margin: ${(props: { small?: boolean }) =>
+		props.small ? "0.5em 1em" : "1em 1em"};
+	font-size: ${(props: { small?: boolean }) =>
+		props.small ? "" : "1em"};;
+	outline: none;
+	font-family: consolas;
+`;
 
 export default TextField;
