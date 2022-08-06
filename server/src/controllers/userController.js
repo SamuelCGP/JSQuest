@@ -158,12 +158,12 @@ exports.sendEmailConfirmation = async function (req, res, next) {
 exports.checkEmailConfirmed = async function (req, res, next) {
 	if (await userModel.isEmailConfirmed(req.user.id)) {
 		next();
-		if (!res.headersSent) res.status(200).json({ message: "Email confirmed" });
+		// if (!res.headersSent) res.status(200).json({ message: "Email confirmed" });
 	} else res.status(401).json({ message: "Email not confirmed" });
 };
 
 exports.confirmEmail = async function (req, res) {
-	if (await userModel.isEmailConfirmed(req.user.id))
+	if (await userModel.isEmailConfirmed(req.userId))
 		res.status(400).json({ message: "Email was already confirmed" });
 	else {
 		await userModel.confirmEmail(req.userId);

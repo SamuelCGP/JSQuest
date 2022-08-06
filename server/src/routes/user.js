@@ -61,6 +61,7 @@ router.post(
 	userController.resetPassword
 );
 
+//recebe o email do usuário para enviar o email de confirmação
 router.post(
 	"/send-email-confirmation",
 	upload.none(),
@@ -72,6 +73,6 @@ router.post(
 //recebe o token de confirmação de email pelo header x-access-token
 //retorna 400 se o email já estiver confirmado
 //retorna 401 se o token for inválido
-router.post("/confirm-email", verifyJWT, userController.confirmEmail)
+router.post("/confirm-email", upload.none(), verifyJWT, userController.confirmEmail)
 
 module.exports = router;
