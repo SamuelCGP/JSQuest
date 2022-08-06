@@ -7,7 +7,7 @@ module.exports = function (req, res, next) {
         res.status(400).json({message: "Missing access token"})
     } else {
         jwt.verify(token, process.env.JWT_SECRET, (error, decoded) => {
-            if(error) res.status(401).json({message: "Invalid access token"})
+            if(error) res.status(401).json({message: "Invalid or expired access token"})
             else {
                 req.userId = decoded.userId;
                 next();
