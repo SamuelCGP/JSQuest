@@ -1,4 +1,4 @@
-import * as enviroment from "../config/enviroment";
+import * as enviroment from "./config/enviroment";
 import axios, { AxiosRequestHeaders } from "axios";
 export enum HTTPMethods {
 	GET = "GET",

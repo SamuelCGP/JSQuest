@@ -1,4 +1,4 @@
-import { HTTPMethods, makeRequest } from "./http";
+import { HTTPMethods, makeRequest } from "../http";
 
 export async function resetPassword(
 	userId: string,
