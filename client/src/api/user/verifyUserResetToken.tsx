@@ -5,9 +5,11 @@ export async function verifyUserResetToken(userId: string, userToken: string) {
 		"x-access-token": userToken,
 	};
 
-	return await makeRequest(
+	const res = await makeRequest(
 		HTTPMethods.GET,
 		`user/verify-password-reset-token/${userId}`,
 		headers
 	);
+
+	return res.status;
 }

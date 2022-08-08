@@ -2,10 +2,11 @@ import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { okaidia } from "@uiw/codemirror-theme-okaidia";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 interface CodeEditorProps {
 	value: any;
 	setEditorState: any;
+	saveCode: Function;
 }
 
 const CodeEditor = (props: CodeEditorProps) => {
