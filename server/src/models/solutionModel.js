@@ -5,8 +5,8 @@ const solutionCollecName = "code_solutions";
 exports.getOne = async (userId, lessonIndex, chapterIndex) => {
 	const solutionCollec = db.collection(`users/${userId}/${solutionCollecName}`);
 	const snapshot = await solutionCollec
-		.where("lesson_index", "==", parseInt(lessonIndex))
-		.get();
+		.where("lesson_index", "==", lessonIndex).where("chapter_index", "==", chapterIndex).get();
+	console.log(snapshot);
 	if (snapshot.empty) {
 		return false;
 	} else return snapshot.docs[0];

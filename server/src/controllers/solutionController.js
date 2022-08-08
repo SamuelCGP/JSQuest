@@ -1,9 +1,9 @@
 const { getOne, save } = require("../models/solutionModel");
 
 exports.getOne = async (req, res) => {
-	const lessonIndex = req.params.lessonIndex;
-	const chapterIndex = req.params.chapterIndex;
-	const userId = req.params.userId;
+	const lessonIndex = parseInt(req.params.lessonIndex);
+	const chapterIndex = parseInt(req.params.chapterIndex);
+	const userId = req.userId;
 
     console.log({lessonIndex, chapterIndex, userId})
 
@@ -14,9 +14,9 @@ exports.getOne = async (req, res) => {
 };
 
 exports.save = async (req, res) => {
-	const lessonIndex = req.params.lessonIndex;
-	const chapterIndex = req.params.chapterIndex;
-	const userId = req.params.userId;
+	const lessonIndex = parseInt(req.params.lessonIndex);
+	const chapterIndex = parseInt(req.params.chapterIndex);
+	const userId = req.userId;
 
     const body = req.body;
     const solution = body.solution;
