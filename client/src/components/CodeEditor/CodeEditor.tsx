@@ -23,7 +23,7 @@ const CodeEditor = (props: CodeEditorProps) => {
 
 	return (
 		<CodeMirror
-			height="42vh"
+			height="100%"
 			onChange={handleChange}
 			value={props.value}
             theme={okaidia}
