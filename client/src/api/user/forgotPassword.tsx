@@ -9,5 +9,6 @@ export async function forgotPassword(userEmail: string) {
 		"Content-Type": "application/json;charset=UTF-8",
 	};
 
-	return await makeRequest(HTTPMethods.POST, "user/forgot-password", headers, data);
+	const res = await makeRequest(HTTPMethods.POST, "user/forgot-password", headers, data);
+	return res.status;
 }
