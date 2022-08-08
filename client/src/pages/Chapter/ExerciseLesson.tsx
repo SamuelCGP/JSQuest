@@ -19,6 +19,8 @@ function ExerciseLesson() {
 			const content: string = res.data.solution.content;
 			if (content) return content;
 			else return "";
+
+			//TODO definir código inicial como código inicial da lição, caso o usuário não tenha um código salvo
 		}
 
 		return "";
