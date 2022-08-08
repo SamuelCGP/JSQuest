@@ -22,8 +22,8 @@ exports.getUserByQuery = async function (req, res) {
 
 exports.getUserByIdParam = async function (req, res, next) {
 	const userId = req.params.userId;
-
 	const user = await userModel.getById(userId);
+	
 	if (user) {
 		req.user = user;
 		next();

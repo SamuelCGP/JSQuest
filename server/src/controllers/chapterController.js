@@ -6,7 +6,7 @@ exports.getAll = async function (req, res) {
 }
 
 exports.getOne = async function (req, res) {
-    const chapterId = req.query.id
+    const chapterId = req.params.id;
 
     const chapter = await chapterModel.getOne(chapterId);
 
