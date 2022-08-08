@@ -1,4 +1,4 @@
-import { makeRequest, HTTPMethods } from "./http";
+import { makeRequest, HTTPMethods } from "../http";
 
 export async function login(userEmail: string, userPassword: string) {
 	const data = {

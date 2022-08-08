@@ -1,4 +1,4 @@
-import { makeRequest, HTTPMethods } from "./http";
+import { makeRequest, HTTPMethods } from "../http";
 
 export async function forgotPassword(userEmail: string) {
 	const data = {
