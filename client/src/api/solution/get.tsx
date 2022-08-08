@@ -5,9 +5,10 @@ export async function get(chapterIndex: number, lessonIndex: number) {
 		Authorization: "Bearer " + localStorage.getItem("token"),
 	};
 
-	return await makeRequest(
+	const res = await makeRequest(
 		HTTPMethods.GET,
-		`/solution/${chapterIndex}/${lessonIndex}`,
+		`solution/${chapterIndex}/${lessonIndex}`,
 		headers
 	);
+	return res;
 }

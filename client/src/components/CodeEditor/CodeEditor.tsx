@@ -2,24 +2,39 @@ import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { okaidia } from "@uiw/codemirror-theme-okaidia";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 interface CodeEditorProps {
 	value: any;
 	setEditorState: any;
-	saveCode: Function;
+		saveCode: Function;
 }
 
 const CodeEditor = (props: CodeEditorProps) => {
-
+	const valueRef = useRef();
+	const firstLoad = useRef(true);
     useEffect(() => {
-        return () => {
-            console.log("unmount");
-        }
-    }, [props.value])
+		
+		console.log(props.value)
+		valueRef.current = props.value;
+    }, [props.value]);
+
+	useEffect(() => {
+		const handleTabClose = (event: any) => {
+			props.saveCode(valueRef.current);
+		}
+		window.addEventListener('beforeunload', handleTabClose);
+		return (() => {
+			if(firstLoad.current) {
+				firstLoad.current = false
+				return;
+			}
+			window.removeEventListener('beforeunload', handleTabClose);
+			props.saveCode(valueRef.current);
+		})
+	}, []);
 
 	const handleChange = (value: any) => {
 		props.setEditorState(value);
-		console.log(value);
 	};
 
 	return (

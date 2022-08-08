@@ -9,7 +9,7 @@ exports.getOne = async (req, res) => {
 
 	const solution = await getOne(userId, lessonIndex, chapterIndex);
 
-	if (solution) res.status(200).json({ data: solution });
+	if (solution) res.status(200).json({ solution: solution.data() });
 	else res.status(404).json({ message: "Solution not found" });
 };
 
