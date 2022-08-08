@@ -2,7 +2,6 @@
 const firebaseConfig = require('./src/config/serviceAccountKey.json');
 
 const firebase = require('firebase-admin');
-const { sign } = require('jsonwebtoken');
 firebase.initializeApp({
     credential: firebase.credential.cert(firebaseConfig)
 });

@@ -14,7 +14,7 @@ const CodeEditor = (props: CodeEditorProps) => {
         return () => {
             console.log("unmount");
         }
-    }, [])
+    }, [props.value])
 
 	const handleChange = (value: any) => {
 		props.setEditorState(value);
