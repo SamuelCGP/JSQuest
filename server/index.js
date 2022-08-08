@@ -22,6 +22,6 @@ app.use("/user", userRouter);
 app.use("/chapter", chapterRouter);
 app.use("/solution", solutionRouter);
 
-app.get("/verify-token", verifyJWT);
+app.get("/verify-token", verifyJWT, (req, res) => {res.status(200).send();});
 
 app.listen(PORT, () => console.log(`Server is listening at port ${PORT}!`));
