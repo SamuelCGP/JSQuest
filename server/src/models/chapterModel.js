@@ -2,12 +2,10 @@ const { getAllFromCollection, getDocById } = require("../../firestore")
 
 const chapterCollectionName = 'chapters';
 
-async function getAll() {
+exports.getAll = async () => {
     return await getAllFromCollection(chapterCollectionName);
 }
 
-async function getOne(chapterId) {
+exports.getOne = async (chapterId) => {
     return await getDocById(chapterId);
 }
-
-module.exports = { getAll, getOne }

@@ -1,4 +1,4 @@
-import { HTTPMethods, makeRequest } from "./http";
+import { HTTPMethods, makeRequest } from "../http";
 
 export async function register(
 	username: string,
@@ -15,5 +15,6 @@ export async function register(
 		"Content-Type": "application/json;charset=UTF-8",
 	};
 
-	return await makeRequest(HTTPMethods.POST, "user/register", headers, data);
+	const res = await makeRequest(HTTPMethods.POST, "user/register", headers, data);
+	return res.status;
 }

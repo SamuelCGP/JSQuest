@@ -1,4 +1,4 @@
-import { HTTPMethods, makeRequest } from "./http";
+import { HTTPMethods, makeRequest } from "../http";
 
 export async function resetPassword(
 	userId: string,
@@ -15,10 +15,12 @@ export async function resetPassword(
 		"x-access-token": userToken,
 	};
 
-	return await makeRequest(
+	const res = await makeRequest(
 		HTTPMethods.POST,
 		"user/reset-password",
 		headers,
 		data
 	);
+
+	return res.status;
 }

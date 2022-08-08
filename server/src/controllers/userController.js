@@ -22,8 +22,8 @@ exports.getUserByQuery = async function (req, res) {
 
 exports.getUserByIdParam = async function (req, res, next) {
 	const userId = req.params.userId;
-
 	const user = await userModel.getById(userId);
+	
 	if (user) {
 		req.user = user;
 		next();
@@ -68,7 +68,7 @@ exports.login = async function (req, res) {
 	if (isPasswordValid) {
 		const userId = user.id;
 		const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
-			expiresIn: 300,
+			expiresIn: '1d',
 		});
 		res.status(200).json({ message: "Login successful", token });
 	} else {
@@ -92,7 +92,7 @@ exports.forgotPassword = async function (req, res, next) {
 		const password = userData.password;
 		const secret = process.env.JWT_SECRET + password;
 		const token = jwt.sign({ email, userId }, secret, { expiresIn: "5m" });
-		const link = `http://localhost:3000/reset-password/${userId}/${token}`;
+		const link = `http://${process.env.FRONT_END_URL}/reset-password/${userId}/${token}`;
 
 		req.toEmailAdress = email;
 		req.emailSubject = "JSQuest Password Reset";
@@ -141,7 +141,7 @@ exports.sendEmailConfirmation = async function (req, res, next) {
 	const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
 		expiresIn: "5m",
 	});
-	const link = `http://localhost.com:3000/confirm-email/${token}`;
+	const link = `http://${process.env.FRONT_END_URL}/confirm-email/${token}`;
 	req.emailMessage =
 		"Here is your email confirmation link for JSQuest: " + link;
 

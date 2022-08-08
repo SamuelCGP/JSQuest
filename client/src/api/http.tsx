@@ -1,4 +1,4 @@
-import * as enviroment from "../config/enviroment";
+import * as enviroment from "./config/enviroment";
 import axios, { AxiosRequestHeaders } from "axios";
 export enum HTTPMethods {
 	GET = "GET",
@@ -17,7 +17,7 @@ export async function makeRequest(
 		...(headers ? { headers } : {}),
 	})
 		.then((res) => {
-			return res.status;
+			return res;
 		})
 		.catch((error) => {
 			return error.response.status;

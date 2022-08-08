@@ -7,7 +7,7 @@ function Home() {
 	return (
 		<MainContainer>
 			<MainHeading>This is a test</MainHeading>
-			<Heading>I can't wait to add the <Link to="/chapter">chapters</Link> here!</Heading>
+			<Heading>I can't wait to add the <Link to="/chapter/0/lesson/1">chapters</Link> here!</Heading>
 			<p style={{ color: "darkcyan", marginTop: "30px", fontSize: '30px' }}>
 				{`${ Lorem }`}
 			</p>
