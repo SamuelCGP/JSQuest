@@ -37,11 +37,11 @@ function ResetPassword() {
 	if (!isFormVisible)
 		return (
 			<CenterContainer>
-				<MainHeading color={ColorPalette.orange}>
+				<MainHeading color={ColorPalette.white}>
 					Algo deu errado...
 				</MainHeading>
 				<MessageTag>{responseText}</MessageTag>
-				<LinkBack to={"/"}>Voltar para a Home</LinkBack>
+				<LinkBack to={"/"} style={ {color: "white"} }>Voltar para a Home</LinkBack>
 			</CenterContainer>
 		);
 

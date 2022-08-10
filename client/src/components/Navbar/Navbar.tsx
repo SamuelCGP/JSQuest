@@ -18,7 +18,7 @@ function Navbar() {
 			<NavNav>
 				<NavItem mInvisible>
 					<NavLink to={"/home"}>
-						<HomeIcon />
+						<HomeIcon/>
 						<LinkText>Home</LinkText>
 					</NavLink>
 				</NavItem>

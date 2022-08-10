@@ -11,7 +11,7 @@ export const SplitContainer = styled(Split)`
 `;
 
 export const Container1 = styled.div`
-    background: radial-gradient(${ColorPalette.navyBlue}, rgb(0, 98, 196));
+    background: radial-gradient(${ColorPalette.primary}, rgb(0, 98, 196));
 `;
 export const Container2 = styled.div`
     background: radial-gradient(rgb(18, 9, 48), ${ColorPalette.black});

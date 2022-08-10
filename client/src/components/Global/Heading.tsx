@@ -15,7 +15,7 @@ export const Heading = styled.h2`
 	margin-bottom: ${(props: HeadingProps) => (props.mb ? props.mb : "")};
 	margin-top: ${(props: HeadingProps) => (props.mt ? props.mt : "")};
 	color: ${(props: { inverse?: boolean }) =>
-		props.inverse ? ColorPalette.darkBlue : ColorPalette.white};
+		props.inverse ? ColorPalette.secondaryDark : ColorPalette.white};
     letter-spacing: 0.2rem;
     line-height: 1.06;
     text-align: center;

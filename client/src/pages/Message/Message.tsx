@@ -29,7 +29,7 @@ function Message() {
 	}
 	return (
 		<CenterContainer>
-			<MainHeading color={ColorPalette.orange}>{title}</MainHeading>
+			<MainHeading color={ColorPalette.yellowOrange}>{title}</MainHeading>
 			<MessageTag>{message}</MessageTag>
 			<LinkBack to={"/"}>Voltar para a Home</LinkBack>
 		</CenterContainer>

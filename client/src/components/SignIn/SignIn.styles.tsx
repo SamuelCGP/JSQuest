@@ -4,7 +4,7 @@ import { Form } from "formik";
 
 export const ForgotPassword = styled.p`
 	font-family: consolas;
-	color: ${ColorPalette.orange};
+	color: ${ColorPalette.primary};
 	user-select: none;
 	cursor: pointer;
 	text-decoration: underline;
@@ -14,7 +14,7 @@ export const SignUpCall = styled.h3`
 	font-family: consolas;
 	user-select: none;
 	color: ${(props: { clickable?: boolean }) =>
-		props.clickable ? ColorPalette.orange : ""};
+		props.clickable ? ColorPalette.secondary : ""};
 	cursor: ${(props: { clickable?: boolean }) =>
 		props.clickable ? "pointer" : ""};
 `;
