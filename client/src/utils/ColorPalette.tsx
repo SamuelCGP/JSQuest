@@ -20,7 +20,7 @@ const ColorPalette: ColorPaletteObject = {
     blueWhite: "#dfe7f8",
     blueGray: "#787ca9",
     white: "#fcfcfc",
-    yellowOrange: "#f7e018",
+    yellowOrange: "#ffd900",
     black: "#030716"
 }
 

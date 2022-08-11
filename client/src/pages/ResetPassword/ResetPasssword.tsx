@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import handleTokenVerification from "./handleTokenVerification";
 import handleResetPasswordSubmit from "./handleResetPasswordSubmit";
-import { Container, Heading, MainHeading } from "../../components";
+import { Container, MainHeading } from "../../components";
 import {
 	CenterContainer,
 	MessageTag,
