@@ -1,15 +1,11 @@
 import { MouseEventHandler, useState } from "react";
 import Button from "../Button/Button";
-import {
-	ForgotPassword,
-	SignInForm,
-	SignUpCall
-} from "./SignIn.styles";
+import { ForgotPassword, SignInForm, SignUpCall } from "./SignIn.styles";
 import { ErrorMessage, Formik } from "formik";
 import * as Yup from "yup";
 import FormMessage from "../FormMessage/FormMessage";
 import { Column, Heading } from "../Global";
-import TextField from '../TextField/TextField';
+import TextField from "../TextField/TextField";
 
 interface SignInProps {
 	onVisibilityChange: MouseEventHandler;

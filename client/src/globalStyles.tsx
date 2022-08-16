@@ -3,7 +3,7 @@ import ColorPalette from "./utils/ColorPalette";
 
 export const GlobalStyle = createGlobalStyle`
   :root{
-    font-family: consolas;
+    font-family: calibri;
   }
   *{
     box-sizing: border-box;
@@ -19,7 +19,7 @@ export const GlobalStyle = createGlobalStyle`
     padding: 20px;
   }
   ::-webkit-scrollbar-track-piece{
-    background: ${ColorPalette.secondaryDark};
+    background: ${ColorPalette.secondaryDark + "a4"};
     border-radius: 10px;
   }
   ::-webkit-scrollbar-thumb{

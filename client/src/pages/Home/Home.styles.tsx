@@ -76,15 +76,28 @@ export const ChapterName = styled.h1`
 	padding: 0.7rem;
 `;
 
+interface LessonGroupProps {
+	center?: boolean;
+}
+
 export const LessonGroup = styled.div`
 	display: flex;
 	flex-direction: column;
 	@media (min-width: 900px) {
+		width: 100%;
 		flex-direction: row;
+		justify-content: ${(props: LessonGroupProps) => (props.center ? "center" : "space-between")};
+		align-items: center;
 	}
 `;
 
 export const LessonCard = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+`;
+
+export const LessonIcon = styled.div`
 	position: relative;
 	display: flex;
 	align-items: center;
@@ -96,13 +109,17 @@ export const LessonCard = styled.div`
 		width: 12rem;
 		height: 12rem;
 	}
+	& .lessonImg{
+		position: absolute;
+		width: 70%;
+		height: 70%;
+	}
 `;
 
 export const LessonName = styled.h1`
 	color: ${ColorPalette.secondaryDark};
 	text-align: center;
-	position: absolute;
-	font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+	font-size: clamp(1.2rem, 2.5vw, 1.2rem);
 	padding: .7rem;
 `;
 

@@ -7,6 +7,7 @@ import {
 	Header,
 	LessonGroup,
 	LessonCard,
+	LessonIcon,
 	LessonCircle,
 	LessonName,
 	Blank
@@ -26,15 +27,22 @@ function Home() {
 				<ChapterName>Variáveis</ChapterName>
 				<LessonGroup>
 					<LessonCard>
-						<LessonCircle value={0} maxValue={1}/>
+						<LessonIcon>
+							<LessonCircle value={0} maxValue={1}/>
+							<img src={require("../../img/ch1le1.png")} className="lessonImg"></img>
+						</LessonIcon>
 						<LessonName>Conhecendo variáveis</LessonName>
 					</LessonCard>
 					<LessonCard>
-						<LessonCircle value={0} maxValue={1}/>
+						<LessonIcon>
+							<LessonCircle value={0} maxValue={1}/>
+						</LessonIcon>
 						<LessonName>Nomeando o robô</LessonName>
 					</LessonCard>
 					<LessonCard>
-						<LessonCircle value={0} maxValue={1}/>
+						<LessonIcon>
+							<LessonCircle value={0} maxValue={1}/>
+						</LessonIcon>
 						<LessonName>Imprimindo uma variável</LessonName>
 					</LessonCard>
 				</LessonGroup>
@@ -47,16 +55,30 @@ function Home() {
 				<ChapterName>Operadores</ChapterName>
 				<LessonGroup>
 					<LessonCard>
-						<LessonCircle value={0} maxValue={1}/>
+						<LessonIcon>
+							<LessonCircle value={0} maxValue={1}/>
+						</LessonIcon>
 						<LessonName>Conhecendo operadores</LessonName>
 					</LessonCard>
 					<LessonCard>
-						<LessonCircle value={0} maxValue={1}/>
-						<LessonName>Realizando um cálculo complexo</LessonName>
+						<LessonIcon>
+							<LessonCircle value={0} maxValue={1}/>
+						</LessonIcon>
+						<LessonName>Primeiras operações</LessonName>
 					</LessonCard>
 					<LessonCard>
-						<LessonCircle value={0} maxValue={1}/>
+						<LessonIcon>
+							<LessonCircle value={0} maxValue={1}/>
+						</LessonIcon>
 						<LessonName>O robô comprou maçãs</LessonName>
+					</LessonCard>
+				</LessonGroup>
+				<LessonGroup center>
+					<LessonCard>
+						<LessonIcon>
+							<LessonCircle value={0} maxValue={1}/>
+						</LessonIcon>
+						<LessonName>Realizando um cálculo complexo</LessonName>
 					</LessonCard>
 				</LessonGroup>
 			</ChapterContainer>
