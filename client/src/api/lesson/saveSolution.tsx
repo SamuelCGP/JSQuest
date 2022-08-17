@@ -12,7 +12,7 @@ export async function save(chapterIndex: number, lessonIndex: number, solution: 
     }
     
     try {
-        await makeRequest(HTTPMethods.POST, `solution/${chapterIndex}/${lessonIndex}`, headers, data);
+        await makeRequest(HTTPMethods.POST, `lesson/${chapterIndex}/${lessonIndex}`, headers, data);
         console.log("code saved");
     } catch(err) {
         console.error(err);

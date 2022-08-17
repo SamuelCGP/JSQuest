@@ -7,20 +7,22 @@ import {
 import CodeEditor from "../../components/CodeEditor/CodeEditor";
 import { Params, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { get, save } from "../../api/solution";
+import { get, save } from "../../api/lesson";
 
 function ExerciseLesson() {
 	const { l_index, c_index }: Readonly<Params<string>> = useParams();
 	const [editorState, setEditorState] = useState("");
+	let initialCode : string;
 
 	async function getInitialEditorState(): Promise<string> {
 		if (c_index && l_index) {
 			const res = await get(parseInt(c_index), parseInt(l_index));
 			const content: string = res.data.solution.content;
 			if (content) return content;
-			else return "";
-
-			//TODO definir código inicial como código inicial da lição, caso o usuário não tenha um código salvo
+			else {
+				initialCode = res.data.lesson.initial_code;
+				return initialCode;
+			};
 		}
 
 		return "";

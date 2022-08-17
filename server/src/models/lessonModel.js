@@ -24,7 +24,7 @@ exports.getOne = async (chapterIndex, lessonIndex) => {
 		`/chapters/${chapterIndex}/${lessonCollecName}/`,
 		lessonIndex
 	);
-	if (lesson) return lesson.data();
+	if (lesson) return lesson;
 	else return false;
 };
 

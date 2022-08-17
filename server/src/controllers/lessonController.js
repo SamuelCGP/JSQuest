@@ -5,8 +5,11 @@ exports.getOne = async (req, res) => {
 	const chapterIndex = req.params.chapterIndex;
 	const lessonIndex = req.params.lessonIndex;
 
-	const lesson = (await getOne(chapterIndex, lessonIndex)).data().content;
-	const solution = await getSolution(chapterIndex, lessonIndex, req.userId);
+	console.log({chapterIndex, lessonIndex})
+	const lesson = (await getOne(chapterIndex, lessonIndex)).data();
+	console.log({lesson})
+	const solution = (await getSolution(chapterIndex, lessonIndex, req.userId)).data();
+	console.log({solution})
 	if (lesson) res.status(200).json({ lesson, solution });
 	else res.status(404).json({ message: "Lesson not found" });
 };

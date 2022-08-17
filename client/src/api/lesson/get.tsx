@@ -7,7 +7,7 @@ export async function get(chapterIndex: number, lessonIndex: number) {
 
 	const res = await makeRequest(
 		HTTPMethods.GET,
-		`solution/${chapterIndex}/${lessonIndex}`,
+		`lesson/${chapterIndex}/${lessonIndex}`,
 		headers
 	);
 	return res;
