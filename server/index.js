@@ -10,6 +10,7 @@ dotenv.config({ path: "./src/config/.env" });
 const userRouter = require("./src/routes/user.js");
 const chapterRouter = require("./src/routes/chapter.js");
 const solutionRouter = require("./src/routes/solution.js");
+const lessonRouter = require("./src/routes/lesson.js");
 
 const PORT = process.env.PORT || 3001;
 app.use(cors());
@@ -21,6 +22,7 @@ app.use(morgan("dev"));
 app.use("/user", userRouter);
 app.use("/chapter", chapterRouter);
 app.use("/solution", solutionRouter);
+app.use("/lesson", lessonRouter);
 
 app.get("/verify-token", verifyJWT, (req, res) => {res.status(200).send();});
 

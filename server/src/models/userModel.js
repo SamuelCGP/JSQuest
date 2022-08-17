@@ -4,6 +4,7 @@ const {
 	getDocById,
 	update,
 	getAllFromCollection,
+	getDocRefById,
 } = require("../../firestore.js");
 
 const userCollectionName = "users";
@@ -12,7 +13,12 @@ async function create(username, email, password) {
 	const userExists = await getByEmail(email);
 
 	if (!userExists)
-		await save(userCollectionName, { username, email, password, emailConfirmed: false });
+		await save(userCollectionName, {
+			username,
+			email,
+			password,
+			emailConfirmed: false,
+		});
 	else throw "User already exists";
 }
 
@@ -32,6 +38,11 @@ async function getById(id) {
 	else return false;
 }
 
+async function getRefById(id) {
+	const userRef = await getDocRefById(userCollectionName, id);
+	return userRef;
+}
+
 async function getAll() {
 	return await getAllFromCollection(userCollectionName);
 }
@@ -47,7 +58,16 @@ async function isEmailConfirmed(id) {
 }
 
 async function confirmEmail(id) {
-	await updateById(id, {emailConfirmed: true});
+	await updateById(id, { emailConfirmed: true });
 }
 
-module.exports = { create, getByEmail, getById, updateById, getAll, isEmailConfirmed, confirmEmail };
+module.exports = {
+	create,
+	getByEmail,
+	getById,
+	updateById,
+	getAll,
+	isEmailConfirmed,
+	confirmEmail,
+	getRefById,
+};

@@ -39,6 +39,10 @@ exports.getDocById = async function (collectionName, docId) {
     return await db.collection(collectionName).doc(docId).get();
 }
 
+exports.getDocRefById = async function(collectionName, docId) {
+    return await db.collection(collectionName).doc(docId);
+}
+
 exports.deleteDocById = async function (collectionName, docId) {
     return await db.collection(collectionName).doc(docId).delete();
 }
