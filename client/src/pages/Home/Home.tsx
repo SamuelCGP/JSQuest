@@ -36,6 +36,7 @@ function Home() {
 					<LessonCard>
 						<LessonIcon>
 							<LessonCircle value={0} maxValue={1}/>
+							<img src="http://localhost:3001/images/chapters/0/download.jpg" className="lessonImg"></img>
 						</LessonIcon>
 						<LessonName>Nomeando o robô</LessonName>
 					</LessonCard>

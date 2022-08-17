@@ -4,7 +4,8 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const verifyJWT = require("./src/middlewares/verifyJWT.js");
 const bodyParser = require("body-parser");
-const morgan = require('morgan');
+const morgan = require("morgan");
+const path = require('path')
 dotenv.config({ path: "./src/config/.env" });
 
 const userRouter = require("./src/routes/user.js");
@@ -19,11 +20,19 @@ app.use(bodyParser.json());
 
 app.use(morgan("dev"));
 
+var dir = path.join(__dirname, "images");
+
+app.use('/images', express.static(dir));
+
 app.use("/user", userRouter);
 app.use("/chapter", chapterRouter);
 app.use("/solution", solutionRouter);
 app.use("/lesson", lessonRouter);
 
-app.get("/verify-token", verifyJWT, (req, res) => {res.status(200).send();});
+
+
+app.get("/verify-token", verifyJWT, (req, res) => {
+	res.status(200).send();
+});
 
 app.listen(PORT, () => console.log(`Server is listening at port ${PORT}!`));
