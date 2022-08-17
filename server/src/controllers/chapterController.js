@@ -1,7 +1,7 @@
 const chapterModel = require("../models/chapterModel.js");
 
 exports.getAll = async function (req, res) {
-    const chapters = await chapterModel.getAll();
+    const chapters = await chapterModel.getAll(req.userId);
     res.status(200).json({ chapters })
 }
 
