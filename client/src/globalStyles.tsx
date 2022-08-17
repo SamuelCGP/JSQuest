@@ -3,7 +3,7 @@ import ColorPalette from "./utils/ColorPalette";
 
 export const GlobalStyle = createGlobalStyle`
   :root{
-    font-family: consolas;
+    font-family: calibri;
   }
   *{
     box-sizing: border-box;
@@ -11,17 +11,25 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
   body{
-    background-color: ${ColorPalette.darkBlue};
+    background-color: ${ColorPalette.primary};
+    height: 100vh;
   }
   ::-webkit-scrollbar{
-    width: 1.5em;
+    width: .5rem;
+    padding: 20px;
   }
   ::-webkit-scrollbar-track-piece{
-    background: ${ColorPalette.blue}
+    background: ${ColorPalette.secondaryDark + "a4"};
+    border-radius: 10px;
   }
   ::-webkit-scrollbar-thumb{
-    background: ${ColorPalette.navyBlue}
+    background: ${ColorPalette.white};
+    border-radius: 10px;
   }
+  ::-webkit-scrollbar-button {
+    width: 8px;
+    height: 8px;
+}
   // Split.js
   .gutter{
     background-color: #eee;

@@ -12,7 +12,7 @@ export const MainHeading = styled.h1`
 	margin-top: 2rem;
 	margin-bottom: 2rem;
 	color: ${(props: MainHeadingProps) =>
-		props.inverse ? ColorPalette.darkBlue : ColorPalette.white};
+		props.inverse ? ColorPalette.secondaryDark : ColorPalette.white};
 	width: 100%;
 	letter-spacing: 4px;
 	text-align: center;

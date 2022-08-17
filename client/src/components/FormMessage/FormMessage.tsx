@@ -1,11 +1,11 @@
-import React from 'react';
-import styled, {css} from 'styled-components';
+import styled from "styled-components";
+import ColorPalette from "../../utils/ColorPalette";
 
 const FormMessage = styled.p`
-    font-family: consolas;
-    font-size: 15px;
-    color: red;
-    margin: 0px;
+	font-family: consolas;
+	font-size: 15px;
+	color: ${ColorPalette.primary};
+	margin: 0px;
 `;
 
 export default FormMessage;

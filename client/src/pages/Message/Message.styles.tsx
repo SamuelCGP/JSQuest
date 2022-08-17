@@ -17,7 +17,7 @@ export const MessageTag = styled.p`
 
 export const LinkBack = styled(Link)`
 	font-size: 1em;
-	color: ${ColorPalette.orange};
+	color: ${ColorPalette.yellowOrange};
 	font-family: consolas;
 	margin: 20px;
 `;

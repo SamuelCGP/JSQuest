@@ -2,8 +2,7 @@ import ColorPalette from "../../utils/ColorPalette";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Tooltip from "../Tooltip/Tooltip";
-import { SiJavascript } from "react-icons/si";
-import { AiFillHome } from "react-icons/ai";
+import { JSQuestLogo } from "../../svg";
 import { ImBook } from "react-icons/im";
 import { BsGearFill } from "react-icons/bs";
 import { FaUserCircle } from "react-icons/fa";
@@ -16,9 +15,11 @@ export const NavContainer = styled.nav`
 	width: 100vw;
 	height: 3.5rem;
 
+	z-index: 3;
+
 	@media (min-width: 900px) {
 		top: 0;
-		width: 5rem;
+		width: 4rem;
 		height: 100vh;
 	}
 `;
@@ -68,7 +69,7 @@ export const HorizontalLine = styled.hr`
 	border: none;
 	@media (min-width: 900px) {
 		display: ${(props: HLProps) => (props.dInvisible ? "none" : "block")};
-		width: 80%;
+		width: 75%;
 		height: 0.1rem;
 	}
 `;
@@ -78,7 +79,7 @@ export const NavLink = styled(Link)`
 	align-items: center;
 	justify-content: center;
 	height: 3.5rem;
-	color: ${ColorPalette.lightCyan};
+	color: ${ColorPalette.primaryLight};
 	text-decoration: none;
 	filter: grayscale(100%) opacity(0.7);
 	transition: 0.2s;
@@ -101,12 +102,12 @@ export const LinkText = styled(Tooltip)`
 	}
 `;
 
-export const HomeIcon = styled(SiJavascript)`
+export const HomeIcon = styled(JSQuestLogo)`
 	width: 2.5rem;
 	height: 2.5rem;
 	@media (min-width: 900px) {
-		width: 4rem;
-		height: 4rem;
+		width: 3rem;
+		height: 3rem;
 	}
 `;
 
@@ -114,8 +115,8 @@ export const MaterialsIcon = styled(ImBook)`
 	width: 2.5rem;
 	height: 2.5rem;
 	@media (min-width: 900px) {
-		width: 3.5rem;
-		height: 3.5rem;
+		width: 3rem;
+		height: 3rem;
 	}
 `;
 
@@ -123,8 +124,8 @@ export const ProfileIcon = styled(FaUserCircle)`
 	width: 2.5rem;
 	height: 2.5rem;
 	@media (min-width: 900px) {
-		width: 3.5rem;
-		height: 3.5rem;
+		width: 3rem;
+		height: 3rem;
 	}
 `;
 
@@ -141,7 +142,7 @@ export const ConfigIcon = styled(BsGearFill)`
 	width: 2.5rem;
 	height: 2.5rem;
 	@media (min-width: 900px) {
-		width: 3.5rem;
-		height: 3.5rem;
+		width: 3rem;
+		height: 3rem;
 	}
 `;

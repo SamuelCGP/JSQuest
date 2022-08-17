@@ -13,7 +13,7 @@ export const SignInCall = styled.h3`
 	font-family: consolas;
 	user-select: none;
 	color: ${(props: { clickable?: boolean }) =>
-		props.clickable ? ColorPalette.orange : ""};
+		props.clickable ? ColorPalette.secondary : ""};
 	cursor: ${(props: { clickable?: boolean }) =>
 		props.clickable ? "pointer" : ""};
 `;

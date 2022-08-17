@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import handleTokenVerification from "./handleTokenVerification";
 import handleResetPasswordSubmit from "./handleResetPasswordSubmit";
-import { Container, Heading, MainHeading } from "../../components";
+import { Container, MainHeading } from "../../components";
 import {
 	CenterContainer,
 	MessageTag,
@@ -37,11 +37,11 @@ function ResetPassword() {
 	if (!isFormVisible)
 		return (
 			<CenterContainer>
-				<MainHeading color={ColorPalette.orange}>
+				<MainHeading color={ColorPalette.white}>
 					Algo deu errado...
 				</MainHeading>
 				<MessageTag>{responseText}</MessageTag>
-				<LinkBack to={"/"}>Voltar para a Home</LinkBack>
+				<LinkBack to={"/"} style={ {color: "white"} }>Voltar para a Home</LinkBack>
 			</CenterContainer>
 		);
 

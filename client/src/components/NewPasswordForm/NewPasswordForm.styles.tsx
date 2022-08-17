@@ -1,10 +1,10 @@
 import ColorPalette from "../../utils/ColorPalette";
 import styled from "styled-components";
-import { Form, Field } from "formik";
+import { Form } from "formik";
 import { FaUnlockAlt } from "react-icons/fa";
 
 export const LockIcon = styled(FaUnlockAlt)`
-	color: ${ColorPalette.orange};
+	color: ${ColorPalette.secondary};
 	margin: 1rem;
 	align-self: center;
 	width: 5rem;

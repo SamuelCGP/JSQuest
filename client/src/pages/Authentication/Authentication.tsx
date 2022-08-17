@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Container, MainHeading } from "../../components/Global";
 import SignIn from "../../components/SignIn/SignIn";
 import SignUp from "../../components/SignUp/SignUp";
-import { MainContainer, AuthCard } from "./Authentication.styles";
+import { ContainerFull, MainContainer, AuthCard, GlobalStyle } from "./Authentication.styles";
 import { Navigate } from "react-router-dom";
 import handleRegisterSubmit from "./handleRegisterSubmit";
 import handleLoginSubmit from "./handleLoginSubmit";
 import handleForgotPassword from "./handleForgotPassword";
+import { JSQuestFullLogo } from "../../svg";
 
 function Authentication() {
 	const [isSigned, setIsSigned] = useState(true);
@@ -24,8 +24,9 @@ function Authentication() {
 		setSignUpMessage("⠀");
 	}
 	return (
-		<Container>
-			<MainHeading>JSQuest</MainHeading>
+		<ContainerFull>
+			<GlobalStyle/>
+			<JSQuestFullLogo inverse width={300} height={165}/>
 			<MainContainer>
 				<AuthCard isSigned={isSigned}>
 					<SignIn
@@ -59,7 +60,7 @@ function Authentication() {
 					/>
 				</AuthCard>
 			</MainContainer>
-		</Container>
+		</ContainerFull>
 	);
 }
 
