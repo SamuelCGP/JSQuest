@@ -11,6 +11,7 @@ export async function login(userEmail: string, userPassword: string) {
 	};
 
 	const res = await makeRequest(HTTPMethods.POST, "user/login", headers, data);
-	localStorage.setItem("token", res.data.token);
+	if(res.status === 200) localStorage.setItem("token", res.data.token);
+
 	return res.status;
 }
