@@ -20,6 +20,6 @@ export async function makeRequest(
 			return res;
 		})
 		.catch((error) => {
-			return error.response.status;
+			return error.response;
 		});
 }

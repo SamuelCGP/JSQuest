@@ -7,12 +7,12 @@ export default async () => {
 		return response;
 	});
 
-	status = response;
+	status = response.status;
 
 	switch (status) {
 		case 200:
 			message = "Capítulos obtidos com sucesso";
-			break;
+			return response.data;
 		case 400:
 			message = "Token inválido";
 			break;
@@ -26,7 +26,6 @@ export default async () => {
 			message = "Erro desconhecido " + status;
 	}
 
-	console.log(response);
-	console.log(message);
+    console.log(response);
 	return message;
 };

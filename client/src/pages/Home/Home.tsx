@@ -19,9 +19,9 @@ import getUserProgress from "./getUserProgress";
 
 function Home() {
 	const [userProgress, setUserProgress] = useState("");
-	(async function updateUserProgress() {
+	async function updateUserProgress() {
 		setUserProgress(await getUserProgress());
-	})();
+	};
 	return (
 		<MainContainer>
 			<Header>Sua jornada</Header>
