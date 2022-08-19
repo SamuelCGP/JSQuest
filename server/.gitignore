@@ -1,3 +1,4 @@
+solutions/
 node_modules/
 src/config/.env
 src/config/serviceAccountKey.json
