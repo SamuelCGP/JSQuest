@@ -8,3 +8,5 @@ export * from "./SignUp/SignUp";
 export * from "./SplitedContainers/SplitedContainers"
 export * from "./TextField/TextField";
 export * from "./Tooltip/Tooltip";
+export * from "./Home/LessonCard/LessonCard"
+export * from "./Home/ProgressCircle/ProgressCircle";

@@ -26,6 +26,5 @@ export default async () => {
 			message = "Erro desconhecido " + status;
 	}
 
-    console.log(response);
 	return message;
 };
