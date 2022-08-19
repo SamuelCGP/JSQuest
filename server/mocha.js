@@ -4,16 +4,12 @@ const Test = Mocha.Test;
 const Suite = Mocha.Suite;
 
 
-const createMochaInstance = (suiteName = "Test suite") => {
+const runMochaTests = (suiteName = "Test suite", tests) => {
     const mocha = new Mocha({})
     const suite = () => Suite.create(mocha.suite, suiteName);
-    mocha.runTests = runTests;
-}
 
-
-const runTests = () => {
-    var passes = 0;
-    var failures = 0;
+    let passes = 0;
+    let failures = 0;
     // return new Promise((resolve, reject) => {
     //     mocha.run((failures) => {
     //         if (failures) reject('Testing failed');
