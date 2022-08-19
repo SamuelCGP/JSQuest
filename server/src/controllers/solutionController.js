@@ -39,6 +39,9 @@ exports.verify = async (req, res) => {
 
 	const body = req.body;
 	const solution = body.solution;
+
+	const solutionFunction = new Function(solution);
+
 	let transpiledSolution;
 	try {
 		transpiledSolution = babel.transformSync(solution, {
