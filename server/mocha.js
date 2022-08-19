@@ -6,16 +6,11 @@ const Suite = Mocha.Suite;
 
 const runMochaTests = (suiteName = "Test suite", tests) => {
     const mocha = new Mocha({})
-    const suite = () => Suite.create(mocha.suite, suiteName);
-
+    const suite = Suite.create(mocha.suite, suiteName);
+    tests.forEach(test => suite.addTest(test));
     let passes = 0;
     let failures = 0;
-    // return new Promise((resolve, reject) => {
-    //     mocha.run((failures) => {
-    //         if (failures) reject('Testing failed');
-    //         else resolve('Testing succeeded');
-    //     })
-    // })
+
     return new Promise((resolve, reject) => {
         mocha.run().on('test', function (test) {
             console.log('Test started: ' + test.title);
