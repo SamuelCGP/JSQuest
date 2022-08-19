@@ -1,13 +1,13 @@
-const express = require("express");
-const router = express.Router();
+import express from "express";
+export const router = express.Router();
 
-const multer = require("multer");
+import multer from "multer";
 const upload = multer();
 
-const userController = require("../controllers/userController.js");
+import * as userController from "../controllers/userController";
 
-const sendEmail = require("../middlewares/sendEmail.js");
-const verifyJWT = require("../middlewares/verifyJWT.js");
+import sendEmail from "../middlewares/sendEmail";
+import verifyJWT from "../middlewares/verifyJWT";
 
 //recebe o ID do usuário (pelo url param) e o token de reset de senha (pelo header x-access-token)
 //caso o id do usuário seja invalido, retorna o código 404
@@ -19,7 +19,7 @@ router.get(
 );
 
 //retorna todos os usuários cadastrados
-router.get('/all', userController.getAll);
+router.get("/all", userController.getAll);
 
 //recebe o id ou email do usuário via query params (ex: http://localhost:3001/user?id=aksajkasjk
 //ou http://localhost:3001/user?email=test)
@@ -56,7 +56,7 @@ router.post(
 router.post(
 	"/reset-password",
 	upload.none(),
-    userController.getUserFromBody,
+	userController.getUserFromBody,
 	userController.verifyPasswordResetJWT,
 	userController.resetPassword
 );
@@ -65,7 +65,7 @@ router.post(
 router.post(
 	"/send-email-confirmation",
 	upload.none(),
-    userController.getUserFromBody,
+	userController.getUserFromBody,
 	userController.sendEmailConfirmation,
 	sendEmail
 );
@@ -73,6 +73,9 @@ router.post(
 //recebe o token de confirmação de email pelo header x-access-token
 //retorna 400 se o email já estiver confirmado
 //retorna 401 se o token for inválido
-router.post("/confirm-email", upload.none(), verifyJWT, userController.confirmEmail)
-
-module.exports = router;
+router.post(
+	"/confirm-email",
+	upload.none(),
+	verifyJWT,
+	userController.confirmEmail
+);

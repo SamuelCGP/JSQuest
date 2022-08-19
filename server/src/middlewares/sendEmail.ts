@@ -1,7 +1,8 @@
-const sgmail = require("@sendgrid/mail");
+import sgmail from "@sendgrid/mail";
+import { NextFunction, Request, Response } from "express";
 
-module.exports = function (req, res, next) {
-	sgmail.setApiKey(process.env.SENDGRID_API_KEY);
+export default function (req: Request, res: Response, next: NextFunction) {
+	sgmail.setApiKey(process.env.SENDGRID_API_KEY!);
 
 	const message = {
 		to: req.toEmailAdress,

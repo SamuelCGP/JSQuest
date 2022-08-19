@@ -1,10 +1,12 @@
-const bcrypt = require("bcrypt");
-const userModel = require("../models/userModel.js");
-const jwt = require("jsonwebtoken");
+import { NextFunction, Request, Response } from "express";
 
-exports.getUserByQuery = async function (req, res) {
-	const queryId = req.query.id;
-	const queryEmail = req.query.email;
+import bcrypt from "bcrypt";
+import * as userModel from "../models/userModel";
+import jwt from "jsonwebtoken";
+
+export const getUserByQuery = async (req: Request, res: Response) => {
+	const queryId = req.query.id as string;
+	const queryEmail = req.query.email as string;
 
 	if (queryId) {
 		const user = await userModel.getById(queryId);
@@ -20,17 +22,21 @@ exports.getUserByQuery = async function (req, res) {
 	res.status(404).json({ message: "User not found" });
 };
 
-exports.getUserByIdParam = async function (req, res, next) {
+export const getUserByIdParam = async (
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => {
 	const userId = req.params.userId;
 	const user = await userModel.getById(userId);
-	
+
 	if (user) {
 		req.user = user;
 		next();
 	} else res.status(404).json({ message: "Invalid user ID" });
 };
 
-exports.register = async function (req, res) {
+export const register = async (req: Request, res: Response) => {
 	const body = req.body;
 	const salt = await bcrypt.genSalt(10);
 	const hashedPassword = await bcrypt.hash(body.password, salt);
@@ -41,7 +47,11 @@ exports.register = async function (req, res) {
 	);
 };
 
-exports.getUserFromBody = async function (req, res, next) {
+export const getUserFromBody = async (
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => {
 	const body = req.body;
 	const email = body.email;
 	const userId = body.userId;
@@ -57,7 +67,7 @@ exports.getUserFromBody = async function (req, res, next) {
 	} else res.status(404).json({ message: "User does not exist" });
 };
 
-exports.login = async function (req, res) {
+export const login = async (req: Request, res: Response) => {
 	const body = req.body;
 	const user = req.user;
 	const userData = user.data();
@@ -67,8 +77,8 @@ exports.login = async function (req, res) {
 	);
 	if (isPasswordValid) {
 		const userId = user.id;
-		const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
-			expiresIn: '1d',
+		const token = jwt.sign({ userId }, process.env.JWT_SECRET!, {
+			expiresIn: "1d",
 		});
 		res.status(200).json({ message: "Login successful", token });
 	} else {
@@ -77,7 +87,11 @@ exports.login = async function (req, res) {
 };
 
 //recebe o email do usuário para enviar o link de reset de senha
-exports.forgotPassword = async function (req, res, next) {
+export const forgotPassword = async (
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => {
 	const body = req.body;
 	const email = body.email;
 
@@ -102,7 +116,7 @@ exports.forgotPassword = async function (req, res, next) {
 	} else res.status(404).json({ message: "User does not exist" });
 };
 
-exports.resetPassword = async function (req, res) {
+export const resetPassword = async (req: Request, res: Response) => {
 	const newPassword = req.body.newPassword;
 
 	const userId = req.user.id;
@@ -115,14 +129,18 @@ exports.resetPassword = async function (req, res) {
 	res.status(200).json({ message: "Password updated successfully" });
 };
 
-exports.verifyPasswordResetJWT = function (req, res, next) {
-	const token = req.headers["x-access-token"];
+export const verifyPasswordResetJWT = (
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => {
+	const token = req.headers["x-access-token"] as string;
 
 	if (!token) {
 		res.status(400).json({ message: "Missing access token" });
 	} else {
 		const userData = req.user.data();
-		const secret = process.env.JWT_SECRET + userData.password;
+		const secret: string = process.env.JWT_SECRET! + userData.password;
 		jwt.verify(token, secret, (error, decoded) => {
 			if (error) res.status(401).json({ message: "Invalid access token" });
 			else {
@@ -133,12 +151,16 @@ exports.verifyPasswordResetJWT = function (req, res, next) {
 	}
 };
 
-exports.sendEmailConfirmation = async function (req, res, next) {
+export const sendEmailConfirmation = async (
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => {
 	const user = req.user;
 	req.toEmailAdress = req.body.email;
 	req.emailSubject = "JSQuest Email Confirmation";
 
-	const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
+	const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET!, {
 		expiresIn: "5m",
 	});
 	const link = `http://${process.env.FRONT_END_URL}/confirm-email/${token}`;
@@ -150,14 +172,18 @@ exports.sendEmailConfirmation = async function (req, res, next) {
 	res.status(200).json({ message: "Confirmation email sent" });
 };
 
-exports.checkEmailConfirmed = async function (req, res, next) {
+export const checkEmailConfirmed = async (
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => {
 	if (await userModel.isEmailConfirmed(req.user.id)) {
 		next();
 		// if (!res.headersSent) res.status(200).json({ message: "Email confirmed" });
 	} else res.status(401).json({ message: "Email not confirmed" });
 };
 
-exports.confirmEmail = async function (req, res) {
+export const confirmEmail = async (req: Request, res: Response) => {
 	if (await userModel.isEmailConfirmed(req.userId))
 		res.status(400).json({ message: "Email was already confirmed" });
 	else {
@@ -166,23 +192,25 @@ exports.confirmEmail = async function (req, res) {
 	}
 };
 
-exports.getOne = async function (req, res) {
-    const queryId = req.query.id;
-    const queryEmail = req.query.email;
+export const getOne = async (req: Request, res: Response) => {
+	const queryId = req.query.id as string;
+	const queryEmail = req.query.email as string;
 
-    if(queryId) {
-        const user = await userModel.getById(queryId);
-        if(user) return res.status(200).json({user: user.data()});
-    } else if (queryEmail) {
-        const user = await userModel.getByEmail(queryEmail);
-        if(user) return res.status(200).json({user: user.data()});
-    } else return res.status(400).json({message: "Missing id or email query params"});
+	if (queryId) {
+		const user = await userModel.getById(queryId);
+		if (user) return res.status(200).json({ user: user.data() });
+	} else if (queryEmail) {
+		const user = await userModel.getByEmail(queryEmail);
+		if (user) return res.status(200).json({ user: user.data() });
+	} else
+		return res
+			.status(400)
+			.json({ message: "Missing id or email query params" });
 
-    res.status(404).json({message: "User not found"});
-	
-}
+	res.status(404).json({ message: "User not found" });
+};
 
-exports.getAll = async function (req, res) {
+export const getAll = async (req: Request, res: Response) => {
 	const users = await userModel.getAll();
 	res.status(200).json({ users });
 };

@@ -1,13 +1,19 @@
-const { getAllFromCollection, getDocById } = require("../../firestore");
-const { getAllFromChapter } = require("./lessonModel");
-const { getById } = require("./userModel");
+import { getAllFromCollection, getDocById } from "../firestore";
+import { getAllFromChapter } from "./lessonModel";
+import { getById } from "./userModel";
 
 const chapterCollectionName = "chapters";
 
-exports.getAll = async (userId) => {
+export interface UserCompletedLessons {
+	[x: string]: boolean[];
+}
+export const getAll = async (userId: string) => {
 	let chapters = await getAllFromCollection(chapterCollectionName);
+
 	const user = await getById(userId);
-	const completedLessons = user.data().completed_lessons;
+	if (!user) return;
+
+	const completedLessons: UserCompletedLessons = user.data()!.completed_lessons;
 
 	chapters = await Promise.all(
 		chapters.map(async (chapter, index) => {
@@ -22,6 +28,6 @@ exports.getAll = async (userId) => {
 	return chapters;
 };
 
-exports.getOne = async (chapterId) => {
+export const getOne = async (chapterId: string) => {
 	return await getDocById(chapterCollectionName, chapterId);
 };

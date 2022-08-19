@@ -1,15 +1,16 @@
-const {
+import {
 	save,
 	db,
 	getDocById,
 	update,
 	getAllFromCollection,
 	getDocRefById,
-} = require("../../firestore.js");
+	FirestoreData,
+} from "../firestore";
 
 const userCollectionName = "users";
 
-async function create(username, email, password) {
+export const create = async (username: string, email: string, password: string) => {
 	const userExists = await getByEmail(email);
 
 	if (!userExists)
@@ -22,7 +23,7 @@ async function create(username, email, password) {
 	else throw "User already exists";
 }
 
-async function getByEmail(email) {
+export const getByEmail = async (email: string) => {
 	const snapshot = await db
 		.collection(userCollectionName)
 		.where("email", "==", email)
@@ -32,42 +33,34 @@ async function getByEmail(email) {
 	else return snapshot.docs[0];
 }
 
-async function getById(id) {
+export const getById = async (id: string) => {
 	const user = await getDocById(userCollectionName, id);
 	if (user.exists) return user;
 	else return false;
 }
 
-async function getRefById(id) {
+export const getRefById = async (id: string) => {
 	const userRef = await getDocRefById(userCollectionName, id);
 	return userRef;
 }
 
-async function getAll() {
+export const getAll = async () => {
 	return await getAllFromCollection(userCollectionName);
 }
 
-async function updateById(id, data) {
+export const updateById = async (id: string, data: FirestoreData) => {
 	await update(userCollectionName, data, id);
 }
 
-async function isEmailConfirmed(id) {
+export const isEmailConfirmed = async (id: string) => {
 	const user = await getById(id);
-	const userData = user.data();
-	return userData.emailConfirmed;
+
+	if (user) {
+		const userData = user.data()!;
+		return userData.emailConfirmed;
+	}
 }
 
-async function confirmEmail(id) {
+export const confirmEmail = async (id: string) => {
 	await updateById(id, { emailConfirmed: true });
 }
-
-module.exports = {
-	create,
-	getByEmail,
-	getById,
-	updateById,
-	getAll,
-	isEmailConfirmed,
-	confirmEmail,
-	getRefById,
-};

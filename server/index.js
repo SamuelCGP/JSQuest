@@ -1,38 +1,33 @@
-const express = require("express");
-const app = express();
-const cors = require("cors");
-const dotenv = require("dotenv");
-const verifyJWT = require("./src/middlewares/verifyJWT.js");
-const bodyParser = require("body-parser");
-const morgan = require("morgan");
-const path = require('path')
-dotenv.config({ path: "./src/config/.env" });
-
-const userRouter = require("./src/routes/user.js");
-const chapterRouter = require("./src/routes/chapter.js");
-const solutionRouter = require("./src/routes/solution.js");
-const lessonRouter = require("./src/routes/lesson.js");
-
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const app = (0, express_1.default)();
+const cors_1 = __importDefault(require("cors"));
+const dotenv_1 = __importDefault(require("dotenv"));
+const verifyJWT_js_1 = __importDefault(require("./src/middlewares/verifyJWT.js"));
+const body_parser_1 = __importDefault(require("body-parser"));
+const morgan_1 = __importDefault(require("morgan"));
+const path_1 = __importDefault(require("path"));
+dotenv_1.default.config({ path: "./src/config/.env" });
+const user_js_1 = __importDefault(require("./src/routes/user.js"));
+const chapter_js_1 = __importDefault(require("./src/routes/chapter.js"));
+const solution_js_1 = __importDefault(require("./src/routes/solution.js"));
+const lesson_js_1 = __importDefault(require("./src/routes/lesson.js"));
 const PORT = process.env.PORT || 3001;
-app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-app.use(morgan("dev"));
-
-var dir = path.join(__dirname, "images");
-
-app.use('/images', express.static(dir));
-
-app.use("/user", userRouter);
-app.use("/chapter", chapterRouter);
-app.use("/solution", solutionRouter);
-app.use("/lesson", lessonRouter);
-
-
-
-app.get("/verify-token", verifyJWT, (req, res) => {
-	res.status(200).send();
+app.use((0, cors_1.default)());
+app.use(body_parser_1.default.urlencoded({ extended: true }));
+app.use(body_parser_1.default.json());
+app.use((0, morgan_1.default)("dev"));
+var dir = path_1.default.join(__dirname, "images");
+app.use('/images', express_1.default.static(dir));
+app.use("/user", user_js_1.default);
+app.use("/chapter", chapter_js_1.default);
+app.use("/solution", solution_js_1.default);
+app.use("/lesson", lesson_js_1.default);
+app.get("/verify-token", verifyJWT_js_1.default, (req, res) => {
+    res.status(200).send();
 });
-
 app.listen(PORT, () => console.log(`Server is listening at port ${PORT}!`));

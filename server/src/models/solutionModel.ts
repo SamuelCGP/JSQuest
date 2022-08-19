@@ -1,8 +1,11 @@
-const { getDocById, db } = require("../../firestore");
+const { getDocById, db } = require("../firestore");
 
 const solutionCollecName = "code_solutions";
-
-exports.getOne = async (userId, lessonIndex, chapterIndex) => {
+export const getOne = async (
+	userId: string,
+	lessonIndex: number,
+	chapterIndex: number
+) => {
 	const solutionCollec = db.collection(`users/${userId}/${solutionCollecName}`);
 	const snapshot = await solutionCollec
 		.where("lesson_index", "==", lessonIndex)
@@ -14,8 +17,13 @@ exports.getOne = async (userId, lessonIndex, chapterIndex) => {
 	} else return snapshot.docs[0];
 };
 
-exports.save = async (userId, lessonIndex, chapterIndex, solutionContent) => {
-	const solution = await this.getOne(userId, lessonIndex, chapterIndex);
+export const save = async (
+	userId: string,
+	lessonIndex: number,
+	chapterIndex: number,
+	solutionContent: string
+) => {
+	const solution = await getOne(userId, lessonIndex, chapterIndex);
 	const solutionCollec = db.collection(`users/${userId}/${solutionCollecName}`);
 
 	const data = {

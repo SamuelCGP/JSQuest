@@ -36,4 +36,4 @@ const runMochaTests = (suiteName = "Test suite", tests) => {
     })
 }
 
-module.exports = { Suite, Test, runTests, suite }
+module.exports = { Suite, Test, runMochaTests }
