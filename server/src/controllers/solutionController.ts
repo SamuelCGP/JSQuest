@@ -11,6 +11,8 @@ export const verify = async (req: Request, res: Response) => {
 
 	const body = req.body;
 	const solution = body.solution;
+	const chapterIndex = parseInt(req.params.chapterIndex);
+	const lessonIndex = parseInt(req.params.lessonIndex)
 
 	let transpiledSolution;
 	try {
@@ -41,7 +43,7 @@ export const verify = async (req: Request, res: Response) => {
 		return;
 	}
 
-	const tests = await generateTests(vmContext, 0, 0);
+	const tests = await generateTests(vmContext, chapterIndex, lessonIndex);
 	runMochaTests("Test suite", tests)
 		.then((result: any) => {
 			res.status(200).json(result);
