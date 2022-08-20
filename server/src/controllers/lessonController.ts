@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { db } from "../firestore";
 import * as lessonModel from "../models/lessonModel";
 
 export const getOne = async (req: Request, res: Response) => {

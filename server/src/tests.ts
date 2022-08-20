@@ -10,7 +10,7 @@ interface ChapterTests {
 }
 
 export const generateTests = async (
-	exportedData: any,
+	context: any,
 	chapterIndex: number,
 	lessonIndex: number
 ) => {
@@ -18,11 +18,11 @@ export const generateTests = async (
 		0: {
 			0: [
 				new Test("hello equals world", () => {
-					expect(exportedData.hello, "*Você atribuiu o valor 'world' à constante hello?").to.equal("world");
-				}),
-
-				new Test("foo const equals bar", () => {
-					expect(exportedData.foo).to.equal("bar");
+					console.log({ exportedData: context });
+					expect(
+						context.hello,
+						"*Você atribuiu o valor 'world' à constante hello?"
+					).to.equal("world");
 				}),
 			],
 		},

@@ -2,31 +2,46 @@ import { Response, Request } from "express";
 import { runMochaTests } from "./../mocha";
 import { generateTests } from "./../tests";
 import { importFromStringSync } from "module-from-string";
+import vm from "node:vm";
+const babel = require("@babel/core");
+import { Context } from "../exercisesContext";
 
 export const verify = async (req: Request, res: Response) => {
-	/*TODO adicionar métodos que o usuário pode chamar
-	para funcionalidades como andar*/
 	/*TODO adicionar uma forma de separar os arquivos de teste*/
 
 	const body = req.body;
 	const solution = body.solution;
 
-	let data;
-
+	let transpiledSolution;
 	try {
-		data = importFromStringSync(solution);
-	} catch (err: any) {
-		res
-			.status(400)	
-			.json({
-				message: `${err.name}: ${err.message}`,
-				valid: false,
-				runOrCompError: true,
-			});
+		transpiledSolution = babel.transformSync(solution, {
+			presets: ["@babel/preset-env"],
+		})!;
+	} catch (error: any) {
+		res.status(400).json({
+			valid: false,
+			message: `${Object.getPrototypeOf(error)}: ${error.reasonCode} at ${
+				error.loc.line
+			}:${error.loc.column}`,
+			runOrCompError: true,
+		});
 		return;
 	}
 
-	const tests = await generateTests(data, 0, 0);
+	let vmContext = new Context().contextObj;
+
+	try {
+		vm.runInNewContext(transpiledSolution.code, vmContext);
+	} catch (err: any) {
+		res.status(400).json({
+			message: `${err.name}: ${err.message}`,
+			valid: false,
+			runOrCompError: true,
+		});
+		return;
+	}
+
+	const tests = await generateTests(vmContext, 0, 0);
 	runMochaTests("Test suite", tests)
 		.then((result: any) => {
 			res.status(200).json(result);

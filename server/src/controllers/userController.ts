@@ -179,7 +179,6 @@ export const checkEmailConfirmed = async (
 ) => {
 	if (await userModel.isEmailConfirmed(req.user.id)) {
 		next();
-		// if (!res.headersSent) res.status(200).json({ message: "Email confirmed" });
 	} else res.status(401).json({ message: "Email not confirmed" });
 };
 
