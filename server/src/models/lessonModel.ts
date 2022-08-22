@@ -1,6 +1,5 @@
-import { getAllFromCollection, getDocById, db } from "../firestore";
+import { getDocById, db } from "../firestore";
 import { getRefById } from "./userModel";
-import { UserCompletedLessons } from "./chapterModel";
 
 const lessonCollecName = "lessons";
 const solutionsSubcollecName = "solutions";

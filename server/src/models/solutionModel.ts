@@ -1,4 +1,4 @@
-const { getDocById, db } = require("../firestore");
+const { db } = require("../firestore");
 
 const solutionCollecName = "code_solutions";
 export const getOne = async (
