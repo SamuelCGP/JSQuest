@@ -9,24 +9,32 @@ interface ChapterTests {
 	[x: number]: LessonTests;
 }
 
+export interface TestData {
+	context: any
+	name: string
+	function: Function
+}
+
 export const generateTests = async (
 	context: any,
 	chapterIndex: number,
 	lessonIndex: number
 ) => {
-	const tests: ChapterTests = {
-		0: {
-			0: [
-				new Test("hello equals world", () => {
-					console.log({ exportedData: context });
-					expect(
-						context.hello,
-						"*Você atribuiu o valor 'world' à constante hello?"
-					).to.equal("world");
-				}),
-			],
-		},
-	};
+	const lessonTests = await import(`./tests/test-c${chapterIndex}l${lessonIndex}`)
+	return lessonTests.getTests(context);
 
-	return tests[chapterIndex][lessonIndex];
+	// const tests: ChapterTests = {
+	// 	0: {
+	// 		0: [
+	// 			new Test("hello equals world", () => {
+	// 				expect(
+	// 					context.hello,
+	// 					"*Você atribuiu o valor 'world' à constante hello?"
+	// 				).to.equal("world");
+	// 			}),
+	// 		],
+	// 	},
+	// };
+
+	// return tests[chapterIndex][lessonIndex];
 };

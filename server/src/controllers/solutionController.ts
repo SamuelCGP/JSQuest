@@ -1,13 +1,11 @@
 import { Response, Request } from "express";
 import { runMochaTests } from "./../mocha";
 import { generateTests } from "./../tests";
-import { importFromStringSync } from "module-from-string";
 import vm from "node:vm";
 const babel = require("@babel/core");
 import { Context } from "../exercisesContext";
 
 export const verify = async (req: Request, res: Response) => {
-	/*TODO adicionar uma forma de separar os arquivos de teste*/
 
 	const body = req.body;
 	const solution = body.solution;
@@ -44,7 +42,7 @@ export const verify = async (req: Request, res: Response) => {
 	}
 
 	const tests = await generateTests(vmContext, chapterIndex, lessonIndex);
-	runMochaTests("Test suite", tests)
+	runMochaTests("Test suite", tests, transpiledSolution.code)
 		.then((result: any) => {
 			res.status(200).json(result);
 		})

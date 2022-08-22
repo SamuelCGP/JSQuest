@@ -5,7 +5,8 @@ export const Suite = Mocha.Suite;
 
 export const runMochaTests = (
 	suiteName = "Test suite",
-	tests: Mocha.Test[]
+	tests: Mocha.Test[],
+	transpiledSolution: string
 ) => {
 	const mocha = new Mocha({});
 	const suite = Suite.create(mocha.suite, suiteName);
@@ -36,7 +37,8 @@ export const runMochaTests = (
 				resolve({
 					message: `Tests succeeded!`,
 					valid: true,
-					runOrCompError: false
+					runOrCompError: false,
+					transpiledSolution
 				});
 			});
 	});
