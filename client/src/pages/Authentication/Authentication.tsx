@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import SignIn from "../../components/SignIn/SignIn";
 import SignUp from "../../components/SignUp/SignUp";
-import { ContainerFull, MainContainer, AuthCard, GlobalStyle } from "./Authentication.styles";
+import {
+	ContainerFull,
+	MainContainer,
+	AuthCard,
+	GlobalStyle,
+} from "./Authentication.styles";
 import { Navigate } from "react-router-dom";
 import handleRegisterSubmit from "./handleRegisterSubmit";
 import handleLoginSubmit from "./handleLoginSubmit";
@@ -25,8 +30,8 @@ function Authentication() {
 	}
 	return (
 		<ContainerFull>
-			<GlobalStyle/>
-			<JSQuestFullLogo inverse width={300} height={165}/>
+			<GlobalStyle />
+			<JSQuestFullLogo inverse width={300} height={165} />
 			<MainContainer>
 				<AuthCard isSigned={isSigned}>
 					<SignIn

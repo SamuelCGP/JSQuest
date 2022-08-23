@@ -13,17 +13,22 @@ import { VscSymbolOperator } from "react-icons/vsc";
 import { useEffect, useState } from "react";
 import getUserProgress from "./getUserProgress";
 import LessonCard from "../../components/Home/LessonCard/LessonCard";
+import Logout from "../../utils/Logout";
 
 function Home() {
-	const [userProgress, setUserProgress]: any = useState();
+	const [userProgress, setUserProgress]: any = useState({
+		data: {},
+		status: 102,
+		message: "Processando",
+	});
 
 	(async function updateUserProgress() {
-		if (!userProgress) {
+		if (userProgress.status === 102) {
 			setUserProgress(await getUserProgress());
 		}
 	})();
 
-	if (userProgress)
+	if (userProgress.status === 200)
 		return (
 			<MainContainer>
 				<Header>Sua jornada</Header>
@@ -37,31 +42,34 @@ function Home() {
 					<LessonGroup>
 						<LessonCard
 							title={
-								userProgress.chapters[0].data.lessons[0].title
+								userProgress.data.chapters[0].data.lessons[0]
+									.title
 							}
 							icon="../../img/ch1le1.png"
 							completed={
-								userProgress.chapters[0].data.lessons[0]
+								userProgress.data.chapters[0].data.lessons[0]
 									.completed
 							}
 						/>
 						<LessonCard
 							title={
-								userProgress.chapters[0].data.lessons[1].title
+								userProgress.data.chapters[0].data.lessons[1]
+									.title
 							}
 							icon="../../img/ch1le1.png"
 							completed={
-								userProgress.chapters[0].data.lessons[1]
+								userProgress.data.chapters[0].data.lessons[1]
 									.completed
 							}
 						/>
 						<LessonCard
 							title={
-								userProgress.chapters[0].data.lessons[2].title
+								userProgress.data.chapters[0].data.lessons[2]
+									.title
 							}
 							icon="../../img/ch1le1.png"
 							completed={
-								userProgress.chapters[0].data.lessons[2]
+								userProgress.data.chapters[0].data.lessons[2]
 									.completed
 							}
 						/>
@@ -77,31 +85,34 @@ function Home() {
 					<LessonGroup>
 						<LessonCard
 							title={
-								userProgress.chapters[1].data.lessons[0].title
+								userProgress.data.chapters[1].data.lessons[0]
+									.title
 							}
 							icon="../../img/ch1le1.png"
 							completed={
-								userProgress.chapters[1].data.lessons[0]
+								userProgress.data.chapters[1].data.lessons[0]
 									.completed
 							}
 						/>
 						<LessonCard
 							title={
-								userProgress.chapters[1].data.lessons[1].title
+								userProgress.data.chapters[1].data.lessons[1]
+									.title
 							}
 							icon="../../img/ch1le1.png"
 							completed={
-								userProgress.chapters[1].data.lessons[1]
+								userProgress.data.chapters[1].data.lessons[1]
 									.completed
 							}
 						/>
 						<LessonCard
 							title={
-								userProgress.chapters[1].data.lessons[2].title
+								userProgress.data.chapters[1].data.lessons[2]
+									.title
 							}
 							icon="../../img/ch1le1.png"
 							completed={
-								userProgress.chapters[1].data.lessons[2]
+								userProgress.data.chapters[1].data.lessons[2]
 									.completed
 							}
 						/>
@@ -109,11 +120,12 @@ function Home() {
 					<LessonGroup center>
 						<LessonCard
 							title={
-								userProgress.chapters[1].data.lessons[3].title
+								userProgress.data.chapters[1].data.lessons[3]
+									.title
 							}
 							icon="../../img/ch1le1.png"
 							completed={
-								userProgress.chapters[1].data.lessons[3]
+								userProgress.data.chapters[1].data.lessons[3]
 									.completed
 							}
 						/>
@@ -124,7 +136,10 @@ function Home() {
 			</MainContainer>
 		);
 
-		return <></>;
+	if (userProgress.status === 400 || userProgress.status === 401)
+		return <Logout />;
+
+	return <Header>{userProgress.message}</Header>;
 }
 
 export default Home;
