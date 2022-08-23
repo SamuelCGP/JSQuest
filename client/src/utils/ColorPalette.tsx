@@ -3,7 +3,7 @@ import Color from "./Color";
 interface ColorPaletteObject {
 	secondaryDark: Color;
 	secondary: Color;
-    secondaryLight: Color;
+	secondaryLight: Color;
 	primary: Color;
 	primaryLight: Color;
 	blueWhite: Color;
@@ -16,7 +16,7 @@ interface ColorPaletteObject {
 const ColorPalette: ColorPaletteObject = {
 	secondaryDark: "#240043",
 	secondary: "#3800e0",
-    secondaryLight: "#c067e9",
+	secondaryLight: "#c067e9",
 	primary: "#009ec2",
 	primaryLight: "#52f7e1",
 	blueWhite: "#dfe7f8",

@@ -1,5 +1,5 @@
 import { MainContainer } from "./ExerciseLesson.styles";
-import { SplitedContainers } from "../../components";
+import { SplitedContainers, LessonBoard } from "../../components";
 import {
 	Container1,
 	SplitContainer,
@@ -42,7 +42,9 @@ function ExerciseLesson() {
 	return (
 		<MainContainer>
 			<SplitContainer direction="vertical">
-				<Container1></Container1>
+				<Container1>
+					<LessonBoard columns={10}></LessonBoard>
+				</Container1>
 				{/* <Container2></Container2> */}
 				<CodeEditor
 					value={editorState}

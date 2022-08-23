@@ -10,3 +10,4 @@ export * from "./TextField/TextField";
 export * from "./Tooltip/Tooltip";
 export * from "./Home/LessonCard/LessonCard";
 export * from "./Home/ProgressCircle/ProgressCircle";
+export * from "./ExerciseLesson/LessonBoard/LessonBoard";
