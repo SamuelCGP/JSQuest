@@ -5,8 +5,8 @@ export * from "./Navbar/Navbar";
 export * from "./NewPasswordForm/NewPasswordForm";
 export * from "./SignIn/SignIn";
 export * from "./SignUp/SignUp";
-export * from "./SplitedContainers/SplitedContainers"
+export * from "./ExerciseLesson/SplitedContainers/SplitedContainers";
 export * from "./TextField/TextField";
 export * from "./Tooltip/Tooltip";
-export * from "./Home/LessonCard/LessonCard"
+export * from "./Home/LessonCard/LessonCard";
 export * from "./Home/ProgressCircle/ProgressCircle";

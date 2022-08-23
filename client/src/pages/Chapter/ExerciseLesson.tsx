@@ -3,8 +3,8 @@ import { SplitedContainers } from "../../components";
 import {
 	Container1,
 	SplitContainer,
-} from "../../components/SplitedContainers/SplitedContainers.style";
-import CodeEditor from "../../components/CodeEditor/CodeEditor";
+} from "../../components/ExerciseLesson/SplitedContainers/SplitedContainers.style";
+import CodeEditor from "../../components/ExerciseLesson/CodeEditor/CodeEditor";
 import { Params, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { get, save } from "../../api/lesson";
@@ -12,7 +12,7 @@ import { get, save } from "../../api/lesson";
 function ExerciseLesson() {
 	const { l_index, c_index }: Readonly<Params<string>> = useParams();
 	const [editorState, setEditorState] = useState("");
-	let initialCode : string;
+	let initialCode: string;
 
 	async function getInitialEditorState(): Promise<string> {
 		if (c_index && l_index) {
@@ -22,7 +22,7 @@ function ExerciseLesson() {
 			else {
 				initialCode = res.data.lesson.initial_code;
 				return initialCode;
-			};
+			}
 		}
 
 		return "";
