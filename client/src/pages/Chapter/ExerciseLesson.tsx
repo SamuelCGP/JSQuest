@@ -41,7 +41,7 @@ function ExerciseLesson() {
 
 	return (
 		<MainContainer>
-			<SplitContainer direction="vertical">
+			<SplitContainer direction="vertical" minSize={[300, 100]}>
 				<Container1>
 					<LessonBoard columns={10}></LessonBoard>
 				</Container1>

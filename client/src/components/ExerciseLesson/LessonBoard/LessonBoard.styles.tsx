@@ -1,6 +1,6 @@
 import ColorPalette from "../../../utils/ColorPalette";
 import styled from "styled-components";
-import { Container } from "../../../components";
+import Alphabet from "../../../utils/Alphabet";
 
 interface BoardProps {
 	columns: number;
@@ -23,6 +23,11 @@ export const Board = styled.div`
 		${(props: BoardProps) => (props.rows ? props.rows : props.columns)},
 		1fr
 	);
+
+	@media (max-width: 900px) {
+		max-height: 90vw;
+		max-width: 90%;
+	}
 `;
 
 interface CellProps {
@@ -50,4 +55,32 @@ export const Cell = styled.div`
 	}};
 	grid-column: ${(props: CellProps) => props.positionX};
 	grid-row: ${(props: CellProps) => props.positionY};
+	font-size: calc(2rem - 100%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	&::after {
+		content: ${
+			// prettier-ignore
+			(props: CellProps) => {return `"${Alphabet[props.positionY - 1] + props.positionX}"`}
+		};
+		color: ${(props: CellProps) => {
+			if (props.positionX % 2 !== 0) {
+				if (props.positionY % 2 !== 0) {
+					return ColorPalette.secondary;
+				} else {
+					return ColorPalette.primary;
+				}
+			} else {
+				if (props.positionY % 2 === 0) {
+					return ColorPalette.secondary;
+				} else {
+					return ColorPalette.primary;
+				}
+			}
+		}};
+		max-width: 100%;
+		max-height: 100%;
+		overflow: hidden;
+	}
 `;

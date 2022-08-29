@@ -6,31 +6,30 @@ import { useEffect, useRef } from "react";
 interface CodeEditorProps {
 	value: any;
 	setEditorState: any;
-		saveCode: Function;
+	saveCode: Function;
 }
 
 const CodeEditor = (props: CodeEditorProps) => {
 	const valueRef = useRef();
 	const firstLoad = useRef(true);
-    useEffect(() => {
-		
-		console.log(props.value)
+	useEffect(() => {
+		console.log(props.value);
 		valueRef.current = props.value;
-    }, [props.value]);
+	}, [props.value]);
 
 	useEffect(() => {
 		const handleTabClose = (event: any) => {
 			props.saveCode(valueRef.current);
-		}
-		window.addEventListener('beforeunload', handleTabClose);
-		return (() => {
-			if(firstLoad.current) {
-				firstLoad.current = false
+		};
+		window.addEventListener("beforeunload", handleTabClose);
+		return () => {
+			if (firstLoad.current) {
+				firstLoad.current = false;
 				return;
 			}
-			window.removeEventListener('beforeunload', handleTabClose);
+			window.removeEventListener("beforeunload", handleTabClose);
 			props.saveCode(valueRef.current);
-		})
+		};
 	}, []);
 
 	const handleChange = (value: any) => {
@@ -42,11 +41,11 @@ const CodeEditor = (props: CodeEditorProps) => {
 			height="100%"
 			onChange={handleChange}
 			value={props.value}
-            theme={okaidia}
+			theme={okaidia}
 			extensions={[javascript()]}
 		/>
 
-        /*TODO adicionar botão de refresh ao editor para que seja possível redefinir o código pro valor inicial
+		/*TODO adicionar botão de refresh ao editor para que seja possível redefinir o código pro valor inicial
         do exercício*/
 	);
 };
