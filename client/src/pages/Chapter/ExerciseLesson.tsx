@@ -8,6 +8,7 @@ import CodeEditor from "../../components/ExerciseLesson/CodeEditor/CodeEditor";
 import { Params, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { get, save } from "../../api/lesson";
+import { LessonBoardProps } from "../../components";
 
 function ExerciseLesson() {
 	const { l_index, c_index }: Readonly<Params<string>> = useParams();
@@ -39,11 +40,24 @@ function ExerciseLesson() {
 			save(parseInt(c_index), parseInt(l_index), code);
 	};
 
+	const BoardConfig: LessonBoardProps = {
+		build: {
+			columns: 10,
+		},
+		elements: {
+			robot: {
+				x: 1,
+				y: 1,
+				element: <h1>Robot</h1>,
+			},
+		},
+	};
+
 	return (
 		<MainContainer>
 			<SplitContainer direction="vertical" minSize={[300, 100]}>
 				<Container1>
-					<LessonBoard columns={10}></LessonBoard>
+					<LessonBoard config={BoardConfig}></LessonBoard>
 				</Container1>
 				{/* <Container2></Container2> */}
 				<CodeEditor

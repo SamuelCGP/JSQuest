@@ -1,14 +1,29 @@
 import { useState } from "react";
 import { Board, Cell } from "./LessonBoard.styles";
 
-interface LessonBoardProps {
-	columns: number;
-	rows?: number;
+export interface LessonBoardProps {
+	build: {
+		columns: number;
+		rows?: number;
+	};
+	elements?: {
+		[key: string]: {
+			x: number;
+			y: number;
+			element: JSX.Element;
+		};
+	};
 }
 
-export function LessonBoard(props: LessonBoardProps) {
-	const [columns, setColumns] = useState(props.columns ? props.columns : 1);
-	const [rows, setRows] = useState(props.rows ? props.rows : props.columns);
+export function LessonBoard(props: { config: LessonBoardProps }) {
+	const [columns, setColumns] = useState(
+		props.config.build.columns ? props.config.build.columns : 1
+	);
+	const [rows, setRows] = useState(
+		props.config.build.rows
+			? props.config.build.rows
+			: props.config.build.columns
+	);
 
 	return (
 		<Board columns={columns} rows={rows}>
