@@ -6,7 +6,7 @@ export const SplitContainer = styled(Split)`
 	width: 100%;
 	height: calc(100vh - 3.5rem);
 	@media (min-width: 900px) {
-		height: calc(100vh - 2rem);
+		height: 100vh;
 	}
 `;
 

@@ -58,7 +58,6 @@ function ExerciseLesson() {
 				<Container1>
 					<LessonBoard config={BoardConfig}></LessonBoard>
 				</Container1>
-				{/* <Container2></Container2> */}
 				<CodeEditor
 					value={editorState}
 					setEditorState={setEditorState}
