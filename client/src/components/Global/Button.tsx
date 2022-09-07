@@ -10,7 +10,7 @@ interface ButtonProps {
 	mb?: string;
 }
 
-const Button = styled.button`
+export const Button = styled.button`
 	background-color: transparent;
 	border-radius: 1.2rem;
 	border: 2px solid ${ColorPalette.primary};
@@ -40,5 +40,3 @@ const Button = styled.button`
 			}
 		`};
 `;
-
-export default Button;

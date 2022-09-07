@@ -1,11 +1,8 @@
 import { MouseEventHandler, useState } from "react";
-import Button from "../Button/Button";
 import { ForgotPassword, SignInForm, SignUpCall } from "./SignIn.styles";
 import { ErrorMessage, Formik } from "formik";
 import * as Yup from "yup";
-import FormMessage from "../FormMessage/FormMessage";
-import { Column, Heading } from "../Global";
-import TextField from "../TextField/TextField";
+import { Column, Heading, TextField, FormMessage, Button } from "../..";
 
 interface SignInProps {
 	onVisibilityChange: MouseEventHandler;
@@ -20,7 +17,7 @@ const SignInSchema = Yup.object().shape({
 	password: Yup.string().required("Senha necessária"),
 });
 
-function SignIn(props: SignInProps) {
+export function SignIn(props: SignInProps) {
 	const [emailValue, setEmailValue] = useState();
 
 	const handleChanges = (event: any) => {
@@ -92,5 +89,3 @@ function SignIn(props: SignInProps) {
 
 	return <></>;
 }
-
-export default SignIn;

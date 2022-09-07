@@ -1,4 +1,4 @@
-import ColorPalette from "../../utils/ColorPalette";
+import ColorPalette from "../../../utils/ColorPalette";
 import styled from "styled-components";
 import { Form } from "formik";
 import { FaUnlockAlt } from "react-icons/fa";

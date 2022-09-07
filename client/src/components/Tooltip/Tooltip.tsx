@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import ColorPalette from "../../utils/ColorPalette";
 
 interface TooltipProps {
@@ -8,7 +8,7 @@ interface TooltipProps {
 	right?: boolean;
 }
 
-// Add the variations later
+// TODO Add the variations later
 
 const Tooltip = styled.span`
 	@media (min-width: 900px) {

@@ -1,11 +1,8 @@
 import { MouseEventHandler } from "react";
 import { SignUpForm, SignInCall } from "./SignUp.styles";
-import Button from "../Button/Button";
 import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import FormMessage from "../FormMessage/FormMessage";
-import { Heading } from "../Global";
-import TextField from '../TextField/TextField';
+import { Heading, TextField, FormMessage, Button } from "../..";
 
 interface SignUpProps {
 	onVisibilityChange: MouseEventHandler;
@@ -29,7 +26,7 @@ const SignUpSchema = Yup.object().shape({
 		.oneOf([Yup.ref("password"), null], "As senhas não coincidem"),
 });
 
-function SignUp(props: SignUpProps) {
+export function SignUp(props: SignUpProps) {
 	if (props.isVisible)
 		return (
 			<Formik
@@ -105,5 +102,3 @@ function SignUp(props: SignUpProps) {
 
 	return <></>;
 }
-
-export default SignUp;

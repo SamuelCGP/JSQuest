@@ -9,7 +9,7 @@ interface CodeEditorProps {
 	saveCode: Function;
 }
 
-const CodeEditor = (props: CodeEditorProps) => {
+export const CodeEditor = (props: CodeEditorProps) => {
 	const valueRef = useRef();
 	const firstLoad = useRef(true);
 	useEffect(() => {
@@ -49,4 +49,3 @@ const CodeEditor = (props: CodeEditorProps) => {
         do exercício*/
 	);
 };
-export default CodeEditor;

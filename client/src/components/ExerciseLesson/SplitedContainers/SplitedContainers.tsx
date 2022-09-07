@@ -1,4 +1,3 @@
-import CodeEditor from "../CodeEditor/CodeEditor";
 import {
 	Container1,
 	Container2,

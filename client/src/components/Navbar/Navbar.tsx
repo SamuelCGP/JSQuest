@@ -12,13 +12,13 @@ import {
 	ProfileIcon,
 } from "./Navbar.styles";
 
-function Navbar() {
+export function Navbar() {
 	return (
 		<NavContainer>
 			<NavNav>
 				<NavItem mInvisible>
 					<NavLink to={"/home"}>
-						<HomeIcon/>
+						<HomeIcon />
 						<LinkText>Home</LinkText>
 					</NavLink>
 				</NavItem>
@@ -47,5 +47,3 @@ function Navbar() {
 		</NavContainer>
 	);
 }
-
-export default Navbar;

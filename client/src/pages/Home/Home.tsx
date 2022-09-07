@@ -12,7 +12,7 @@ import { HiVariable } from "react-icons/hi";
 import { VscSymbolOperator } from "react-icons/vsc";
 import { useEffect, useState } from "react";
 import getUserProgress from "./getUserProgress";
-import LessonCard from "../../components/Home/LessonCard/LessonCard";
+import { LessonCard } from "../../components";
 import Logout from "../../utils/Logout";
 
 function Home() {

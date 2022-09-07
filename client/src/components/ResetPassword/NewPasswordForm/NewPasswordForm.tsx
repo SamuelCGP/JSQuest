@@ -1,12 +1,7 @@
 import * as Yup from "yup";
 import { Formik, ErrorMessage } from "formik";
-import Button from "../Button/Button";
-import FormMessage from "../FormMessage/FormMessage";
-import {
-	LockIcon,
-	NewPasswordFormTag
-} from "./NewPasswordForm.styles";
-import TextField from "../../components/TextField/TextField";
+import { LockIcon, NewPasswordFormTag } from "./NewPasswordForm.styles";
+import { TextField, FormMessage, Button } from "../..";
 
 const NewPasswordSchema = Yup.object().shape({
 	new_password: Yup.string()
@@ -26,7 +21,7 @@ interface NewPasswordFormProps {
 	formMessage: string;
 }
 
-function NewPasswordForm(props: NewPasswordFormProps) {
+export function NewPasswordForm(props: NewPasswordFormProps) {
 	return (
 		<Formik
 			initialValues={{ new_password: "", confirm_new_password: "" }}
@@ -71,5 +66,3 @@ function NewPasswordForm(props: NewPasswordFormProps) {
 		</Formik>
 	);
 }
-
-export default NewPasswordForm;

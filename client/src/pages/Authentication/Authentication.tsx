@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import SignIn from "../../components/SignIn/SignIn";
-import SignUp from "../../components/SignUp/SignUp";
+import { SignUp, SignIn } from "../../components";
 import {
 	ContainerFull,
 	MainContainer,

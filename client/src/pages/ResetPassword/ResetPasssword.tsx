@@ -2,14 +2,13 @@ import { useState } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import handleTokenVerification from "./handleTokenVerification";
 import handleResetPasswordSubmit from "./handleResetPasswordSubmit";
-import { Container, MainHeading } from "../../components";
+import { Container, MainHeading, NewPasswordForm } from "../../components";
 import {
 	CenterContainer,
 	MessageTag,
 	LinkBack,
 } from "../../pages/Message/Message.styles";
 import ColorPalette from "../../utils/ColorPalette";
-import NewPasswordForm from "../../components/NewPasswordForm/NewPasswordForm";
 import { MainContainer } from "./ResetPassword.styles";
 
 function ResetPassword() {
@@ -41,7 +40,9 @@ function ResetPassword() {
 					Algo deu errado...
 				</MainHeading>
 				<MessageTag>{responseText}</MessageTag>
-				<LinkBack to={"/"} style={ {color: "white"} }>Voltar para a Home</LinkBack>
+				<LinkBack to={"/"} style={{ color: "white" }}>
+					Voltar para a Home
+				</LinkBack>
 			</CenterContainer>
 		);
 
