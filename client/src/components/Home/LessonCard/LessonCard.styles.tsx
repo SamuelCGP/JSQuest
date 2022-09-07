@@ -12,6 +12,8 @@ export const LessonCardWrapper = styled.div`
 	@media (min-width: 900px) {
 		flex-direction: row;
 		padding-top: 8px;
+		transition: 0.1s;
+		transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
 		&:hover {
 			border-bottom: 10px solid lightgray;
 			padding-top: 0;
