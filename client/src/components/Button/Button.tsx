@@ -12,7 +12,7 @@ interface ButtonProps {
 
 const Button = styled.button`
 	background-color: transparent;
-	border-radius: 3px;
+	border-radius: 1.2rem;
 	border: 2px solid ${ColorPalette.primary};
 	color: ${ColorPalette.primary};
 	padding: ${(props: ButtonProps) =>
@@ -23,18 +23,19 @@ const Button = styled.button`
 	margin-top: ${(props: ButtonProps) => (props.mt ? props.mt : "")};
 	margin-bottom: ${(props: ButtonProps) => (props.mb ? props.mb : "")};
 	font-weight: bold;
-	&:hover{
-		background-color: #45a0c137;
+	&:hover {
+		background-color: ${ColorPalette.primaryDark + "30"};
+		cursor: pointer;
 	}
 	${(props: ButtonProps) =>
 		props.primary &&
 		css`
 			background-color: ${ColorPalette.primary};
-			border: 2px solid ${ColorPalette.primary};
+			border-bottom: 4px solid ${ColorPalette.primaryDark + "80"};
 			color: ${ColorPalette.white};
 			&:hover {
-				background-color: #367e99;
-				border: 2px solid #367e99;
+				filter: brightness(1.1);
+				background-color: ${ColorPalette.primary};
 				cursor: pointer;
 			}
 		`};

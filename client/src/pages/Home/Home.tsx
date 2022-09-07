@@ -45,7 +45,7 @@ function Home() {
 								userProgress.data.chapters[0].data.lessons[0]
 									.title
 							}
-							icon="../../img/ch1le1.png"
+							icon="img/ch1le1.png"
 							completed={
 								userProgress.data.chapters[0].data.lessons[0]
 									.completed
@@ -56,7 +56,7 @@ function Home() {
 								userProgress.data.chapters[0].data.lessons[1]
 									.title
 							}
-							icon="../../img/ch1le1.png"
+							icon="img/ch1le1.png"
 							completed={
 								userProgress.data.chapters[0].data.lessons[1]
 									.completed
@@ -67,7 +67,7 @@ function Home() {
 								userProgress.data.chapters[0].data.lessons[2]
 									.title
 							}
-							icon="../../img/ch1le1.png"
+							icon="img/ch1le1.png"
 							completed={
 								userProgress.data.chapters[0].data.lessons[2]
 									.completed
@@ -88,7 +88,7 @@ function Home() {
 								userProgress.data.chapters[1].data.lessons[0]
 									.title
 							}
-							icon="../../img/ch1le1.png"
+							icon="img/ch1le1.png"
 							completed={
 								userProgress.data.chapters[1].data.lessons[0]
 									.completed
@@ -99,7 +99,7 @@ function Home() {
 								userProgress.data.chapters[1].data.lessons[1]
 									.title
 							}
-							icon="../../img/ch1le1.png"
+							icon="img/ch1le1.png"
 							completed={
 								userProgress.data.chapters[1].data.lessons[1]
 									.completed
@@ -110,7 +110,7 @@ function Home() {
 								userProgress.data.chapters[1].data.lessons[2]
 									.title
 							}
-							icon="../../img/ch1le1.png"
+							icon="img/ch1le1.png"
 							completed={
 								userProgress.data.chapters[1].data.lessons[2]
 									.completed
@@ -123,7 +123,7 @@ function Home() {
 								userProgress.data.chapters[1].data.lessons[3]
 									.title
 							}
-							icon="../../img/ch1le1.png"
+							icon="img/ch1le1.png"
 							completed={
 								userProgress.data.chapters[1].data.lessons[3]
 									.completed

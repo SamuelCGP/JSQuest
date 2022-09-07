@@ -33,8 +33,9 @@ export const AuthCard = styled.div`
 
 export const GlobalStyle = createGlobalStyle`
 	body{
-		background-color: #009ec2;
-		opacity: 1;
-		background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #009ec2 40px ), repeating-linear-gradient( #1f87c155, #1f87c1 );
+		background-image: url(img/background.png);
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center center;
 	}
 `;
