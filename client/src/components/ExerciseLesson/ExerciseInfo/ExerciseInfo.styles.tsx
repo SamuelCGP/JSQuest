@@ -13,22 +13,26 @@ export const CollapseButton = styled.div`
 	border-radius: 100%;
 	margin: 0.5rem;
 	background-color: ${ColorPalette.yellowOrange};
-	right: ${(props: Collapsables) => (props.open ? "calc(32.5%)" : 0)};
-	top: 0;
+	right: 0;
+	top: ${(props: Collapsables) => (props.open ? "calc(100% - 3.5rem)" : 0)};
 	transition: 0.6s ease-in;
+	@media (min-width: 900px) {
+		right: ${(props: Collapsables) => (props.open ? "calc(32.5%)" : 0)};
+		top: 0;
+	}
 `;
 
 export const MainContainer = styled.div`
-	display: none;
+	display: ${(props: Collapsables) => (props.display ? "flex" : "none")};
+	width: 100%;
+	height: ${(props: Collapsables) => (props.open ? "100vh" : 0)};
+	background-color: ${ColorPalette.primaryDark};
+	transition: 0.7s
+			${(props: Collapsables) => (props.open ? "ease-in" : "ease-out")},
+		display 0.7s linear 0.7s;
 	@media (min-width: 900px) {
-		display: ${(props: Collapsables) => (props.display ? "flex" : "none")};
 		height: 100vh;
 		width: ${(props: Collapsables) => (props.open ? "50%" : 0)};
-		background-color: ${ColorPalette.primaryDark};
-		transition: 0.7s
-				${(props: Collapsables) =>
-					props.open ? "ease-in" : "ease-out"},
-			display 0.7s linear 0.7s;
 	}
 `;
 
