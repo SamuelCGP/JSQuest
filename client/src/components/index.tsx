@@ -12,3 +12,4 @@ export * from "./Home/LessonCard/LessonCard";
 export * from "./Home/ProgressCircle/ProgressCircle";
 export * from "./ExerciseLesson/LessonBoard/LessonBoard";
 export * from "./ExerciseLesson/CodeEditor/CodeEditor";
+export * from "./ExerciseLesson/ExerciseInfo/ExerciseInfo";

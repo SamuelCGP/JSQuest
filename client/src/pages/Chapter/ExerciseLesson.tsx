@@ -1,5 +1,5 @@
 import { MainContainer } from "./ExerciseLesson.styles";
-import { LessonBoard } from "../../components";
+import { ExerciseInfo, LessonBoard } from "../../components";
 import {
 	Container1,
 	SplitContainer,
@@ -64,6 +64,7 @@ function ExerciseLesson() {
 					saveCode={saveCode}
 				/>
 			</SplitContainer>
+			<ExerciseInfo></ExerciseInfo>
 		</MainContainer>
 	);
 }

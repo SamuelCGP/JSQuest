@@ -5,6 +5,8 @@ import Split from "react-split";
 export const SplitContainer = styled(Split)`
 	width: 100%;
 	height: calc(100vh - 3.5rem);
+	display: flex;
+	flex-direction: ${(props) => (props.direction ? "column" : "row")};
 	@media (min-width: 900px) {
 		height: 100vh;
 	}

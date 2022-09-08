@@ -32,8 +32,7 @@ export const GlobalStyle = createGlobalStyle`
 }
   // Split.js
   .gutter{
-    background-color: #eee;
-    opacity: 70%;
+    background-color: #000000;
     background-repeat: no-repeat;
     background-position: 50%;
   }
