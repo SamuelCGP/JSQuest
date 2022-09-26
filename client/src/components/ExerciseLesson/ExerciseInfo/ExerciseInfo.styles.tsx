@@ -2,8 +2,8 @@ import styled from "styled-components";
 import ColorPalette from "../../../utils/ColorPalette";
 
 interface Collapsables {
-	open: boolean;
-	display?: boolean;
+	open: number;
+	display?: number;
 }
 
 export const CollapseButton = styled.div`

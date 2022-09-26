@@ -7,8 +7,7 @@ import {
 import { Params, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { get, save } from "../../api/lesson";
-import { LessonBoardProps, CodeEditor,
-Robot } from "../../components";
+import { LessonBoardProps, CodeEditor, Robot } from "../../components";
 
 function ExerciseLesson() {
 	const { l_index, c_index }: Readonly<Params<string>> = useParams();
@@ -46,12 +45,9 @@ function ExerciseLesson() {
 		},
 		elements: [
 			{
-				x: 1,
-				y: 1,
-				element: <Robot />,
+				element: <Robot positionX={1} positionY={1} />,
 			},
-		]
-		,
+		],
 	};
 
 	return (

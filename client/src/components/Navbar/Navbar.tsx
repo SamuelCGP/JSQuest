@@ -39,7 +39,7 @@ export function Navbar() {
 				<HorizontalLine dInvisible />
 				<LastItem>
 					<NavLink to={"/home"}>
-						<ConfigIcon rotation />
+						<ConfigIcon rotation={+true} />
 						<LinkText>Configurações</LinkText>
 					</NavLink>
 				</LastItem>

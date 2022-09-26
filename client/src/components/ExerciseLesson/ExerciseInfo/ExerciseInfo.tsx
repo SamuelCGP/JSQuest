@@ -23,10 +23,9 @@ export function ExerciseInfo() {
 	}
 	return (
 		<>
-			{/* prettier-ignore */}
-			<CollapseButton open={isVisible} onClick={handleCollapse}/>
-			<MainContainer display={hasDisplay} open={isVisible}>
-				<LessonTitle open={isVisible}>Título do Exercício</LessonTitle>
+			<CollapseButton open={+isVisible} onClick={handleCollapse} />
+			<MainContainer display={+hasDisplay} open={+isVisible}>
+				<LessonTitle open={+isVisible}>Título do Exercício</LessonTitle>
 			</MainContainer>
 		</>
 	);

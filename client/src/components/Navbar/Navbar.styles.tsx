@@ -130,7 +130,7 @@ export const ProfileIcon = styled(FaUserCircle)`
 `;
 
 interface ConfigIconProps {
-	rotation?: boolean;
+	rotation?: number;
 }
 
 export const ConfigIcon = styled(BsGearFill)`
