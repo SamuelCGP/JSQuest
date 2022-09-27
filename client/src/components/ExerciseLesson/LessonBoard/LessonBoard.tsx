@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { Robot } from "../BoardElements/Robot/Robot";
 import { Board, Cell } from "./LessonBoard.styles";
+import getBoardElementFromObject from "../BoardElements/GetBoardElementFromObject";
 
-interface Elements {
-	element: JSX.Element;
+export interface Elements {
+	x: number;
+	y: number;
+	element: string;
 }
 
 export interface LessonBoardProps {
@@ -67,10 +70,10 @@ const placeElements = (
 
 	elements.forEach((element: Elements) => {
 		if (
-			element.element.props.positionX == row &&
-			element.element.props.positionY == column
+			element.x == column &&
+			element.y == row
 		) {
-			finalElement = element.element;
+			finalElement = getBoardElementFromObject(element);
 		}
 	});
 

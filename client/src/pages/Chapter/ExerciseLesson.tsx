@@ -45,7 +45,9 @@ function ExerciseLesson() {
 		},
 		elements: [
 			{
-				element: <Robot positionX={1} positionY={1} />,
+				x: 1,
+				y: 1,
+				element: "robot",
 			},
 		],
 	};
