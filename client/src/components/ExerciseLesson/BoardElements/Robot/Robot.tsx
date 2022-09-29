@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { BoardElementProps } from "../BoardElementProps";
 
 export function Robot(props: BoardElementProps) {
 	const [x, setX] = useState(props.positionX);
 	const [y, setY] = useState(props.positionY);
+
+	useEffect( () => {
+		
+	} );
 
 	const RobotSymbol = styled.div`
 		
