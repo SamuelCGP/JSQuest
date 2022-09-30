@@ -8,6 +8,7 @@ interface BoardProps {
 }
 
 export const Board = styled.div`
+	position: relative;
 	aspect-ratio: ${(props: BoardProps) => (props.columns ? props.columns : 1)} /
 		${(props: BoardProps) => (props.rows ? props.rows : props.columns)};
 

@@ -2,34 +2,74 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { BoardElementProps } from "../BoardElementProps";
 
-export function Robot(props: BoardElementProps) {
+interface RobotProps extends BoardElementProps {
+	columnNumber: number;
+	rowNumber: number;
+}
+
+const RobotSymbol = styled.div`
+	position: absolute;
+	background-color: white;
+	width: calc(100% / ${(props: RobotProps) => props.columnNumber});
+	height: calc(100% / ${(props: RobotProps) => props.rowNumber});
+	border-radius: 100%;
+	left: ${(props: RobotProps) => props.positionX}%;
+	top: ${(props: RobotProps) => props.positionY}%;
+	transition: 0.5s;
+`;
+
+export function Robot(props: RobotProps) {
 	const [x, setX] = useState(props.positionX);
 	const [y, setY] = useState(props.positionY);
+	const [relativeCoordinates, setRelativeCoordinates] = useState({
+		top: 0,
+		left: 0,
+	});
 
-	useEffect( () => {
-		
-	} );
+	const cellWidthInPercentage = 100 / props.columnNumber;
 
-	const RobotSymbol = styled.div`
-		
-		background-color: red;
-		width: 100%;
-		height: 100%;
-		border-radius: 100%;
-		grid-column: ${x};
-		grid-row: ${y};
-	`;
+	// ------
 
-	const changePosition = (evt: any) => {
-		console.log(evt.target.getBoundingClientRect())
-		moveTo(2,2);
-		console.log(evt.target.getBoundingClientRect())
-	}
+	// TODO APAGAR ESSA FUNÇÃO QUANDO ACABAREM OS TESTES \/
+	const changePosition = () => {
+		moveTo(x + 1, y);
+	};
 
 	const moveTo = (newX: number, newY: number) => {
 		setX(newX);
 		setY(newY);
-	}
+	};
 
-	return ( <RobotSymbol onClick={changePosition}/> );
+	const updateRelativeCoordinates = () => {
+		const relativeTop = cellWidthInPercentage * (y - 1);
+		const relativeLeft = cellWidthInPercentage * (x - 1);
+
+		if (
+			relativeTop === relativeCoordinates.top &&
+			relativeLeft === relativeCoordinates.left
+		)
+			return;
+
+		const newRelativeCoordinates = {
+			top: relativeTop,
+			left: relativeLeft,
+		};
+
+		setRelativeCoordinates(newRelativeCoordinates);
+	};
+
+	//---------
+	useEffect(() => {
+		updateRelativeCoordinates();
+	});
+
+	return (
+		<RobotSymbol
+			onClick={changePosition}
+			positionX={relativeCoordinates.left}
+			positionY={relativeCoordinates.top}
+			columnNumber={props.columnNumber}
+			rowNumber={props.rowNumber}
+		/>
+	);
 }

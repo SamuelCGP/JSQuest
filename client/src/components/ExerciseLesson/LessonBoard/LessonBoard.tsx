@@ -44,13 +44,20 @@ const fillBoard = (
 ): Array<JSX.Element> => {
 	let tiles: Array<JSX.Element> = [];
 	const totalColumns = columns;
+	const totalRows = rows;
 	for (rows; rows > 0; rows--) {
 		columns = totalColumns;
 		for (columns; columns > 0; columns--) {
 			// placing tile's cell
 			tiles.push(<Cell positionX={columns} positionY={rows} />);
 			// placing tile's element (if it has one)
-			let element = placeElements(columns, rows, elements);
+			let element = placeElements(
+				columns,
+				rows,
+				elements,
+				totalColumns,
+				totalRows
+			);
 			if (element) {
 				tiles.push(element);
 			}
@@ -62,18 +69,21 @@ const fillBoard = (
 const placeElements = (
 	column: number,
 	row: number,
-	elements: Elements[] | any
+	elements: Elements[] | any,
+	totalColumns: number,
+	totalRows: number
 ): JSX.Element | undefined => {
 	if (elements.length == 0 || elements == undefined) return;
 
 	let finalElement;
 
 	elements.forEach((element: Elements) => {
-		if (
-			element.x == column &&
-			element.y == row
-		) {
-			finalElement = getBoardElementFromObject(element);
+		if (element.x == column && element.y == row) {
+			finalElement = getBoardElementFromObject(
+				element,
+				totalColumns,
+				totalRows
+			);
 		}
 	});
 
