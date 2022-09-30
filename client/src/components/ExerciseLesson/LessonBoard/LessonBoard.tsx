@@ -18,9 +18,7 @@ export interface LessonBoardProps {
 }
 
 export function LessonBoard(props: { config: LessonBoardProps }) {
-	const [columns, setColumns] = useState(
-		props.config.build.columns ? props.config.build.columns : 1
-	);
+	const [columns, setColumns] = useState(props.config.build.columns);
 	const [rows, setRows] = useState(
 		props.config.build.rows
 			? props.config.build.rows

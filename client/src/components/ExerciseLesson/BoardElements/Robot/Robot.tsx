@@ -36,8 +36,8 @@ export function Robot(props: RobotProps) {
 	};
 
 	const moveTo = (newX: number, newY: number) => {
-		setX(newX);
-		setY(newY);
+		if (newX - 1 < props.columnNumber) setX(newX);
+		if (newY - 1 < props.rowNumber) setY(newY);
 	};
 
 	const updateRelativeCoordinates = () => {

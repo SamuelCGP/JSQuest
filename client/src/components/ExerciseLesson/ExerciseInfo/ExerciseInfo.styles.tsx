@@ -15,7 +15,8 @@ export const CollapseButton = styled.div`
 	background-color: ${ColorPalette.yellowOrange};
 	right: 0;
 	top: ${(props: Collapsables) => (props.open ? "calc(100% - 3.5rem)" : 0)};
-	transition: 0.6s ease-in;
+	transition: ${(props: Collapsables) =>
+		props.open ? "0.6s ease-out" : "0.8s ease-in"};
 	@media (min-width: 900px) {
 		right: ${(props: Collapsables) => (props.open ? "calc(32.5%)" : 0)};
 		top: 0;
@@ -28,7 +29,7 @@ export const MainContainer = styled.div`
 	height: ${(props: Collapsables) => (props.open ? "100vh" : 0)};
 	background-color: ${ColorPalette.primaryDark};
 	transition: 0.7s
-			${(props: Collapsables) => (props.open ? "ease-in" : "ease-out")},
+			${(props: Collapsables) => (props.open ? "ease-out" : "ease-in")},
 		display 0.7s linear 0.7s;
 	@media (min-width: 900px) {
 		height: 100vh;
