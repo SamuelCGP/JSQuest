@@ -13,7 +13,6 @@ export async function getExerciseInfo(
 			title: title,
 			text: text,
 		};
-		console.log(exerciseInfo);
 		return exerciseInfo;
 	} else {
 		const error = null;
