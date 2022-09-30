@@ -5,11 +5,12 @@ interface LessonCardProps {
 	title: string;
 	icon: string;
 	completed: boolean;
+	onClick: React.MouseEventHandler<HTMLDivElement>;
 }
 
 export function LessonCard(props: LessonCardProps) {
 	return (
-		<LessonCardWrapper>
+		<LessonCardWrapper onClick={props.onClick}>
 			<LessonIcon>
 				<LessonCircle value={props.completed ? 1 : 0} maxValue={1} />
 				<img src={props.icon} className="lessonImg"></img>

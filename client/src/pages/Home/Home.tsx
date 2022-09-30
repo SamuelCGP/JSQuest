@@ -14,8 +14,11 @@ import { useEffect, useState } from "react";
 import getUserProgress from "./getUserProgress";
 import { LessonCard } from "../../components";
 import Logout from "../../utils/Logout";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+	const navigate = useNavigate();
+
 	const [userProgress, setUserProgress]: any = useState({
 		data: {},
 		status: 102,
@@ -50,6 +53,9 @@ function Home() {
 								userProgress.data.chapters[0].data.lessons[0]
 									.completed
 							}
+							onClick={() => {
+								navigate("/chapter/0/lesson/0");
+							}}
 						/>
 						<LessonCard
 							title={
@@ -61,6 +67,9 @@ function Home() {
 								userProgress.data.chapters[0].data.lessons[1]
 									.completed
 							}
+							onClick={() => {
+								navigate("/chapter/0/lesson/1");
+							}}
 						/>
 						<LessonCard
 							title={
@@ -72,6 +81,9 @@ function Home() {
 								userProgress.data.chapters[0].data.lessons[2]
 									.completed
 							}
+							onClick={() => {
+								navigate("/chapter/0/lesson/2");
+							}}
 						/>
 					</LessonGroup>
 				</ChapterContainer>
@@ -93,6 +105,9 @@ function Home() {
 								userProgress.data.chapters[1].data.lessons[0]
 									.completed
 							}
+							onClick={() => {
+								navigate("/chapter/1/lesson/0");
+							}}
 						/>
 						<LessonCard
 							title={
@@ -104,6 +119,9 @@ function Home() {
 								userProgress.data.chapters[1].data.lessons[1]
 									.completed
 							}
+							onClick={() => {
+								navigate("/chapter/1/lesson/1");
+							}}
 						/>
 						<LessonCard
 							title={
@@ -115,6 +133,9 @@ function Home() {
 								userProgress.data.chapters[1].data.lessons[2]
 									.completed
 							}
+							onClick={() => {
+								navigate("/chapter/1/lesson/2");
+							}}
 						/>
 					</LessonGroup>
 					<LessonGroup center>
@@ -128,6 +149,9 @@ function Home() {
 								userProgress.data.chapters[1].data.lessons[3]
 									.completed
 							}
+							onClick={() => {
+								navigate("/chapter/0/lesson/3");
+							}}
 						/>
 					</LessonGroup>
 				</ChapterContainer>

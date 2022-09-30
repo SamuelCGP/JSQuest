@@ -69,7 +69,7 @@ function ExerciseLesson() {
 
 	return (
 		<MainContainer>
-			<MainHeading>Sem conexão com o servidor</MainHeading>;
+			<MainHeading>Processando</MainHeading>;
 		</MainContainer>
 	);
 }
