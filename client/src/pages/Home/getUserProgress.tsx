@@ -4,7 +4,7 @@ export default async () => {
 	let status: number = 102;
 	let data;
 
-	const response: any = await Chapter.get().then((response) => {
+	const response: any = await Chapter.getAll().then((response) => {
 		return response;
 	});
 

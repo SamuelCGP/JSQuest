@@ -5,7 +5,12 @@ import {
 	LessonTitle,
 } from "./ExerciseInfo.styles";
 
-export function ExerciseInfo() {
+export interface ExerciseInfoProps {
+	title: string;
+	text: string;
+}
+
+export function ExerciseInfo(props: ExerciseInfoProps) {
 	const [isVisible, setVisible] = useState(true);
 	const [hasDisplay, setDisplay] = useState(true);
 
@@ -25,7 +30,7 @@ export function ExerciseInfo() {
 		<>
 			<CollapseButton open={+isVisible} onClick={handleCollapse} />
 			<MainContainer display={+hasDisplay} open={+isVisible}>
-				<LessonTitle open={+isVisible}>Título do Exercício</LessonTitle>
+				<LessonTitle open={+isVisible}>{props.title}</LessonTitle>
 			</MainContainer>
 		</>
 	);

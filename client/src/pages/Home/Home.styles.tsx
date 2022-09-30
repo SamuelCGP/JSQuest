@@ -11,7 +11,6 @@ export const MainContainer = styled(Container)`
 `;
 
 export const Header = styled(MainHeading)`
-	color: ${ColorPalette.yellowOrange};
 	@media (min-width: 900px) {
 		font-size: 3rem;
 	}
@@ -43,7 +42,7 @@ export const ChapterIcon = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	& .chapterSvg{
+	& .chapterSvg {
 		position: absolute;
 		width: 60%;
 		height: 60%;
@@ -86,7 +85,8 @@ export const LessonGroup = styled.div`
 	@media (min-width: 900px) {
 		width: 100%;
 		flex-direction: row;
-		justify-content: ${(props: LessonGroupProps) => (props.center ? "center" : "space-between")};
+		justify-content: ${(props: LessonGroupProps) =>
+			props.center ? "center" : "space-between"};
 		align-items: center;
 	}
 `;

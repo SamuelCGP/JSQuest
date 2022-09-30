@@ -1,37 +1,43 @@
 import { MainContainer } from "./ExerciseLesson.styles";
-import { ExerciseInfo, LessonBoard } from "../../components";
 import {
 	Container1,
 	SplitContainer,
 } from "../../components/ExerciseLesson/SplitedContainers/SplitedContainers.style";
 import { Params, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 import { get, save } from "../../api/lesson";
-import { LessonBoardProps, CodeEditor, Robot } from "../../components";
+import {
+	LessonBoardProps,
+	CodeEditor,
+	MainHeading,
+	ExerciseInfo,
+	ExerciseInfoProps,
+	LessonBoard,
+} from "../../components";
+import { getInitialEditorState } from "./getInitialEditorState";
+import { getBoardConfig } from "./getBoardConfig";
+import { getExerciseInfo } from "./getExerciseInfo";
 
 function ExerciseLesson() {
-	const { l_index, c_index }: Readonly<Params<string>> = useParams();
+	const { c_index, l_index }: Readonly<Params<string>> = useParams();
 	const [editorState, setEditorState] = useState("");
-	let initialCode: string;
-
-	async function getInitialEditorState(): Promise<string> {
-		if (c_index && l_index) {
-			const res = await get(parseInt(c_index), parseInt(l_index));
-			const content: string = res.data.solution.content;
-			if (content) return content;
-			else {
-				initialCode = res.data.lesson.initial_code;
-				return initialCode;
-			}
-		}
-
-		return "";
-	}
+	const [boardConfig, setBoardConfig] = useState<LessonBoardProps | null>();
+	const [exerciseInfo, setExerciseInfo] =
+		useState<ExerciseInfoProps | null>();
 
 	useEffect(() => {
-		getInitialEditorState().then((data) => {
-			setEditorState(data);
-		});
+		if (c_index && l_index) {
+			getInitialEditorState(c_index, l_index).then((data) => {
+				setEditorState(data);
+			});
+			getBoardConfig(c_index, l_index).then((data) => {
+				setBoardConfig(data);
+			});
+			getExerciseInfo(c_index, l_index).then((data) => {
+				setExerciseInfo(data);
+			});
+		}
 	}, []);
 
 	const saveCode = (code: string) => {
@@ -39,32 +45,31 @@ function ExerciseLesson() {
 			save(parseInt(c_index), parseInt(l_index), code);
 	};
 
-	const BoardConfig: LessonBoardProps = {
-		build: {
-			columns: 10,
-		},
-		elements: [
-			{
-				x: 1,
-				y: 1,
-				element: "robot",
-			},
-		],
-	};
+	if (boardConfig && exerciseInfo)
+		return (
+			<MainContainer>
+				<SplitContainer direction="vertical" minSize={[300, 100]}>
+					<Container1>
+						<LessonBoard config={boardConfig}></LessonBoard>
+					</Container1>
+					<CodeEditor
+						value={editorState}
+						setEditorState={setEditorState}
+						saveCode={saveCode}
+					/>
+				</SplitContainer>
+				<ExerciseInfo
+					title={exerciseInfo.title}
+					text={exerciseInfo.text}
+				></ExerciseInfo>
+			</MainContainer>
+		);
+
+	if (boardConfig === null) return <Navigate to="/home" replace />;
 
 	return (
 		<MainContainer>
-			<SplitContainer direction="vertical" minSize={[300, 100]}>
-				<Container1>
-					<LessonBoard config={BoardConfig}></LessonBoard>
-				</Container1>
-				<CodeEditor
-					value={editorState}
-					setEditorState={setEditorState}
-					saveCode={saveCode}
-				/>
-			</SplitContainer>
-			<ExerciseInfo></ExerciseInfo>
+			<MainHeading>Sem conexão com o servidor</MainHeading>;
 		</MainContainer>
 	);
 }

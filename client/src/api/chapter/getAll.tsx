@@ -1,6 +1,6 @@
 import { HTTPMethods, makeRequest } from "../http";
 
-export async function get() {
+export async function getAll() {
 	const headers = {
 		Authorization: "Bearer " + localStorage.getItem("token"),
 	};
