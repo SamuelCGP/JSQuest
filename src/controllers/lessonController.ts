@@ -12,7 +12,6 @@ export const getOne = async (req: Request, res: Response) => {
 		return;
 	}
 	const lessonData = lesson.data();
-	console.log({ lesson: lessonData });
 
 	const solution = await lessonModel.getSolution(
 		chapterIndex,
