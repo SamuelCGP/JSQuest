@@ -47,7 +47,7 @@
 		"client": "npm start --prefix client",
 		"dev": "concurrently \"npm run server\" \"npm run client\"",
 		"build": "npm run build --prefix client",
-		"prod-build": "npx tsc && npm install && npm install --prefix client && npm run build --prefix client"
+		"prod-build": "npm install && npx tsc && npm install --prefix client && npm run build --prefix client"
 	},
 	"nodemonConfig": {
 		"ignore": [
