@@ -20,7 +20,7 @@ export const getOne = async (req: Request, res: Response) => {
 		req.userId
 	);
 	if (!solution) {
-		res.status(404).json({ message: "Solution not found" });
+		res.status(200).json({ lesson: lessonData });
 		return;
 	}
 	const solutionData = solution.data();
