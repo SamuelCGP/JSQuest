@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { BoardElementProps } from "../BoardElementProps";
+import { listenToSignal } from "../../../../game/signals";
 
 interface RobotProps extends BoardElementProps {
 	columnNumber: number;
@@ -18,6 +19,12 @@ const RobotSymbol = styled.div`
 	transition: 0.5s;
 `;
 
+declare global {
+	interface Window {
+		robot: any;
+	}
+}
+
 export function Robot(props: RobotProps) {
 	const [x, setX] = useState(props.positionX);
 	const [y, setY] = useState(props.positionY);
@@ -29,11 +36,9 @@ export function Robot(props: RobotProps) {
 	const cellWidthInPercentage = 100 / props.columnNumber;
 
 	// ------
-
-	// TODO APAGAR ESSA FUNÇÃO QUANDO ACABAREM OS TESTES \/
-	const changePosition = () => {
-		moveTo(x + 1, y);
-	};
+	listenToSignal("robotMovement", (location) => {
+		moveTo(location.detail.x, location.detail.y);
+	});
 
 	const moveTo = (newX: number, newY: number) => {
 		if (newX - 1 < props.columnNumber) setX(newX);
@@ -63,9 +68,10 @@ export function Robot(props: RobotProps) {
 		updateRelativeCoordinates();
 	});
 
+	useEffect(() => {}, []);
+
 	return (
 		<RobotSymbol
-			onClick={changePosition}
 			positionX={relativeCoordinates.left}
 			positionY={relativeCoordinates.top}
 			columnNumber={props.columnNumber}

@@ -7,6 +7,7 @@ import {
 	CodeRefreshButton,
 } from "./CodeEditor.styles";
 import { useEffect, useRef } from "react";
+import { runCode } from "../../../game/runCode";
 
 interface CodeEditorProps {
 	value: any;
@@ -53,7 +54,7 @@ export const CodeEditor = (props: CodeEditorProps) => {
 				style={{ width: "100%" }}
 			/>
 			<ButtomContainer>
-				<CodeSubmitButton>Enviar</CodeSubmitButton>
+				<CodeSubmitButton onClick={runCode}>Enviar</CodeSubmitButton>
 				<CodeRefreshButton>Recomeçar</CodeRefreshButton>
 			</ButtomContainer>
 		</>
