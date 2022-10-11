@@ -37,12 +37,13 @@ export function Robot(props: RobotProps) {
 
 	// ------
 	listenToSignal("robotMovement", (location) => {
-		moveTo(location.detail.x, location.detail.y);
+		moveTo(x + location.detail.x, y - location.detail.y);
+		console.log(x + location.detail.x, y - location.detail.y);
 	});
 
 	const moveTo = (newX: number, newY: number) => {
-		if (newX - 1 < props.columnNumber) setX(newX);
-		if (newY - 1 < props.rowNumber) setY(newY);
+		if (newX - 1 < props.columnNumber && newX > 0) setX(newX);
+		if (newY - 1 < props.rowNumber && newY > 0) setY(newY);
 	};
 
 	const updateRelativeCoordinates = () => {
