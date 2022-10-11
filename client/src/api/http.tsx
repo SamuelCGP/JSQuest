@@ -11,7 +11,7 @@ export async function makeRequest(
 	data?: object
 ) {
 	return await axios({
-		url: '/api/' + endpoint,
+		url: enviroment.SERVER_URL + "/api/" + endpoint,
 		method,
 		...(data ? { data } : {}),
 		...(headers ? { headers } : {}),
