@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Robot } from "../BoardElements/Robot/Robot";
 import { Board, Cell } from "./LessonBoard.styles";
 import getBoardElementFromObject from "../BoardElements/GetBoardElementFromObject";
 

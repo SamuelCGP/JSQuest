@@ -35,6 +35,7 @@ export const MainContainer = styled.div`
 		height: 100vh;
 		width: ${(props: Collapsables) => (props.open ? "50%" : 0)};
 	}
+	flex-direction: column;
 `;
 
 export const LessonTitle = styled.div`
@@ -42,9 +43,21 @@ export const LessonTitle = styled.div`
 	width: 100%;
 	height: 4rem;
 	background-color: ${ColorPalette.primary};
-	font-size: ${(props: Collapsables) => (props.open ? "2rem" : "0")};
+	font-size: 2rem;
 	color: ${ColorPalette.white};
 	align-items: center;
 	justify-content: center;
 	transition: 0.7s;
+	opacity: ${(props: Collapsables) => (props.open ? "100%" : "0")};
+`;
+
+export const LessonText = styled.div`
+	width: 100%;
+	height: calc(100% - 4rem);
+	font-size: 1rem;
+	color: ${ColorPalette.white};
+	padding: 2rem;
+	transition: 0.7s;
+	opacity: ${(props: Collapsables) => (props.open ? "100%" : "0")};
+	overflow-y: scroll;
 `;

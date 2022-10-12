@@ -16,6 +16,8 @@
 		"@uiw/codemirror-theme-okaidia": "^4.11.4",
 		"@uiw/react-codemirror": "^4.11.4",
 		"axios": "^0.27.2",
+		"babel-preset-react": "^6.24.1",
+		"babelify": "^10.0.0",
 		"cookie-signature": "^1.2.0",
 		"file-loader": "^6.2.0",
 		"formik": "^2.2.9",
@@ -56,6 +58,5 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
-	},
-	"devDependencies": {}
+	}
 }

@@ -1,8 +1,14 @@
 import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { okaidia } from "@uiw/codemirror-theme-okaidia";
-
+import {
+	ButtomContainer,
+	CodeSubmitButton,
+	CodeRefreshButton,
+} from "./CodeEditor.styles";
 import { useEffect, useRef } from "react";
+import { runCode } from "../../../game/runCode";
+
 interface CodeEditorProps {
 	value: any;
 	setEditorState: any;
@@ -37,15 +43,21 @@ export const CodeEditor = (props: CodeEditorProps) => {
 	};
 
 	return (
-		<CodeMirror
-			height="100%"
-			onChange={handleChange}
-			value={props.value}
-			theme={okaidia}
-			extensions={[javascript()]}
-		/>
-
-		/*TODO adicionar botão de refresh ao editor para que seja possível redefinir o código pro valor inicial
-        do exercício*/
+		<>
+			<CodeMirror
+				width="100%"
+				height="100%"
+				onChange={handleChange}
+				value={props.value}
+				theme={okaidia}
+				extensions={[javascript()]}
+				style={{ width: "100%" }}
+			/>
+			<ButtomContainer>
+				<CodeSubmitButton onClick={runCode}>Enviar</CodeSubmitButton>
+				<CodeRefreshButton>Recomeçar</CodeRefreshButton>
+			</ButtomContainer>
+		</>
+		/*TODO adicionar line-break ou scroll ao code editor*/
 	);
 };

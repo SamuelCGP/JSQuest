@@ -3,18 +3,36 @@ import styled from "styled-components";
 import { BoardElementProps } from "../BoardElementProps";
 import { listenToSignal } from "../../../../game/signals";
 
-const RobotSymbol = styled.div`
+const BoxSymbol = styled.div`
 	position: absolute;
-	background-color: white;
+	background-color: #9e762c;
 	width: calc(100% / ${(props: BoardElementProps) => props.columnNumber});
 	height: calc(100% / ${(props: BoardElementProps) => props.rowNumber});
-	border-radius: 100%;
 	left: ${(props: BoardElementProps) => props.positionX}%;
 	top: ${(props: BoardElementProps) => props.positionY}%;
 	transition: 0.5s;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	&::before {
+		content: "";
+		background-color: #6d4518;
+		display: flex;
+		width: calc(100% - (2 * 15%));
+		height: calc(100% - (2 * 15%));
+	}
+	&::after {
+		content: "";
+		background-color: #9e762c;
+		display: flex;
+		width: calc(140% - (2 * 10%));
+		height: calc(40% - (2 * 10%));
+		rotate: 45deg;
+		position: absolute;
+	}
 `;
 
-export function Robot(props: BoardElementProps) {
+export function Box(props: BoardElementProps) {
 	const [x, setX] = useState(props.positionX);
 	const [y, setY] = useState(props.positionY);
 	const [relativeCoordinates, setRelativeCoordinates] = useState({
@@ -26,10 +44,12 @@ export function Robot(props: BoardElementProps) {
 	const cellHeightInPercentage = 100 / props.rowNumber;
 
 	// ------
+	/*
 	listenToSignal("robotMovement", (location) => {
 		moveTo(x + location.detail.x, y - location.detail.y);
 		console.log(x + location.detail.x, y - location.detail.y);
 	});
+    */
 
 	const moveTo = (newX: number, newY: number) => {
 		if (newX - 1 < props.columnNumber && newX > 0) setX(newX);
@@ -60,7 +80,7 @@ export function Robot(props: BoardElementProps) {
 	});
 
 	return (
-		<RobotSymbol
+		<BoxSymbol
 			positionX={relativeCoordinates.left}
 			positionY={relativeCoordinates.top}
 			columnNumber={props.columnNumber}

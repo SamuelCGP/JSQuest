@@ -1,6 +1,7 @@
 import { MainContainer } from "./ExerciseLesson.styles";
 import {
 	Container1,
+	Container2,
 	SplitContainer,
 } from "../../components/ExerciseLesson/SplitedContainers/SplitedContainers.style";
 import { Params, useParams } from "react-router-dom";
@@ -45,18 +46,20 @@ function ExerciseLesson() {
 			save(parseInt(c_index), parseInt(l_index), code);
 	};
 
-	if (boardConfig && exerciseInfo)
+	if (boardConfig !== null && boardConfig !== undefined && exerciseInfo)
 		return (
 			<MainContainer>
 				<SplitContainer direction="vertical" minSize={[300, 100]}>
 					<Container1>
 						<LessonBoard config={boardConfig}></LessonBoard>
 					</Container1>
-					<CodeEditor
-						value={editorState}
-						setEditorState={setEditorState}
-						saveCode={saveCode}
-					/>
+					<Container2>
+						<CodeEditor
+							value={editorState}
+							setEditorState={setEditorState}
+							saveCode={saveCode}
+						/>
+					</Container2>
 				</SplitContainer>
 				<ExerciseInfo
 					title={exerciseInfo.title}

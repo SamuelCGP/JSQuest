@@ -23,5 +23,11 @@ export const Container1 = styled.div`
 	align-items: center;
 `;
 export const Container2 = styled.div`
-	background: radial-gradient(rgb(18, 9, 48), ${ColorPalette.black});
+	background: radial-gradient(
+		circle,
+		${ColorPalette.secondary} 5%,
+		${ColorPalette.secondaryDark} 100%
+	);
+	display: flex;
+	position: relative;
 `;
