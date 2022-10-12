@@ -59,4 +59,5 @@ export const LessonText = styled.div`
 	padding: 2rem;
 	transition: 0.7s;
 	opacity: ${(props: Collapsables) => (props.open ? "100%" : "0")};
+	overflow-y: scroll;
 `;
