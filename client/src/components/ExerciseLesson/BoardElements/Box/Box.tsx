@@ -5,12 +5,31 @@ import { listenToSignal } from "../../../../game/signals";
 
 const BoxSymbol = styled.div`
 	position: absolute;
-	background-color: #6d3718;
+	background-color: #9e762c;
 	width: calc(100% / ${(props: BoardElementProps) => props.columnNumber});
 	height: calc(100% / ${(props: BoardElementProps) => props.rowNumber});
 	left: ${(props: BoardElementProps) => props.positionX}%;
 	top: ${(props: BoardElementProps) => props.positionY}%;
 	transition: 0.5s;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	&::before {
+		content: "";
+		background-color: #6d4518;
+		display: flex;
+		width: calc(100% - (2 * 15%));
+		height: calc(100% - (2 * 15%));
+	}
+	&::after {
+		content: "";
+		background-color: #9e762c;
+		display: flex;
+		width: calc(140% - (2 * 10%));
+		height: calc(40% - (2 * 10%));
+		rotate: 45deg;
+		position: absolute;
+	}
 `;
 
 export function Box(props: BoardElementProps) {
@@ -22,6 +41,7 @@ export function Box(props: BoardElementProps) {
 	});
 
 	const cellWidthInPercentage = 100 / props.columnNumber;
+	const cellHeightInPercentage = 100 / props.rowNumber;
 
 	// ------
 	/*
@@ -37,7 +57,7 @@ export function Box(props: BoardElementProps) {
 	};
 
 	const updateRelativeCoordinates = () => {
-		const relativeTop = cellWidthInPercentage * (y - 1);
+		const relativeTop = cellHeightInPercentage * (y - 1);
 		const relativeLeft = cellWidthInPercentage * (x - 1);
 
 		if (
