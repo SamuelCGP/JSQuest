@@ -42,15 +42,15 @@ export const Cell = styled.div`
 	background: ${(props: CellProps) => {
 		if (props.positionX % 2 !== 0) {
 			if (props.positionY % 2 !== 0) {
-				return ColorPalette.primary;
+				return ColorPalette.lightgreen;
 			} else {
-				return ColorPalette.secondary;
+				return ColorPalette.green;
 			}
 		} else {
 			if (props.positionY % 2 === 0) {
-				return ColorPalette.primary;
+				return ColorPalette.lightgreen;
 			} else {
-				return ColorPalette.secondary;
+				return ColorPalette.green;
 			}
 		}
 	}};
@@ -68,15 +68,15 @@ export const Cell = styled.div`
 		color: ${(props: CellProps) => {
 			if (props.positionX % 2 !== 0) {
 				if (props.positionY % 2 !== 0) {
-					return ColorPalette.secondary;
+					return ColorPalette.green;
 				} else {
-					return ColorPalette.primary;
+					return ColorPalette.lightgreen;
 				}
 			} else {
 				if (props.positionY % 2 === 0) {
-					return ColorPalette.secondary;
+					return ColorPalette.green;
 				} else {
-					return ColorPalette.primary;
+					return ColorPalette.lightgreen;
 				}
 			}
 		}};

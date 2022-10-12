@@ -46,7 +46,7 @@ function ExerciseLesson() {
 			save(parseInt(c_index), parseInt(l_index), code);
 	};
 
-	if (boardConfig && exerciseInfo)
+	if (boardConfig !== null && boardConfig !== undefined && exerciseInfo)
 		return (
 			<MainContainer>
 				<SplitContainer direction="vertical" minSize={[300, 100]}>
