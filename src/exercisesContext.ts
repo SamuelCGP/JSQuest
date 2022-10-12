@@ -2,9 +2,12 @@ export class Context {
     constructor() {}
     
     contextObj = {
+        _codeString: "",
         _yPos: 0,
         _xPos: 0,
         andar: (direcao: string) => {
+            this.contextObj._codeString += `andar(${direcao});`
+
             switch(direcao) {
                 case "cima":
                     this.contextObj._yPos += 1;
