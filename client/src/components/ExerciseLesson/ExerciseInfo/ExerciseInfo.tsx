@@ -3,6 +3,7 @@ import {
 	MainContainer,
 	CollapseButton,
 	LessonTitle,
+	LessonText,
 } from "./ExerciseInfo.styles";
 
 export interface ExerciseInfoProps {
@@ -31,6 +32,7 @@ export function ExerciseInfo(props: ExerciseInfoProps) {
 			<CollapseButton open={+isVisible} onClick={handleCollapse} />
 			<MainContainer display={+hasDisplay} open={+isVisible}>
 				<LessonTitle open={+isVisible}>{props.title}</LessonTitle>
+				<LessonText open={+isVisible}>{props.text}</LessonText>
 			</MainContainer>
 		</>
 	);
