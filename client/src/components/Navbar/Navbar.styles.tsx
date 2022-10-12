@@ -93,6 +93,25 @@ export const NavLink = styled(Link)`
 	}
 `;
 
+export const NavButton = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 3.5rem;
+	color: ${ColorPalette.primaryLight};
+	text-decoration: none;
+	filter: grayscale(100%) opacity(0.7);
+	transition: 0.2s;
+
+	&:hover {
+		filter: grayscale(0%) opacity(1);
+	}
+
+	@media (min-width: 900px) {
+		height: 5rem;
+	}
+`;
+
 export const LinkText = styled(Tooltip)`
 	display: none;
 	@media (min-width: 900px) {
