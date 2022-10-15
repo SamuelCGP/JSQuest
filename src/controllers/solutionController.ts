@@ -6,11 +6,10 @@ const babel = require("@babel/core");
 import { Context } from "../exercisesContext";
 
 export const verify = async (req: Request, res: Response) => {
-
 	const body = req.body;
 	const solution = body.solution;
 	const chapterIndex = parseInt(req.params.chapterIndex);
-	const lessonIndex = parseInt(req.params.lessonIndex)
+	const lessonIndex = parseInt(req.params.lessonIndex);
 
 	let transpiledSolution;
 	try {
@@ -44,7 +43,7 @@ export const verify = async (req: Request, res: Response) => {
 	const tests = await generateTests(vmContext, chapterIndex, lessonIndex);
 	runMochaTests("Test suite", tests, transpiledSolution.code)
 		.then((result: any) => {
-			res.status(200).json({result, codeToExec: vmContext._codeString});
+			res.status(200).json({ result, codeToExec: vmContext._codeString });
 		})
 		.catch((reason: any) => {
 			res.status(400).json(reason);

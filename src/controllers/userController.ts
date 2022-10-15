@@ -142,7 +142,8 @@ export const verifyPasswordResetJWT = (
 		const userData = req.user.data();
 		const secret: string = process.env.JWT_SECRET! + userData.password;
 		jwt.verify(token, secret, (error, decoded) => {
-			if (error) res.status(401).json({ message: "Invalid access token" });
+			if (error)
+				res.status(401).json({ message: "Invalid access token" });
 			else {
 				next();
 				if (!res.headersSent) res.status(200).send("Access granted");
