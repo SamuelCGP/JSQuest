@@ -18,24 +18,24 @@ export class BoardMatrix {
 		this.y = rowNumber;
 		this.elements = elements;
 		this.robotPosition = this.getInitialRobotPosition(elements);
-		this.matrix = this.makeArray(collumnNumber, rowNumber, elements);
+		this.matrix = this.makeArray(rowNumber, collumnNumber, elements);
 		this.previousMoveId = "";
 	}
 
 	makeArray(w: number, h: number, elements: Elements[]) {
 		// creating an empty matrix
-		let bidimensional = new Array(w);
+		let bidimensional = new Array(h);
 
-		for (let i = 0; i < h; i++) {
-			bidimensional[i] = new Array(w);
+		for (let i = 0; i < w; i++) {
+			bidimensional[i] = new Array(h);
 		}
 
 		// placing elements in matrix
-		for (let x = 0; x < w; x++) {
-			for (let y = 0; y < h; y++) {
+		for (let x = 0; x < h; x++) {
+			for (let y = 0; y < w; y++) {
 				elements.forEach((element: Elements) => {
 					if (element.x == x + 1 && element.y == y + 1) {
-						bidimensional[y][x] = element.element;
+						bidimensional[x][y] = element.element;
 					}
 				});
 			}
@@ -65,12 +65,14 @@ export class BoardMatrix {
 		];
 
 		if (this.checkMovement(newRobotPosition)) {
+			console.log("old", this.robotPosition);
+
 			this.matrix[newRobotPosition[1]][newRobotPosition[0]] = "robot";
 			this.matrix[this.robotPosition[1]][this.robotPosition[0]] =
 				undefined;
 			this.robotPosition = newRobotPosition;
 
-			console.log(this.robotPosition);
+			console.log("new", this.robotPosition);
 			console.log(this.matrix);
 
 			this.doMovement(this.robotPosition);
