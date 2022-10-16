@@ -58,6 +58,8 @@ function ExerciseLesson() {
 							value={editorState}
 							setEditorState={setEditorState}
 							saveCode={saveCode}
+							c_index={c_index}
+							l_index={l_index}
 						/>
 					</Container2>
 				</SplitContainer>

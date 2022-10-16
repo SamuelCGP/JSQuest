@@ -13,13 +13,14 @@ interface CodeEditorProps {
 	value: any;
 	setEditorState: any;
 	saveCode: Function;
+	c_index: number | any;
+	l_index: number | any;
 }
 
 export const CodeEditor = (props: CodeEditorProps) => {
 	const valueRef = useRef();
 	const firstLoad = useRef(true);
 	useEffect(() => {
-		console.log(props.value);
 		valueRef.current = props.value;
 	}, [props.value]);
 
@@ -54,7 +55,13 @@ export const CodeEditor = (props: CodeEditorProps) => {
 				style={{ width: "100%" }}
 			/>
 			<ButtomContainer>
-				<CodeSubmitButton onClick={runCode}>Enviar</CodeSubmitButton>
+				<CodeSubmitButton
+					onClick={() => {
+						runCode(props.c_index, props.l_index, props.value);
+					}}
+				>
+					Enviar
+				</CodeSubmitButton>
 				<CodeRefreshButton>Recomeçar</CodeRefreshButton>
 			</ButtomContainer>
 		</>
