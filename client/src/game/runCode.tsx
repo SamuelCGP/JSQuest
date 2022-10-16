@@ -7,10 +7,13 @@ export const runCode = (
 	code: any
 ) => {
 	console.log(code);
+	/*
 	const runRes = verifySolution(chapterIndex, lessonIndex, code).then(
 		(res) => {
 			console.log(res);
 			return res;
 		}
 	);
+	*/
+	robotMethods.andar("baixo");
 };

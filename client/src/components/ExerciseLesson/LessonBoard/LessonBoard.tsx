@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Board, Cell } from "./LessonBoard.styles";
 import getBoardElementFromObject from "../BoardElements/GetBoardElementFromObject";
+import { BoardMatrix } from "../../../game/BoardMatrix";
+import * as signals from "../../../game/signals";
 
 export interface Elements {
 	x: number;
@@ -17,15 +19,22 @@ export interface LessonBoardProps {
 }
 
 export function LessonBoard(props: { config: LessonBoardProps }) {
-	const [columns, setColumns] = useState(props.config.build.columns);
-	const [rows, setRows] = useState(
-		props.config.build.rows
-			? props.config.build.rows
-			: props.config.build.columns
+	const columns = props.config.build.columns;
+	const rows = props.config.build.rows
+		? props.config.build.rows
+		: props.config.build.columns;
+	const elements = props.config.elements ? props.config.elements : [];
+	const [boardMatrix, setBoardMatrix] = useState<BoardMatrix>(
+		new BoardMatrix(columns, rows, elements)
 	);
-	const [elements, setElements] = useState(
-		props.config.hasOwnProperty("elements") ? props.config.elements : []
-	);
+
+	signals.listenToSignal("robotMovement", (movement) => {
+		boardMatrix.checkMovement(movement.detail.x, movement.detail.y);
+	});
+
+	useEffect(() => {
+		console.log(boardMatrix.matrix);
+	});
 
 	return (
 		<Board columns={columns} rows={rows}>
@@ -42,6 +51,7 @@ const fillBoard = (
 	let tiles: Array<JSX.Element> = [];
 	const totalColumns = columns;
 	const totalRows = rows;
+
 	for (rows; rows > 0; rows--) {
 		columns = totalColumns;
 		for (columns; columns > 0; columns--) {

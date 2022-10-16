@@ -34,6 +34,7 @@ function ExerciseLesson() {
 			});
 			getBoardConfig(c_index, l_index).then((data) => {
 				setBoardConfig(data);
+				console.log(data);
 			});
 			getExerciseInfo(c_index, l_index).then((data) => {
 				setExerciseInfo(data);
