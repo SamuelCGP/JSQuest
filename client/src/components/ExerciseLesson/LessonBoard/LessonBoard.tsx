@@ -15,7 +15,7 @@ export interface LessonBoardProps {
 		columns: number;
 		rows?: number;
 	};
-	elements?: Elements[];
+	elements: Elements[];
 }
 
 export function LessonBoard(props: { config: LessonBoardProps }) {
@@ -56,6 +56,7 @@ const fillBoard = (
 	let tiles: Array<JSX.Element> = [];
 	const totalColumns = columns;
 	const totalRows = rows;
+
 
 	for (rows; rows > 0; rows--) {
 		columns = totalColumns;

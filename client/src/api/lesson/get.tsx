@@ -10,5 +10,6 @@ export async function get(chapterIndex: number, lessonIndex: number) {
 		`lesson/${chapterIndex}/${lessonIndex}`,
 		headers
 	);
+
 	return res;
 }

@@ -5,13 +5,14 @@ export const getOne = async (req: Request, res: Response) => {
 	const chapterIndex = req.params.chapterIndex;
 	const lessonIndex = req.params.lessonIndex;
 
-	console.log({ chapterIndex, lessonIndex });
 	const lesson = await lessonModel.getOne(chapterIndex, lessonIndex);
 	if (!lesson) {
 		res.status(404).json({ message: "Lesson not found" });
 		return;
 	}
 	const lessonData = lesson.data();
+
+	console.log(lessonData!.board_config.elements);
 
 	const solution = await lessonModel.getSolution(
 		chapterIndex,
@@ -23,6 +24,8 @@ export const getOne = async (req: Request, res: Response) => {
 		return;
 	}
 	const solutionData = solution.data();
+
+	console.log(JSON.stringify({ lesson: lessonData, solution: solutionData }));
 
 	res.status(200).json({ lesson: lessonData, solution: solutionData });
 };

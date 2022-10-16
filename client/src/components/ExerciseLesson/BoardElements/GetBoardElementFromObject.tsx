@@ -1,11 +1,11 @@
 import { Robot, Box } from "../BoardElements";
 import { Elements } from "../LessonBoard/LessonBoard";
 
-export default (
+export default function getElementFromObject (
 	elementObj: Elements,
 	totalColumns: number,
 	totalRows: number
-) => {
+) {
 	switch (elementObj.element) {
 		case "robot" || "Robot":
 			return (
