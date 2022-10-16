@@ -17,8 +17,8 @@ import {
 	LessonBoard,
 } from "../../components";
 import { getInitialEditorState } from "./getInitialEditorState";
-import { getBoardConfig } from "./getBoardConfig";
-import { getExerciseInfo } from "./getExerciseInfo";
+import { getBoardConfigFromApi } from "./getBoardConfigFromApi";
+import { getExerciseInfoFromApi } from "./getExerciseInfoFromApi";
 
 function ExerciseLesson() {
 	const { c_index, l_index }: Readonly<Params<string>> = useParams();
@@ -29,16 +29,13 @@ function ExerciseLesson() {
 
 	useEffect(() => {
 		if (c_index && l_index) {
-			getInitialEditorState(c_index, l_index).then((data) => {
-				setEditorState(data);
-			});
-			getBoardConfig(c_index, l_index).then((data) => {
-				setBoardConfig(data);
-				console.log(data);
-			});
-			getExerciseInfo(c_index, l_index).then((data) => {
-				setExerciseInfo(data);
-			});
+			get(Number(c_index), Number(l_index)).then(res => {
+				const lessonData = res.data;
+				
+				setEditorState(getInitialEditorState(lessonData))
+				setBoardConfig(getBoardConfigFromApi(lessonData));
+				setExerciseInfo(getExerciseInfoFromApi(lessonData));
+			})
 		}
 	}, []);
 

@@ -44,7 +44,7 @@ export class BoardMatrix {
 	getInitialRobotPosition(elements: Elements[]) {
 		let robotPosition = [0, 0];
 		elements.forEach((element: Elements) => {
-			if ((element.element = "robot")) {
+			if ((element.element === "robot")) {
 				robotPosition = [element.x - 1, element.y - 1];
 			}
 		});
