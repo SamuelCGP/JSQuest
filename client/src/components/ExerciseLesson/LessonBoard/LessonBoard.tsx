@@ -28,8 +28,13 @@ export function LessonBoard(props: { config: LessonBoardProps }) {
 		new BoardMatrix(columns, rows, elements)
 	);
 
-	signals.listenToSignal("robotMovement", (movement) => {
-		boardMatrix.checkMovement(movement.detail.x, movement.detail.y);
+	signals.listenToSignal("robotReqMovement", (movement) => {
+		boardMatrix.attemptMovement(
+			movement.detail.x,
+			movement.detail.y,
+			movement.detail.id
+		);
+		//console.log("quantas vezes isso roda?");
 	});
 
 	useEffect(() => {

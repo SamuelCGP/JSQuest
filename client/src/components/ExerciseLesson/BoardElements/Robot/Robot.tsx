@@ -27,13 +27,12 @@ export function Robot(props: BoardElementProps) {
 
 	// ------
 	listenToSignal("robotMovement", (location) => {
-		moveTo(x + location.detail.x, y - location.detail.y);
-		console.log(x + location.detail.x, y - location.detail.y);
+		moveTo(location.detail[0] + 1, location.detail[1] + 1);
 	});
 
 	const moveTo = (newX: number, newY: number) => {
-		if (newX - 1 < props.columnNumber && newX > 0) setX(newX);
-		if (newY - 1 < props.rowNumber && newY > 0) setY(newY);
+		setX(newX);
+		setY(newY);
 	};
 
 	const updateRelativeCoordinates = () => {

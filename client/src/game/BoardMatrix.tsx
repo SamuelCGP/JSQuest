@@ -1,4 +1,5 @@
 import { Elements } from "../components";
+import * as signals from "./signals";
 
 export class BoardMatrix {
 	x: number;
@@ -6,6 +7,7 @@ export class BoardMatrix {
 	elements: Elements[] | any;
 	robotPosition: number[];
 	matrix: any;
+	previousMoveId: string;
 
 	constructor(
 		collumnNumber: number,
@@ -17,6 +19,7 @@ export class BoardMatrix {
 		this.elements = elements;
 		this.robotPosition = this.getInitialRobotPosition(elements);
 		this.matrix = this.makeArray(collumnNumber, rowNumber, elements);
+		this.previousMoveId = "";
 	}
 
 	makeArray(w: number, h: number, elements: Elements[]) {
@@ -51,20 +54,45 @@ export class BoardMatrix {
 		return robotPosition;
 	}
 
-	checkMovement(xForce: number, yForce: number) {
-		console.log("posição", this.robotPosition);
-		console.log(
-			"nova posição",
-			this.robotPosition[0] + xForce,
-			this.robotPosition[1] - yForce
-		);
+	attemptMovement(xForce: number, yForce: number, moveId: string) {
+		// prevents method from running more than one time per request of attempt
+		if (moveId === this.previousMoveId) return;
+		this.previousMoveId = moveId;
+
 		const newRobotPosition = [
 			this.robotPosition[0] + xForce,
 			this.robotPosition[1] - yForce,
 		];
-		console.log(
-			"posição na matriz",
-			this.matrix[newRobotPosition[0]][newRobotPosition[1]]
-		);
+
+		if (this.checkMovement(newRobotPosition)) {
+			this.matrix[newRobotPosition[1]][newRobotPosition[0]] = "robot";
+			this.matrix[this.robotPosition[1]][this.robotPosition[0]] =
+				undefined;
+			this.robotPosition = newRobotPosition;
+
+			console.log(this.robotPosition);
+			console.log(this.matrix);
+
+			this.doMovement(this.robotPosition);
+		}
+	}
+
+	checkMovement(newRobotPosition: number[]): boolean {
+		if (
+			this.matrix[newRobotPosition[1]][newRobotPosition[0]] ===
+				undefined &&
+			newRobotPosition[0] < this.x &&
+			newRobotPosition[0] >= 0 &&
+			newRobotPosition[1] < this.y &&
+			newRobotPosition[0] >= 0
+		) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	doMovement(newRobotPosition: number[]) {
+		signals.fireSignal("robotMovement", newRobotPosition);
 	}
 }

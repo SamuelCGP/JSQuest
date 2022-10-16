@@ -15,5 +15,5 @@ export const runCode = (
 		}
 	);
 	*/
-	robotMethods.andar("baixo");
+	robotMethods.andar("esquerda");
 };
