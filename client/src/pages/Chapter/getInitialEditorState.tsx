@@ -1,8 +1,4 @@
-import { get } from "../../api/lesson";
-
-export function getInitialEditorState(
-	lessonData: any
-): string {
+export function getInitialEditorState(lessonData: any): string {
 	if (lessonData.solution) {
 		const content: string = lessonData.solution.content;
 		if (content) return content;

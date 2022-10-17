@@ -18,24 +18,24 @@ export class BoardMatrix {
 		this.y = rowNumber;
 		this.elements = elements;
 		this.robotPosition = this.getInitialRobotPosition(elements);
-		this.matrix = this.makeArray(rowNumber, collumnNumber, elements);
+		this.matrix = this.makeArray(collumnNumber, rowNumber, elements);
 		this.previousMoveId = "";
 	}
 
 	makeArray(w: number, h: number, elements: Elements[]) {
 		// creating an empty matrix
-		let bidimensional = new Array(h);
+		let bidimensional = new Array();
 
-		for (let i = 0; i < w; i++) {
-			bidimensional[i] = new Array(h);
+		for (let i = 0; i < h; i++) {
+			bidimensional[i] = new Array(w);
 		}
 
 		// placing elements in matrix
-		for (let x = 0; x < h; x++) {
-			for (let y = 0; y < w; y++) {
+		for (let x = 0; x < w; x++) {
+			for (let y = 0; y < h; y++) {
 				elements.forEach((element: Elements) => {
 					if (element.x == x + 1 && element.y == y + 1) {
-						bidimensional[x][y] = element.element;
+						bidimensional[y][x] = element.element;
 					}
 				});
 			}
@@ -47,7 +47,7 @@ export class BoardMatrix {
 	getInitialRobotPosition(elements: Elements[]) {
 		let robotPosition = [0, 0];
 		elements.forEach((element: Elements) => {
-			if ((element.element === "robot")) {
+			if (element.element === "robot") {
 				robotPosition = [element.x - 1, element.y - 1];
 			}
 		});
