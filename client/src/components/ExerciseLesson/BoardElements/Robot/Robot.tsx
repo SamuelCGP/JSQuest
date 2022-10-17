@@ -53,6 +53,12 @@ export function Robot(props: BoardElementProps) {
 		setRelativeCoordinates(newRelativeCoordinates);
 	};
 
+	listenToSignal("matrixChange", eventData => {
+		if (eventData.detail.oldPos === [x, y]) {
+			moveTo(eventData.detail.newPos[0], eventData.detail.newPos[1]);
+		}
+	})
+
 	//---------
 	useEffect(() => {
 		updateRelativeCoordinates();

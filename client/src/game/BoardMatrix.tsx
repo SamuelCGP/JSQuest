@@ -54,35 +54,37 @@ export class BoardMatrix {
 		return robotPosition;
 	}
 
-	attemptMovement(xForce: number, yForce: number, moveId: string) {
+	attemptMovement(xOffset: number, yOffset: number, moveId: string) {
 		// prevents method from running more than one time per request of attempt
 		if (moveId === this.previousMoveId) return;
 		this.previousMoveId = moveId;
 
 		const newRobotPosition = [
-			this.robotPosition[0] + xForce,
-			this.robotPosition[1] - yForce,
+			this.robotPosition[0] + xOffset,
+			this.robotPosition[1] - yOffset,
 		];
 
 		if (this.checkMovement(newRobotPosition)) {
 			console.log("old", this.robotPosition);
 
 			this.matrix[newRobotPosition[1]][newRobotPosition[0]] = "robot";
-			this.matrix[this.robotPosition[1]][this.robotPosition[0]] =
-				undefined;
+			this.matrix[this.robotPosition[1]][this.robotPosition[0]] = undefined;
+
+			signals.fireSignal("matrixChange", { matrix: this.matrix, oldPos: this.robotPosition, newPos: newRobotPosition });
+
 			this.robotPosition = newRobotPosition;
 
 			console.log("new", this.robotPosition);
 			console.log(this.matrix);
 
-			this.doMovement(this.robotPosition);
+			// this.doMovement(this.robotPosition);
 		}
 	}
 
 	checkMovement(newRobotPosition: number[]): boolean {
 		if (
 			this.matrix[newRobotPosition[1]][newRobotPosition[0]] ===
-				undefined &&
+			undefined &&
 			newRobotPosition[0] < this.x &&
 			newRobotPosition[0] >= 0 &&
 			newRobotPosition[1] < this.y &&
