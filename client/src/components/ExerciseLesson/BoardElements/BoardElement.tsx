@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { BoardElementProps } from "./BoardElementProps";
 import { listenToSignal } from "../../../game/signals";
-import { RobotSymbol, BoxSymbol } from "./Symbols";
+import { RobotSymbol, BoxSymbol, MetalBoxSymbol } from "./Symbols";
 
 export function BoardElement(props: BoardElementProps) {
 	const [x, setX] = useState(props.positionX - 1);
@@ -65,6 +65,15 @@ export function BoardElement(props: BoardElementProps) {
 		case "box":
 			return (
 				<BoxSymbol
+					positionX={relativeCoordinates.left}
+					positionY={relativeCoordinates.top}
+					columnNumber={props.columnNumber}
+					rowNumber={props.rowNumber}
+				/>
+			);
+		case "metalbox":
+			return (
+				<MetalBoxSymbol
 					positionX={relativeCoordinates.left}
 					positionY={relativeCoordinates.top}
 					columnNumber={props.columnNumber}
