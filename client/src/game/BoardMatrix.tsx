@@ -70,20 +70,19 @@ export class BoardMatrix {
 			this.matrix[newRobotPosition[1]][newRobotPosition[0]] = "robot";
 			this.matrix[this.robotPosition[1]][this.robotPosition[0]] = undefined;
 
-			signals.fireSignal("matrixChange", { matrix: this.matrix, oldPos: this.robotPosition, newPos: newRobotPosition });
+			signals.fireSignal("matrixChange", this.matrix);
 
 			this.robotPosition = newRobotPosition;
 
-			console.log("new", this.robotPosition);
 			console.log(this.matrix);
-
-			// this.doMovement(this.robotPosition);
 		}
 	}
 
 	checkMovement(newRobotPosition: number[]): boolean {
+		const intendedMatrixPos = this.matrix[newRobotPosition[1]][newRobotPosition[0]];
+
 		if (
-			this.matrix[newRobotPosition[1]][newRobotPosition[0]] ===
+			intendedMatrixPos ===
 			undefined &&
 			newRobotPosition[0] < this.x &&
 			newRobotPosition[0] >= 0 &&
@@ -92,6 +91,10 @@ export class BoardMatrix {
 		) {
 			return true;
 		} else {
+			if (intendedMatrixPos.type === "box") {
+				intendedMatrixPos.move()
+			}
+
 			return false;
 		}
 	}

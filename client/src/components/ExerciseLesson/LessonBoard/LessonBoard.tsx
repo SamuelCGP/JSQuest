@@ -34,7 +34,6 @@ export function LessonBoard(props: { config: LessonBoardProps }) {
 			movement.detail.y,
 			movement.detail.id
 		);
-		//console.log("quantas vezes isso roda?");
 	});
 
 	useEffect(() => {

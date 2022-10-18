@@ -46,7 +46,6 @@ export const CodeEditor = (props: CodeEditorProps) => {
 	return (
 		<>
 			<CodeMirror
-				width="100%"
 				height="100%"
 				onChange={handleChange}
 				value={props.value}

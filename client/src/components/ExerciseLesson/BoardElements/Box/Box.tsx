@@ -27,7 +27,7 @@ const BoxSymbol = styled.div`
 		display: flex;
 		width: calc(140% - (2 * 10%));
 		height: calc(40% - (2 * 10%));
-		rotate: 45deg;
+		transform: rotate(45deg);
 		position: absolute;
 	}
 `;

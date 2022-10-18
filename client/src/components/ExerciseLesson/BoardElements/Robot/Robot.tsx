@@ -15,8 +15,8 @@ const RobotSymbol = styled.div`
 `;
 
 export function Robot(props: BoardElementProps) {
-	const [x, setX] = useState(props.positionX);
-	const [y, setY] = useState(props.positionY);
+	const [x, setX] = useState(props.positionX - 1);
+	const [y, setY] = useState(props.positionY - 1);
 	const [relativeCoordinates, setRelativeCoordinates] = useState({
 		top: 0,
 		left: 0,
@@ -24,11 +24,12 @@ export function Robot(props: BoardElementProps) {
 
 	const cellWidthInPercentage = 100 / props.columnNumber;
 	const cellHeightInPercentage = 100 / props.rowNumber;
+	const matrixId = "robot" + props.positionX + props.positionY;
 
 	// ------
-	listenToSignal("robotMovement", (location) => {
-		moveTo(location.detail[0] + 1, location.detail[1] + 1);
-	});
+	// listenToSignal("robotMovement", (location) => {
+	// 	moveTo(location.detail[0] + 1, location.detail[1] + 1);
+	// });
 
 	const moveTo = (newX: number, newY: number) => {
 		setX(newX);
@@ -36,8 +37,8 @@ export function Robot(props: BoardElementProps) {
 	};
 
 	const updateRelativeCoordinates = () => {
-		const relativeTop = cellHeightInPercentage * (y - 1);
-		const relativeLeft = cellWidthInPercentage * (x - 1);
+		const relativeTop = cellHeightInPercentage * y;
+		const relativeLeft = cellWidthInPercentage * x;
 
 		if (
 			relativeTop === relativeCoordinates.top &&
@@ -54,7 +55,8 @@ export function Robot(props: BoardElementProps) {
 	};
 
 	listenToSignal("matrixChange", eventData => {
-		if (eventData.detail.oldPos === [x, y]) {
+		const currentCoords = [x, y]
+		if ((eventData.detail.oldPos as Array<number>).toString() === currentCoords.toString()) {
 			moveTo(eventData.detail.newPos[0], eventData.detail.newPos[1]);
 		}
 	})
