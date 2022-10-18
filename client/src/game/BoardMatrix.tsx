@@ -61,7 +61,7 @@ export class BoardMatrix {
 			this.robot.y - yOffset
 		);
 
-		if (this.checkMovement(newRobot, this.robot)) {
+		if (this.checkMovement(newRobot, xOffset, yOffset)) {
 			this.matrix[this.robot.y][this.robot.x] = undefined;
 
 			this.robot.x = newRobot.x;
@@ -75,19 +75,55 @@ export class BoardMatrix {
 		}
 	}
 
-	checkMovement(newRobot: Element, oldRobot: Element): boolean {
+	checkMovement(
+		newRobot: Element,
+		xOffset: number,
+		yOffset: number
+	): boolean {
 		const intendedMatrixPos = this.matrix[newRobot.y][newRobot.x];
 
 		if (
-			intendedMatrixPos === undefined &&
 			newRobot.x < this.x &&
 			newRobot.x >= 0 &&
 			newRobot.y < this.y &&
 			newRobot.y >= 0
 		) {
-			return true;
-		} else {
-			return false;
+			//no colision, movement is possible
+			if (intendedMatrixPos === undefined) return true;
+
+			//colision, movement is blocked
+			if (intendedMatrixPos.type !== "box") return false;
+
+			//box ahead, PUSH IT!
+			const box = new Element(
+				"box",
+				intendedMatrixPos.originalX,
+				intendedMatrixPos.originalY
+			);
+
+			box.x = intendedMatrixPos.x + xOffset;
+			box.y = intendedMatrixPos.y - yOffset;
+
+			if (intendedMatrixPos.type === box.type) {
+				if (
+					box.x < this.x &&
+					box.x >= 0 &&
+					box.y < this.y &&
+					box.y >= 0 &&
+					this.matrix[box.y][box.x] == undefined
+				) {
+					//box will not colide, movement is possible
+					this.matrix[box.y][box.x] = box;
+					box.move();
+					return true;
+				}
+
+				//box will colide, movement is blocked
+				return false;
+			}
 		}
+
+		//colided with boundaries
+		return false;
 	}
 }
