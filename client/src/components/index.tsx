@@ -13,5 +13,4 @@ export * from "./Home/ProgressCircle/ProgressCircle";
 export * from "./ExerciseLesson/LessonBoard/LessonBoard";
 export * from "./ExerciseLesson/CodeEditor/CodeEditor";
 export * from "./ExerciseLesson/ExerciseInfo/ExerciseInfo";
-export * from "./ExerciseLesson/BoardElements";
 export * from "./Popups";

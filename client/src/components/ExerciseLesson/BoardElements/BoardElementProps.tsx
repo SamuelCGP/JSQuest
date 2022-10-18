@@ -3,4 +3,5 @@ export interface BoardElementProps {
 	positionY: number;
 	columnNumber: number;
 	rowNumber: number;
+	type?: string;
 }

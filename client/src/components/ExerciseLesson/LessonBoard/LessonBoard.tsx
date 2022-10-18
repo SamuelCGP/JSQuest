@@ -56,7 +56,6 @@ const fillBoard = (
 	const totalColumns = columns;
 	const totalRows = rows;
 
-
 	for (rows; rows > 0; rows--) {
 		columns = totalColumns;
 		for (columns; columns > 0; columns--) {

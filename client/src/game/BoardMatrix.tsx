@@ -1,11 +1,11 @@
 import { Elements } from "../components";
-import * as signals from "./signals";
+import { Element } from "./Element";
 
 export class BoardMatrix {
 	x: number;
 	y: number;
 	elements: Elements[] | any;
-	robotPosition: number[];
+	robot: Element = new Element("robot", 0, 0);
 	matrix: any;
 	previousMoveId: string;
 
@@ -17,12 +17,11 @@ export class BoardMatrix {
 		this.x = collumnNumber;
 		this.y = rowNumber;
 		this.elements = elements;
-		this.robotPosition = this.getInitialRobotPosition(elements);
-		this.matrix = this.makeArray(collumnNumber, rowNumber, elements);
+		this.matrix = this.makeMatrix(collumnNumber, rowNumber, elements);
 		this.previousMoveId = "";
 	}
 
-	makeArray(w: number, h: number, elements: Elements[]) {
+	makeMatrix(w: number, h: number, elements: Elements[]) {
 		// creating an empty matrix
 		let bidimensional = new Array();
 
@@ -35,7 +34,14 @@ export class BoardMatrix {
 			for (let y = 0; y < h; y++) {
 				elements.forEach((element: Elements) => {
 					if (element.x == x + 1 && element.y == y + 1) {
-						bidimensional[y][x] = element.element;
+						bidimensional[y][x] = new Element(
+							element.element,
+							element.x - 1,
+							element.y - 1
+						);
+						if (element.element === "robot") {
+							this.robot = bidimensional[y][x];
+						}
 					}
 				});
 			}
@@ -44,62 +50,44 @@ export class BoardMatrix {
 		return bidimensional;
 	}
 
-	getInitialRobotPosition(elements: Elements[]) {
-		let robotPosition = [0, 0];
-		elements.forEach((element: Elements) => {
-			if (element.element === "robot") {
-				robotPosition = [element.x - 1, element.y - 1];
-			}
-		});
-		return robotPosition;
-	}
-
 	attemptMovement(xOffset: number, yOffset: number, moveId: string) {
 		// prevents method from running more than one time per request of attempt
 		if (moveId === this.previousMoveId) return;
 		this.previousMoveId = moveId;
 
-		const newRobotPosition = [
-			this.robotPosition[0] + xOffset,
-			this.robotPosition[1] - yOffset,
-		];
+		const newRobot = new Element(
+			"robot",
+			this.robot.x + xOffset,
+			this.robot.y - yOffset
+		);
 
-		if (this.checkMovement(newRobotPosition)) {
-			console.log("old", this.robotPosition);
+		if (this.checkMovement(newRobot, this.robot)) {
+			this.matrix[this.robot.y][this.robot.x] = undefined;
 
-			this.matrix[newRobotPosition[1]][newRobotPosition[0]] = "robot";
-			this.matrix[this.robotPosition[1]][this.robotPosition[0]] = undefined;
+			this.robot.x = newRobot.x;
+			this.robot.y = newRobot.y;
 
-			signals.fireSignal("matrixChange", this.matrix);
+			this.robot.move();
 
-			this.robotPosition = newRobotPosition;
+			this.matrix[this.robot.y][this.robot.x] = this.robot;
 
 			console.log(this.matrix);
 		}
 	}
 
-	checkMovement(newRobotPosition: number[]): boolean {
-		const intendedMatrixPos = this.matrix[newRobotPosition[1]][newRobotPosition[0]];
+	checkMovement(newRobot: Element, oldRobot: Element): boolean {
+		const intendedMatrixPos = this.matrix[newRobot.y][newRobot.x];
 
 		if (
-			intendedMatrixPos ===
-			undefined &&
-			newRobotPosition[0] < this.x &&
-			newRobotPosition[0] >= 0 &&
-			newRobotPosition[1] < this.y &&
-			newRobotPosition[0] >= 0
+			intendedMatrixPos === undefined &&
+			newRobot.x < this.x &&
+			newRobot.x >= 0 &&
+			newRobot.y < this.y &&
+			newRobot.y >= 0
 		) {
 			return true;
 		} else {
-			if (intendedMatrixPos.type === "box") {
-				intendedMatrixPos.move()
-			}
-
 			return false;
 		}
-	}
-
-	doMovement(newRobotPosition: number[]) {
-		signals.fireSignal("robotMovement", newRobotPosition);
 	}
 }
