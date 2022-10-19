@@ -2,21 +2,19 @@ import { createGlobalStyle } from "styled-components";
 import ColorPalette from "./utils/ColorPalette";
 
 export const GlobalStyle = createGlobalStyle`
-  :root{
-    font-family: calibri;
-  }
   *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: calibri;
   }
   body{
     background-color: ${ColorPalette.primary};
     height: 100vh;
+    font-family: calibri;
   }
   ::-webkit-scrollbar{
     width: .5rem;
+    height: .5rem;
     padding: 20px;
   }
   ::-webkit-scrollbar-track-piece{

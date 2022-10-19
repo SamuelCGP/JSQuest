@@ -2,8 +2,8 @@ import { verifySolution } from "../api/solution";
 import { robotMethods } from "./robotMethods";
 
 export const runCode = (
-	chapterIndex: number,
-	lessonIndex: number,
+	chapterIndex: number | any,
+	lessonIndex: number | any,
 	code: any
 ) => {
 	console.log(code);

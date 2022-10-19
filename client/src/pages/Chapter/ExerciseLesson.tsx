@@ -19,6 +19,13 @@ import {
 import { getInitialEditorState } from "./getInitialEditorState";
 import { getBoardConfigFromApi } from "./getBoardConfigFromApi";
 import { getExerciseInfoFromApi } from "./getExerciseInfoFromApi";
+import {
+	ButtomContainer,
+	CodeSubmitButton,
+	CodeRefreshButton,
+	CodeMirrorStyled,
+} from "../../components/ExerciseLesson/CodeEditor/CodeEditor.styles";
+import { runCode } from "../../game/runCode";
 
 function ExerciseLesson() {
 	const { c_index, l_index }: Readonly<Params<string>> = useParams();
@@ -29,13 +36,13 @@ function ExerciseLesson() {
 
 	useEffect(() => {
 		if (c_index && l_index) {
-			get(Number(c_index), Number(l_index)).then(res => {
+			get(Number(c_index), Number(l_index)).then((res) => {
 				const lessonData = res.data;
-				
-				setEditorState(getInitialEditorState(lessonData))
+
+				setEditorState(getInitialEditorState(lessonData));
 				setBoardConfig(getBoardConfigFromApi(lessonData));
 				setExerciseInfo(getExerciseInfoFromApi(lessonData));
-			})
+			});
 		}
 	}, []);
 
@@ -59,6 +66,16 @@ function ExerciseLesson() {
 							c_index={c_index}
 							l_index={l_index}
 						/>
+						<ButtomContainer>
+							<CodeSubmitButton
+								onClick={() => {
+									runCode(c_index, l_index, editorState);
+								}}
+							>
+								Enviar
+							</CodeSubmitButton>
+							<CodeRefreshButton>Recomeçar</CodeRefreshButton>
+						</ButtomContainer>
 					</Container2>
 				</SplitContainer>
 				<ExerciseInfo

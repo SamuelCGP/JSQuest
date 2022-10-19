@@ -4,6 +4,7 @@ import {
 	CollapseButton,
 	LessonTitle,
 	LessonText,
+	MainPopup,
 } from "./ExerciseInfo.styles";
 
 export interface ExerciseInfoProps {
@@ -19,7 +20,7 @@ export function ExerciseInfo(props: ExerciseInfoProps) {
 		if (hasDisplay == true) {
 			setTimeout(function () {
 				setDisplay(!hasDisplay);
-			}, 700);
+			}, 200);
 		} else {
 			setDisplay(!hasDisplay);
 		}
@@ -29,11 +30,15 @@ export function ExerciseInfo(props: ExerciseInfoProps) {
 	}
 	return (
 		<>
-			<CollapseButton open={+isVisible} onClick={handleCollapse} />
 			<MainContainer display={+hasDisplay} open={+isVisible}>
-				<LessonTitle open={+isVisible}>{props.title}</LessonTitle>
-				<LessonText open={+isVisible}>{props.text}</LessonText>
+				<MainPopup display={+hasDisplay} open={+isVisible}>
+					<LessonTitle open={+isVisible}>{props.title}</LessonTitle>
+					<LessonText open={+isVisible}>{props.text}</LessonText>
+				</MainPopup>
 			</MainContainer>
+			<CollapseButton open={+isVisible} onClick={handleCollapse}>
+				{">"}
+			</CollapseButton>
 		</>
 	);
 }

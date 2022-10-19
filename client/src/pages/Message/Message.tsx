@@ -1,4 +1,3 @@
-import React from "react";
 import { CenterContainer, MessageTag, LinkBack } from "./Message.styles";
 import { MainHeading } from "../../components";
 import ColorPalette from "../../utils/ColorPalette";
