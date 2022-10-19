@@ -46,7 +46,7 @@ export const MainContainer = styled.div`
 		background-color: ${(props: Collapsables) =>
 			props.open ? "#01010160" : "none"};
 		backdrop-filter: ${(props: Collapsables) =>
-			props.open ? "sepia(80%);" : "none"};
+			props.open ? "sepia(60%)" : "none"};
 	}
 `;
 
