@@ -6,14 +6,22 @@ export const runCode = (
 	lessonIndex: number | any,
 	code: any
 ) => {
-	console.log(code);
-	/*
-	const runRes = verifySolution(chapterIndex, lessonIndex, code).then(
+	const runRes: any = verifySolution(chapterIndex, lessonIndex, code).then(
 		(res) => {
-			console.log(res);
 			return res;
 		}
 	);
-	*/
-	robotMethods.andar("baixo");
+
+	switch (runRes.status) {
+		case 400:
+			handleSolutionFailure(runRes);
+			break;
+		case 200:
+			handleSolutionSuccess(runRes);
+			break;
+	}
 };
+
+const handleSolutionFailure = (res: any) => {};
+
+const handleSolutionSuccess = (res: any) => {};
