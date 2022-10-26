@@ -22,7 +22,7 @@ export function TestPopup() {
 	return (
 		<>
 			{showModal ? (
-				<Overlay onClick={toggleModal}>
+				<>
 					<ModalContent>
 						<Heading inverse>Welcome to JSQuest!</Heading>
 						<ModalText>
@@ -33,7 +33,8 @@ export function TestPopup() {
 							ipsam.
 						</ModalText>
 					</ModalContent>
-				</Overlay>
+					<Overlay onClick={toggleModal}></Overlay>
+				</>
 			) : (
 				<></>
 			)}

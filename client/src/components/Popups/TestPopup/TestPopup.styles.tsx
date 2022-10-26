@@ -21,6 +21,10 @@ export const Overlay = styled.div`
 `;
 
 export const ModalContent = styled.div`
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	width: fit-content;
 	max-width: 90%;
 	height: fit-content;
@@ -29,6 +33,7 @@ export const ModalContent = styled.div`
 	border-radius: 0.5rem;
 	display: flex;
 	flex-direction: column;
+	z-index: 3;
 	@media (min-width: 900px) {
 		max-width: 50%;
 	}
