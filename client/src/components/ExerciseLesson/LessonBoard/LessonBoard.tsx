@@ -37,7 +37,7 @@ export function LessonBoard(props: { config: LessonBoardProps }) {
 	});
 
 	useEffect(() => {
-		//console.log(boardMatrix.matrix);
+		console.log(boardMatrix.matrix);
 	});
 
 	return (
