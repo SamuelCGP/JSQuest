@@ -21,4 +21,10 @@ export class Element {
 			originalCoords: { x: this.originalX, y: this.originalY },
 		});
 	}
+
+	destroy(): void {
+		signals.fireSignal(`${this.type}Destruction`, {
+			originalCoords: { x: this.originalX, y: this.originalY },
+		});
+	}
 }

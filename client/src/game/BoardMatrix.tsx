@@ -8,6 +8,7 @@ export class BoardMatrix {
 	robot: Element = new Element("robot", 0, 0);
 	matrix: any;
 	previousMoveId: string;
+	originalMatrix: any;
 
 	constructor(
 		collumnNumber: number,
@@ -46,6 +47,8 @@ export class BoardMatrix {
 				});
 			}
 		}
+
+		this.originalMatrix = bidimensional;
 
 		return bidimensional;
 	}
@@ -92,38 +95,54 @@ export class BoardMatrix {
 			if (intendedMatrixPos === undefined) return true;
 
 			//colision, movement is blocked
-			if (intendedMatrixPos.type !== "box") return false;
+			if (
+				intendedMatrixPos.type !== "box" &&
+				intendedMatrixPos.type !== "star"
+			)
+				return false;
 
 			//box ahead, PUSH IT!
-			const box = new Element(
-				"box",
-				intendedMatrixPos.originalX,
-				intendedMatrixPos.originalY
-			);
+			if (intendedMatrixPos.type === "box") {
+				const box = new Element(
+					"box",
+					intendedMatrixPos.originalX,
+					intendedMatrixPos.originalY
+				);
 
-			box.x = intendedMatrixPos.x + xOffset;
-			box.y = intendedMatrixPos.y - yOffset;
+				box.x = intendedMatrixPos.x + xOffset;
+				box.y = intendedMatrixPos.y - yOffset;
 
-			if (intendedMatrixPos.type === box.type) {
-				if (
-					box.x < this.x &&
-					box.x >= 0 &&
-					box.y < this.y &&
-					box.y >= 0 &&
-					this.matrix[box.y][box.x] == undefined
-				) {
-					//box will not colide, movement is possible
-					this.matrix[box.y][box.x] = box;
-					box.move();
-					return true;
+				if (intendedMatrixPos.type === box.type) {
+					if (
+						box.x < this.x &&
+						box.x >= 0 &&
+						box.y < this.y &&
+						box.y >= 0 &&
+						this.matrix[box.y][box.x] == undefined
+					) {
+						//box will not colide, movement is possible
+						this.matrix[box.y][box.x] = box;
+						box.move();
+						return true;
+					}
+
+					//box will colide, movement is blocked
+					return false;
 				}
+			}
 
-				//box will colide, movement is blocked
-				return false;
+			//star ahead, TAKE IT!
+			if (intendedMatrixPos.type === "star") {
+				intendedMatrixPos.destroy();
+				return true;
 			}
 		}
 
 		//colided with boundaries
 		return false;
+	}
+
+	resetMatrix() {
+		this.matrix = this.originalMatrix;
 	}
 }

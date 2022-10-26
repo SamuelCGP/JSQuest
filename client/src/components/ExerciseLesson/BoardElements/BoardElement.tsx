@@ -10,6 +10,7 @@ export function BoardElement(props: BoardElementProps) {
 		top: 0,
 		left: 0,
 	});
+	const [isVisible, setIsVisible] = useState(true);
 
 	const cellWidthInPercentage = 100 / props.columnNumber;
 	const cellHeightInPercentage = 100 / props.rowNumber;
@@ -23,6 +24,15 @@ export function BoardElement(props: BoardElementProps) {
 			moveTo(location.detail.newCoords.x, location.detail.newCoords.y);
 		}
 	});
+	listenToSignal(`${props.type}Destruction`, (location) => {
+		if (
+			location.detail.originalCoords.x === props.positionX - 1 &&
+			location.detail.originalCoords.y === props.positionY - 1
+		) {
+			setIsVisible(false);
+		}
+	});
+	// ------
 
 	const moveTo = (newX: number, newY: number) => {
 		setX(newX);
@@ -51,6 +61,8 @@ export function BoardElement(props: BoardElementProps) {
 	useEffect(() => {
 		updateRelativeCoordinates();
 	});
+
+	if (isVisible === false) return <></>;
 
 	switch (props.type) {
 		case "robot":
