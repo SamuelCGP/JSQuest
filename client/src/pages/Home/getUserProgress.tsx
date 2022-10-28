@@ -1,15 +1,16 @@
+/* eslint-disable import/no-anonymous-default-export */
 import * as Chapter from "../../api/chapter";
-export default async () => {
+export default async ()=> {
 	let message: string = "";
 	let status: number = 102;
-	let data;
+	let data: UserProgressI;
 
 	const response: any = await Chapter.getAll().then((response) => {
 		return response;
 	});
 
 	status = response.status;
-	data = response.data;
+	data = response.data as UserProgressI;
 
 	switch (status) {
 		case 200:
@@ -30,3 +31,21 @@ export default async () => {
 
 	return { status, message };
 };
+
+export interface LessonI {
+	id: string,
+	type: string,
+	title: string,
+	completed: boolean
+}
+export interface ChapterI {
+	id: string
+	data: {
+		title: string,
+		descriptions: string,
+		lessons: LessonI[]
+	}
+}
+export interface UserProgressI {
+	chapters: ChapterI[]
+}

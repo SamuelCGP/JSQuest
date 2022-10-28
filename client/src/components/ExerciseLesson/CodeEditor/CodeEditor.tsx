@@ -2,14 +2,9 @@ import { javascript } from "@codemirror/lang-javascript";
 import { okaidia } from "@uiw/codemirror-theme-okaidia";
 
 import {
-	ButtomContainer,
-	CodeSubmitButton,
-	CodeRefreshButton,
 	CodeMirrorStyled,
 } from "./CodeEditor.styles";
 import { useEffect, useRef } from "react";
-import { runCode } from "../../../game/runCode";
-
 interface CodeEditorProps {
 	value: any;
 	setEditorState: any;
@@ -25,10 +20,15 @@ export const CodeEditor = (props: CodeEditorProps) => {
 		valueRef.current = props.value;
 	}, [props.value]);
 
+	//componentWillUnmount
+	useEffect( () => () => props.saveCode(valueRef.current), [] );
+
+	const handleTabClose = (event: any) => {
+		console.log("tab close")
+		props.saveCode(valueRef.current);
+	};
+
 	useEffect(() => {
-		const handleTabClose = (event: any) => {
-			props.saveCode(valueRef.current);
-		};
 		window.addEventListener("beforeunload", handleTabClose);
 		return () => {
 			if (firstLoad.current) {
@@ -39,6 +39,8 @@ export const CodeEditor = (props: CodeEditorProps) => {
 			props.saveCode(valueRef.current);
 		};
 	}, []);
+
+	
 
 	const handleChange = (value: any) => {
 		props.setEditorState(value);

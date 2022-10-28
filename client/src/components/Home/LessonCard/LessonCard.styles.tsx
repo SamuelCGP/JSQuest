@@ -35,8 +35,11 @@ export const LessonIcon = styled.div`
 	}
 	& .lessonImg {
 		position: absolute;
-		width: 70%;
-		height: 70%;
+		display: block;
+		max-width: 75%;
+		max-height: 75%;
+		width: auto;
+		height: auto;
 	}
 `;
 
