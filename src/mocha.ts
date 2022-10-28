@@ -8,7 +8,7 @@ export const runMochaTests = (
 	tests: Mocha.Test[],
 	transpiledSolution: string
 ) => {
-	const mocha = new Mocha({});
+	const mocha = new Mocha({reporter: undefined});
 	const suite = Suite.create(mocha.suite, suiteName);
 	tests.forEach((test: Mocha.Test) => suite.addTest(test));
 	return new Promise((resolve, reject) => {
