@@ -1,4 +1,5 @@
 import { expect } from "chai";
+import { getRandomValues } from "node:crypto";
 import { Test } from "../mocha";
 import { testMessages } from "./testMessages";
 export const basicTests = {
