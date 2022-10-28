@@ -9,6 +9,10 @@ export const generateTests = async (
 	chapterIndex: number,
 	lessonIndex: number
 ) => {
-	const lessonTests = await import(`./tests/test-c${chapterIndex}l${lessonIndex}`)
-	return lessonTests.getTests(context);
+	try {
+		const lessonTests = await import(`./tests/test-c${chapterIndex}l${lessonIndex}`)
+		return lessonTests.getTests(context);
+	} catch(err) {
+		return [];
+	}
 };
