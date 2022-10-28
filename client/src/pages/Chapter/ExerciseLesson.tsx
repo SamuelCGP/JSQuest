@@ -5,7 +5,7 @@ import {
 	SplitContainer,
 } from "../../components/ExerciseLesson/SplitedContainers/SplitedContainers.style";
 import { Params, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from 'react';
 import { Navigate } from "react-router-dom";
 import { get, save } from "../../api/lesson";
 import {
@@ -23,9 +23,10 @@ import {
 	ButtomContainer,
 	CodeSubmitButton,
 	CodeRefreshButton,
-	CodeMirrorStyled,
 } from "../../components/ExerciseLesson/CodeEditor/CodeEditor.styles";
 import { runCode } from "../../game/runCode";
+import { LessonI } from "../Home/getUserProgress";
+import refreshEditorState from "./refreshEditorState";
 
 function ExerciseLesson() {
 	const { c_index, l_index }: Readonly<Params<string>> = useParams();
@@ -33,22 +34,26 @@ function ExerciseLesson() {
 	const [boardConfig, setBoardConfig] = useState<LessonBoardProps | null>();
 	const [exerciseInfo, setExerciseInfo] =
 		useState<ExerciseInfoProps | null>();
+	let lessonData = useRef();
 
 	useEffect(() => {
 		if (c_index && l_index) {
 			get(Number(c_index), Number(l_index)).then((res) => {
-				const lessonData = res.data;
+				lessonData.current = res.data;
 
-				setEditorState(getInitialEditorState(lessonData));
-				setBoardConfig(getBoardConfigFromApi(lessonData));
-				setExerciseInfo(getExerciseInfoFromApi(lessonData));
+				setEditorState(getInitialEditorState(lessonData.current));
+				setBoardConfig(getBoardConfigFromApi(lessonData.current));
+				setExerciseInfo(getExerciseInfoFromApi(lessonData.current));
 			});
 		}
 	}, []);
 
+	
+
 	const saveCode = (code: string) => {
-		if (c_index && l_index)
+		if (c_index && l_index)  {
 			save(parseInt(c_index), parseInt(l_index), code);
+		}
 	};
 
 	if (boardConfig !== null && boardConfig !== undefined && exerciseInfo)
@@ -74,7 +79,10 @@ function ExerciseLesson() {
 							>
 								Enviar
 							</CodeSubmitButton>
-							<CodeRefreshButton>Recomeçar</CodeRefreshButton>
+							<CodeRefreshButton onClick={() => {
+								console.log(lessonData.current)
+								setEditorState(refreshEditorState(lessonData.current!))
+							}}>Recomeçar</CodeRefreshButton>
 						</ButtomContainer>
 					</Container2>
 				</SplitContainer>
