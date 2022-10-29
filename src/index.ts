@@ -42,3 +42,5 @@ app.get("*", (req, res) =>
 );
 
 app.listen(PORT, () => console.log(`Server is listening at port ${PORT}!`));
+
+//TODO: fazer com que os as lições e caps peguem os icones do servidor
