@@ -21,10 +21,10 @@ app.use(bodyParser.json());
 app.use(morgan("dev"));
 
 app.use(express.static(path.resolve(__dirname, "../client/build")));
+app.use("/images", express.static(path.resolve(__dirname, "../images")));
 
 const router = express.Router();
 
-router.use("/images", express.static(path.join(__dirname, "images")));
 
 router.use("/user", userRouter);
 router.use("/chapter", chapterRouter);
@@ -42,5 +42,3 @@ app.get("*", (req, res) =>
 );
 
 app.listen(PORT, () => console.log(`Server is listening at port ${PORT}!`));
-
-//TODO: fazer com que os as lições e caps peguem os icones do servidor
