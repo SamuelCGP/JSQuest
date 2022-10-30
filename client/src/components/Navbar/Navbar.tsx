@@ -21,20 +21,13 @@ export function Navbar() {
 			<TestPopup></TestPopup>
 			<NavContainer>
 				<NavNav>
-					<NavItem mInvisible>
+					<NavItem>
 						<NavLink to={"/home"}>
 							<HomeIcon />
 							<LinkText>Home</LinkText>
 						</NavLink>
 					</NavItem>
 					<HorizontalLine mInvisible />
-					<NavItem>
-						<NavLink to={"/home"}>
-							<ProfileIcon />
-							<LinkText>Perfil</LinkText>
-						</NavLink>
-					</NavItem>
-					<HorizontalLine dInvisible />
 					<NavItem>
 						<NavLink to={"/home"}>
 							<MaterialsIcon />
@@ -57,3 +50,12 @@ export function Navbar() {
 		</>
 	);
 }
+/*
+					<NavItem mInvisible>
+						<NavLink to={"/home"}>
+							<ProfileIcon />
+							<LinkText>Perfil</LinkText>
+						</NavLink>
+					</NavItem>
+					<HorizontalLine dInvisible />
+*/
