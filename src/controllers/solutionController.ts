@@ -23,6 +23,7 @@ export const verify = async (req: Request, res: Response) => {
 				error.loc.line
 			}:${error.loc.column}`,
 			runOrCompError: true,
+			errorLine: error.loc.line,
 		});
 		return;
 	}

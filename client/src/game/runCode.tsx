@@ -26,6 +26,10 @@ export const runCode = (
 
 const handleSolutionFailure = (res: any) => {
 	console.log(res);
+
+	if (res.data.errorLine) {
+	}
+
 	alert(res.data.message);
 };
 
