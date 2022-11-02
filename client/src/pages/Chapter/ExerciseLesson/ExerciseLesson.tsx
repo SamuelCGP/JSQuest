@@ -3,11 +3,11 @@ import {
 	Container1,
 	Container2,
 	SplitContainer,
-} from "../../components/ExerciseLesson/SplitedContainers/SplitedContainers.style";
+} from "../../../components/ExerciseLesson/SplitedContainers/SplitedContainers.style";
 import { Params, useParams } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import { Navigate } from "react-router-dom";
-import { get, save } from "../../api/lesson";
+import { get, save } from "../../../api/lesson";
 import {
 	LessonBoardProps,
 	CodeEditor,
@@ -15,7 +15,7 @@ import {
 	ExerciseInfo,
 	ExerciseInfoProps,
 	LessonBoard,
-} from "../../components";
+} from "../../../components";
 import { getInitialEditorState } from "./getInitialEditorState";
 import { getBoardConfigFromApi } from "./getBoardConfigFromApi";
 import { getExerciseInfoFromApi } from "./getExerciseInfoFromApi";
@@ -23,11 +23,11 @@ import {
 	ButtomContainer,
 	CodeSubmitButton,
 	CodeRefreshButton,
-} from "../../components/ExerciseLesson/CodeEditor/CodeEditor.styles";
-import { runCode } from "../../game/runCode";
-import { LessonI } from "../Home/getUserProgress";
+} from "../../../components/ExerciseLesson/CodeEditor/CodeEditor.styles";
+import { runCode } from "../../../game/runCode";
+import { LessonI } from "../../Home/getUserProgress";
 import refreshEditorState from "./refreshEditorState";
-import { fireSignal } from "../../game/signals";
+import { fireSignal } from "../../../game/signals";
 
 function ExerciseLesson() {
 	const { c_index, l_index }: Readonly<Params<string>> = useParams();

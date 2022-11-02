@@ -3,7 +3,7 @@ import { GlobalStyle } from "./globalStyles";
 import Authentication from "./pages/Authentication/Authentication";
 import ResetPassword from "./pages/ResetPassword/ResetPasssword";
 import Home from "./pages/Home/Home";
-import ExerciseLesson from "./pages/Chapter/ExerciseLesson";
+import ExerciseLesson from "./pages/Chapter/ExerciseLesson/ExerciseLesson";
 import Message from "./pages/Message/Message";
 import { Navbar } from "./components";
 

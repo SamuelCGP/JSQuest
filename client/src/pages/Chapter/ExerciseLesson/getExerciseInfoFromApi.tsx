@@ -1,8 +1,8 @@
-import { ExerciseInfoProps } from "../../components";
+import { ExerciseInfoProps } from "../../../components";
 
 export function getExerciseInfoFromApi(
 	lessonData: any
-): ExerciseInfoProps | null{
+): ExerciseInfoProps | null {
 	const title = lessonData.lesson.title;
 	const text = lessonData.lesson.text;
 	if (title) {
