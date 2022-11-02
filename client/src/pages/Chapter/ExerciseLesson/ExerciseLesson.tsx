@@ -29,7 +29,11 @@ import { LessonI } from "../../Home/getUserProgress";
 import refreshEditorState from "./refreshEditorState";
 import { fireSignal } from "../../../game/signals";
 
-function ExerciseLesson() {
+interface ExerciseLessonProps {
+	lessonData: any;
+}
+
+function ExerciseLesson(props: ExerciseLessonProps) {
 	const { c_index, l_index }: Readonly<Params<string>> = useParams();
 	const [editorState, setEditorState] = useState("");
 	const [boardConfig, setBoardConfig] = useState<LessonBoardProps | null>();
@@ -38,15 +42,11 @@ function ExerciseLesson() {
 	let lessonData = useRef();
 
 	useEffect(() => {
-		if (c_index && l_index) {
-			get(Number(c_index), Number(l_index)).then((res) => {
-				lessonData.current = res.data;
+		lessonData.current = props.lessonData;
 
-				setEditorState(getInitialEditorState(lessonData.current));
-				setBoardConfig(getBoardConfigFromApi(lessonData.current));
-				setExerciseInfo(getExerciseInfoFromApi(lessonData.current));
-			});
-		}
+		setEditorState(getInitialEditorState(lessonData.current));
+		setBoardConfig(getBoardConfigFromApi(lessonData.current));
+		setExerciseInfo(getExerciseInfoFromApi(lessonData.current));
 	}, []);
 
 	const saveCode = (code: string) => {

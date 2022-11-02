@@ -3,7 +3,7 @@ import { GlobalStyle } from "./globalStyles";
 import Authentication from "./pages/Authentication/Authentication";
 import ResetPassword from "./pages/ResetPassword/ResetPasssword";
 import Home from "./pages/Home/Home";
-import ExerciseLesson from "./pages/Chapter/ExerciseLesson/ExerciseLesson";
+import Chapter from "./pages/Chapter/Chapter";
 import Message from "./pages/Message/Message";
 import { Navbar } from "./components";
 
@@ -28,7 +28,7 @@ function App() {
 				<Route path="/home" element={<Home />} />
 				<Route
 					path="/chapter/:c_index/lesson/:l_index"
-					element={<ExerciseLesson />}
+					element={<Chapter />}
 				/>
 			</Routes>
 		</Router>
