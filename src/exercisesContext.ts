@@ -1,6 +1,10 @@
+export interface Command {
+	[key: string]: any[]
+}
+
 export interface ContextObj {
 	_dialog: string[];
-	_codeString: string;
+	_commands: Command[];
 	_yPos: number;
 	_xPos: number;
 	andar(direcao: string): void;
@@ -15,12 +19,12 @@ export class Context {
 
 	contextObj: ContextObj = {
 		_dialog: [] as string[],
-		_codeString: "",
+		_commands: [],
 		_yPos: 0,
 		_xPos: 0,
 
 		andar: (direcao: string) => {
-			this.contextObj._codeString += `andar("${direcao}");`;
+			this.contextObj._commands.push({andar: [direcao]});
 
 			switch (direcao) {
 				case "cima":
@@ -42,7 +46,8 @@ export class Context {
 		console: {
 			log: (...messages: any) => {
 				for (let message of messages) {
-					this.contextObj._codeString += `dialog("${message}");`;
+					this.contextObj._commands.push({dialog: [message]});
+
 					this.contextObj._dialog.push(`${message}`);
 				}
 			},
