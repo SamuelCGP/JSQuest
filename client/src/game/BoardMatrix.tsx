@@ -8,7 +8,6 @@ export class BoardMatrix {
 	robot: Element = new Element("robot", 0, 0);
 	matrix: any;
 	previousMoveId: string;
-	originalMatrix: any;
 
 	constructor(
 		collumnNumber: number,
@@ -34,7 +33,7 @@ export class BoardMatrix {
 		for (let x = 0; x < w; x++) {
 			for (let y = 0; y < h; y++) {
 				elements.forEach((element: Elements) => {
-					if (element.x == x + 1 && element.y == y + 1) {
+					if (element.x === x + 1 && element.y === y + 1) {
 						bidimensional[y][x] = new Element(
 							element.element,
 							element.x - 1,
@@ -47,8 +46,6 @@ export class BoardMatrix {
 				});
 			}
 		}
-
-		this.originalMatrix = bidimensional;
 
 		return bidimensional;
 	}
@@ -83,14 +80,14 @@ export class BoardMatrix {
 		xOffset: number,
 		yOffset: number
 	): boolean {
-		const intendedMatrixPos = this.matrix[newRobot.y][newRobot.x];
-
 		if (
 			newRobot.x < this.x &&
 			newRobot.x >= 0 &&
 			newRobot.y < this.y &&
 			newRobot.y >= 0
 		) {
+			const intendedMatrixPos = this.matrix[newRobot.y][newRobot.x];
+
 			//no colision, movement is possible
 			if (intendedMatrixPos === undefined) return true;
 
@@ -140,9 +137,5 @@ export class BoardMatrix {
 
 		//colided with boundaries
 		return false;
-	}
-
-	resetMatrix() {
-		this.matrix = this.originalMatrix;
 	}
 }

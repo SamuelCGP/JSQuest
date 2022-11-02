@@ -32,6 +32,9 @@ export function BoardElement(props: BoardElementProps) {
 			setIsVisible(false);
 		}
 	});
+	listenToSignal(`boardReset`, (location) => {
+		reset();
+	});
 	// ------
 
 	const moveTo = (newX: number, newY: number) => {
@@ -55,6 +58,11 @@ export function BoardElement(props: BoardElementProps) {
 		};
 
 		setRelativeCoordinates(newRelativeCoordinates);
+	};
+
+	const reset = () => {
+		setIsVisible(true);
+		moveTo(props.positionX - 1, props.positionY - 1);
 	};
 
 	//---------

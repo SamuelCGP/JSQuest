@@ -1,6 +1,5 @@
 import { verifySolution } from "../api/solution";
 import { gameMethods } from "./gameMethods";
-import * as signals from "./signals";
 
 export interface Command {
 	[key: string]: any[];
@@ -14,7 +13,10 @@ export const runCode = (
 	verifySolution(chapterIndex, lessonIndex, code).then((res) => {
 		switch (res.status) {
 			case 200:
-				handleSolutionSuccess(res);
+				gameMethods.reset();
+				setTimeout(() => {
+					handleSolutionSuccess(res);
+				}, 500);
 				break;
 			default:
 				handleSolutionFailure(res);
@@ -28,6 +30,7 @@ const handleSolutionFailure = (res: any) => {
 	console.log(res);
 
 	if (res.data.errorLine) {
+		// do nothing because line highlighting is impossible
 	}
 
 	alert(res.data.message);

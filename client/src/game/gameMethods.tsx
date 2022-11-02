@@ -1,7 +1,7 @@
 import * as signals from "./signals";
 
 export interface GameMethods {
-	[key: string]: Function
+	[key: string]: Function;
 }
 
 export const gameMethods: GameMethods = {
@@ -39,7 +39,7 @@ export const gameMethods: GameMethods = {
 				break;
 		}
 	},
-	
+
 	randomId: () => {
 		let s4 = () => {
 			return Math.floor((1 + Math.random()) * 0x10000)
@@ -61,5 +61,9 @@ export const gameMethods: GameMethods = {
 			s4() +
 			s4()
 		);
-	}
-}
+	},
+
+	reset: () => {
+		signals.fireSignal("boardReset", {});
+	},
+};

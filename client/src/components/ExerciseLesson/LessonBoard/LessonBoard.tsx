@@ -36,8 +36,8 @@ export function LessonBoard(props: { config: LessonBoardProps }) {
 		);
 	});
 
-	useEffect(() => {
-		console.log(boardMatrix.matrix);
+	signals.listenToSignal("boardReset", () => {
+		setBoardMatrix(new BoardMatrix(columns, rows, elements));
 	});
 
 	return (
@@ -84,12 +84,12 @@ const placeElements = (
 	totalColumns: number,
 	totalRows: number
 ): JSX.Element | undefined => {
-	if (elements.length == 0 || elements == undefined) return;
+	if (elements.length === 0 || elements === undefined) return;
 
 	let finalElement;
 
 	elements.forEach((element: Elements) => {
-		if (element.x == column && element.y == row) {
+		if (element.x === column && element.y === row) {
 			finalElement = getBoardElementFromObject(
 				element,
 				totalColumns,

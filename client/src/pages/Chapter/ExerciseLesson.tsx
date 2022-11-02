@@ -5,7 +5,7 @@ import {
 	SplitContainer,
 } from "../../components/ExerciseLesson/SplitedContainers/SplitedContainers.style";
 import { Params, useParams } from "react-router-dom";
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from "react";
 import { Navigate } from "react-router-dom";
 import { get, save } from "../../api/lesson";
 import {
@@ -27,6 +27,7 @@ import {
 import { runCode } from "../../game/runCode";
 import { LessonI } from "../Home/getUserProgress";
 import refreshEditorState from "./refreshEditorState";
+import { fireSignal } from "../../game/signals";
 
 function ExerciseLesson() {
 	const { c_index, l_index }: Readonly<Params<string>> = useParams();
@@ -48,10 +49,8 @@ function ExerciseLesson() {
 		}
 	}, []);
 
-	
-
 	const saveCode = (code: string) => {
-		if (c_index && l_index)  {
+		if (c_index && l_index) {
 			save(parseInt(c_index), parseInt(l_index), code);
 		}
 	};
@@ -79,10 +78,17 @@ function ExerciseLesson() {
 							>
 								Enviar
 							</CodeSubmitButton>
-							<CodeRefreshButton onClick={() => {
-								console.log(lessonData.current)
-								setEditorState(refreshEditorState(lessonData.current!))
-							}}>Recomeçar</CodeRefreshButton>
+							<CodeRefreshButton
+								onClick={() => {
+									console.log(lessonData.current);
+									setEditorState(
+										refreshEditorState(lessonData.current!)
+									);
+									fireSignal("boardReset", {});
+								}}
+							>
+								Recomeçar
+							</CodeRefreshButton>
 						</ButtomContainer>
 					</Container2>
 				</SplitContainer>
