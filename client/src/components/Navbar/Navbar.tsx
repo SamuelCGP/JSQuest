@@ -27,7 +27,7 @@ export function Navbar() {
 							<LinkText>Home</LinkText>
 						</NavLink>
 					</NavItem>
-					<HorizontalLine mInvisible />
+					<HorizontalLine />
 					<NavItem>
 						<NavLink to={"/home"}>
 							<MaterialsIcon />
