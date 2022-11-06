@@ -2,7 +2,6 @@ import { javascript } from "@codemirror/lang-javascript";
 import { okaidia } from "@uiw/codemirror-theme-okaidia";
 import { CodeMirrorStyled } from "./CodeEditor.styles";
 import { useEffect, useRef } from "react";
-
 interface CodeEditorProps {
 	value: any;
 	setEditorState: any;
@@ -40,12 +39,6 @@ export const CodeEditor = (props: CodeEditorProps) => {
 
 	const handleChange = (value: any) => {
 		props.setEditorState(value);
-	};
-
-	const highlightLines = (editor: any, start: number, end: number) => {
-		const from = { line: start, ch: 0 };
-		const to = { line: end, ch: 99 };
-		editor.markText(from, to, { className: "codemirror-highlighted" });
 	};
 
 	return (

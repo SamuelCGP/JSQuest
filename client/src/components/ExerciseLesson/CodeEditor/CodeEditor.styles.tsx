@@ -2,10 +2,19 @@ import styled from "styled-components";
 import ColorPalette from "../../../utils/ColorPalette";
 import CodeMirror from "@uiw/react-codemirror";
 
+export const ErrorIndicator = styled.div`
+	grid-column: 1 / 4;
+	padding: 10px;
+	background-color: red;
+	color: white;
+	display: none;
+	justify-content: space-between;
+`;
+
 export const ButtomContainer = styled.div`
 	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	grid-template-rows: 1fr;
+	grid-template-columns: repeat(5, 0.5fr);
+	grid-template-rows: 0.5fr;
 	width: 100%;
 	height: 40;
 	padding-top: 0.5rem;

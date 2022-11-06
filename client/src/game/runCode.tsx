@@ -27,13 +27,10 @@ export const runCode = (
 };
 
 const handleSolutionFailure = (res: any) => {
-	console.log(res);
-
-	if (res.data.errorLine) {
-		// do nothing because line highlighting is impossible
-	}
-
-	alert(res.data.message);
+	const errMessageSpan = document.getElementById("error-message")!;
+	const errIndicator = document.getElementById("error-indicator")!;
+	errIndicator.style.display = "flex";
+	errMessageSpan.innerText = res.data.message;
 };
 
 const handleSolutionSuccess = (res: any) => {

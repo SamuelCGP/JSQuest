@@ -23,6 +23,7 @@ import {
 	ButtomContainer,
 	CodeSubmitButton,
 	CodeRefreshButton,
+	ErrorIndicator,
 } from "../../../components/ExerciseLesson/CodeEditor/CodeEditor.styles";
 import { runCode } from "../../../game/runCode";
 import { LessonI } from "../../Home/getUserProgress";
@@ -37,15 +38,19 @@ function ExerciseLesson(props: ExerciseLessonProps) {
 	const { c_index, l_index }: Readonly<Params<string>> = useParams();
 	const [editorState, setEditorState] = useState("");
 	const [boardConfig, setBoardConfig] = useState<LessonBoardProps | null>();
-	const [exerciseInfo, setExerciseInfo] =
-		useState<ExerciseInfoProps | null>();
+
+	const [exerciseInfo, setExerciseInfo] = useState<ExerciseInfoProps | null>();
 	let lessonData = useRef();
+	let initialBoardConfigData: React.MutableRefObject<
+		LessonBoardProps | null | undefined
+	> = useRef();
 
 	useEffect(() => {
 		lessonData.current = props.lessonData;
 
+		initialBoardConfigData.current = getBoardConfigFromApi(lessonData.current);
 		setEditorState(getInitialEditorState(lessonData.current));
-		setBoardConfig(getBoardConfigFromApi(lessonData.current));
+		setBoardConfig(initialBoardConfigData.current);
 		setExerciseInfo(getExerciseInfoFromApi(lessonData.current));
 	}, []);
 
@@ -71,8 +76,22 @@ function ExerciseLesson(props: ExerciseLessonProps) {
 							l_index={l_index}
 						/>
 						<ButtomContainer>
+							<ErrorIndicator id="error-indicator">
+								<span id="error-message"></span>
+								<button
+									onClick={(event) =>
+										(document.getElementById("error-indicator")!.style.display =
+											"none")
+									}
+								>
+									X
+								</button>
+							</ErrorIndicator>
 							<CodeSubmitButton
 								onClick={() => {
+									console.log(boardConfig);
+									setBoardConfig(initialBoardConfigData.current);
+
 									runCode(c_index, l_index, editorState);
 								}}
 							>
@@ -80,10 +99,8 @@ function ExerciseLesson(props: ExerciseLessonProps) {
 							</CodeSubmitButton>
 							<CodeRefreshButton
 								onClick={() => {
-									console.log(lessonData.current);
-									setEditorState(
-										refreshEditorState(lessonData.current!)
-									);
+									setEditorState(refreshEditorState(lessonData.current!));
+									setBoardConfig(initialBoardConfigData.current);
 									fireSignal("boardReset", {});
 								}}
 							>
