@@ -9,11 +9,16 @@ import {
 	NextIcon,
 	ChapterLesson,
 } from "./Completion.styles";
+import { Params, useParams } from "react-router-dom";
 
 function Completion() {
+	const { c_index, l_index }: Readonly<Params<string>> = useParams();
+
 	return (
 		<ModalCard bgColor={ColorPalette.white}>
-			<ChapterLesson>1 - 4</ChapterLesson>
+			<ChapterLesson>
+				{c_index} - {l_index}
+			</ChapterLesson>
 			<Heading inverse>Você passou!</Heading>
 			<ButtonContainer>
 				<ActionButton>

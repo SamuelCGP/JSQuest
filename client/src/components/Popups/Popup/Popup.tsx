@@ -18,7 +18,7 @@ export function Popup(props: PopupProps) {
 		setShowModal(newValue);
 	};
 
-	listenToSignal("configPopupCall", () => {
+	listenToSignal(`${props.type}PopupCall`, () => {
 		toggleModal();
 	});
 
