@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import ColorPalette from "../../../utils/ColorPalette";
 
 export const Overlay = styled.div`
 	position: fixed;
@@ -20,7 +19,11 @@ export const Overlay = styled.div`
 	}
 `;
 
-export const ModalContent = styled.div`
+interface ModalContentProps {
+	bgColor: string;
+}
+
+export const ModalCard = styled.div`
 	position: fixed;
 	top: 50%;
 	left: 50%;
@@ -29,7 +32,7 @@ export const ModalContent = styled.div`
 	max-width: 90%;
 	height: fit-content;
 	padding: 2.5rem;
-	background-color: ${ColorPalette.blueWhite};
+	background-color: ${(props: ModalContentProps) => props.bgColor};
 	border-radius: 0.5rem;
 	display: flex;
 	flex-direction: column;

@@ -12,13 +12,13 @@ import {
 	ProfileIcon,
 	NavButton,
 } from "./Navbar.styles";
-import { TestPopup } from "../Popups";
+import { Popup } from "../Popups";
 import { fireSignal } from "../../game/signals";
 
 export function Navbar() {
 	return (
 		<>
-			<TestPopup></TestPopup>
+			<Popup type={"config"}></Popup>
 			<NavContainer>
 				<NavNav>
 					<NavItem>
