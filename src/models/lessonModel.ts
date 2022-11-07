@@ -15,7 +15,7 @@ export interface BoardElement {
 }
 
 export interface Lesson {
-	board_config: {
+	board_config?: {
 		build: {
 			columns: number;
 			rows?: number;
@@ -23,7 +23,7 @@ export interface Lesson {
 		elements: BoardElement[];
 	};
 	initial_code?: string;
-	text?: string;
+	text: string;
 	title: string;
 	type: LessonTypes;
 }
