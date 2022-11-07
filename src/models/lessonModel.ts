@@ -1,8 +1,32 @@
-import { getDocById, db } from "../firestore";
+import { getDocById, db, save } from "../firestore";
 import { getRefById } from "./userModel";
 
 const lessonCollecName = "lessons";
 const solutionsSubcollecName = "solutions";
+
+export enum LessonTypes {
+	PRACTICAL = "practical",
+	THEORICAL = "theorical",
+}
+export interface BoardElement {
+	element: string;
+	x: number;
+	y: number;
+}
+
+export interface Lesson {
+	board_config: {
+		build: {
+			columns: number;
+			rows?: number;
+		};
+		elements: BoardElement[];
+	};
+	initial_code?: string;
+	text?: string;
+	title: string;
+	type: LessonTypes;
+}
 
 export const getAllFromChapter = async (
 	chapterIndex: number,
@@ -76,4 +100,15 @@ export const saveSolution = async (
 
 	if (solution) solutionCollec.doc(solution.id).set(data, { merge: true });
 	else solutionCollec.doc().set(data);
+};
+
+export const create = async (
+	chapterIndex: string,
+	lessonIndex: string,
+	lesson: Lesson
+) => {
+	await db
+		.collection(`/chapters/${chapterIndex}/${lessonCollecName}/`)
+		.doc(lessonIndex)
+		.set(lesson, { merge: true });
 };

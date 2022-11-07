@@ -37,6 +37,22 @@ export const saveSolution = async (req: Request, res: Response) => {
 	const body = req.body;
 	const solution = body.solution;
 
-	await lessonModel.saveSolution(chapterIndex, lessonIndex, req.userId, solution);
+	await lessonModel.saveSolution(
+		chapterIndex,
+		lessonIndex,
+		req.userId,
+		solution
+	);
 	res.status(200).json({ message: "Solution saved!" });
+};
+
+export const create = async (req: Request, res: Response) => {
+	const chapterIndex = req.params.chapterIndex;
+	const lessonIndex = req.params.lessonIndex;
+
+	const body = req.body;
+	const lesson = body.lesson;
+
+	await lessonModel.create(chapterIndex, lessonIndex, lesson);
+	res.status(200).json({ message: "Lesson saved!" });
 };

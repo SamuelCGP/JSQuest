@@ -1,8 +1,13 @@
-import { getAllFromCollection, getDocById } from "../firestore";
+import { db, getAllFromCollection, getDocById } from "../firestore";
 import { getAllFromChapter } from "./lessonModel";
 import { getById } from "./userModel";
 
 const chapterCollectionName = "chapters";
+
+export interface Chapter {
+	title: string;
+	description: string;
+}
 
 export interface UserCompletedLessons {
 	[x: string]: boolean[];
@@ -30,4 +35,11 @@ export const getAll = async (userId: string) => {
 
 export const getOne = async (chapterId: string) => {
 	return await getDocById(chapterCollectionName, chapterId);
+};
+
+export const create = async (chapterIndex: string, chapter: Chapter) => {
+	await db
+		.collection(`/${chapterCollectionName}`)
+		.doc(chapterIndex)
+		.set(chapter, { merge: true });
 };
