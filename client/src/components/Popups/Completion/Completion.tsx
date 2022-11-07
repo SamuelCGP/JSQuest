@@ -33,9 +33,16 @@ function Completion() {
 
 				nextLesson = nextLesson++;
 
-				if (nextLesson > 3) {
-					nextChapter = nextChapter++;
-					nextLesson = 0;
+				if (nextChapter !== 0) {
+					if (nextLesson > 3) {
+						nextChapter = nextChapter++;
+						nextLesson = 0;
+					}
+				} else {
+					if (nextLesson > 2) {
+						nextChapter = nextChapter++;
+						nextLesson = 0;
+					}
 				}
 
 				setNavigation(`/chapter/${nextChapter}/lesson/${nextLesson}`);
