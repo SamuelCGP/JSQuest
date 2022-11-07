@@ -9,10 +9,43 @@ import {
 	NextIcon,
 	ChapterLesson,
 } from "./Completion.styles";
-import { Params, useParams } from "react-router-dom";
+import { Params, useParams, Navigate } from "react-router-dom";
+import { useState } from "react";
+import { fireSignal } from "../../../game/signals";
 
 function Completion() {
 	const { c_index, l_index }: Readonly<Params<string>> = useParams();
+	const [navigation, setNavigation] = useState<string>();
+
+	const navigationHandler = (location: string) => {
+		switch (location) {
+			case "home":
+				setNavigation("/home");
+				break;
+			case "none":
+				fireSignal("completionPopupCall", {});
+				break;
+			case "next":
+				if (c_index === undefined || l_index === undefined) return;
+
+				let nextChapter = Number(c_index);
+				let nextLesson = Number(l_index);
+
+				nextLesson = nextLesson++;
+
+				if (nextLesson > 3) {
+					nextChapter = nextChapter++;
+					nextLesson = 0;
+				}
+
+				setNavigation(`/chapter/${nextChapter}/lesson/${nextLesson}`);
+				break;
+		}
+	};
+
+	//------------------------------------------------
+
+	if (navigation) return <Navigate to={navigation} />;
 
 	return (
 		<ModalCard bgColor={ColorPalette.white}>
@@ -21,13 +54,25 @@ function Completion() {
 			</ChapterLesson>
 			<Heading inverse>Você passou!</Heading>
 			<ButtonContainer>
-				<ActionButton>
+				<ActionButton
+					onClick={() => {
+						navigationHandler("home");
+					}}
+				>
 					<HomeIcon />
 				</ActionButton>
-				<ActionButton>
+				<ActionButton
+					onClick={() => {
+						navigationHandler("none");
+					}}
+				>
 					<AgainIcon />
 				</ActionButton>
-				<ActionButton>
+				<ActionButton
+					onClick={() => {
+						navigationHandler("next");
+					}}
+				>
 					<NextIcon />
 				</ActionButton>
 			</ButtonContainer>
