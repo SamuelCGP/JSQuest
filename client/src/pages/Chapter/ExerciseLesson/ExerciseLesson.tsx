@@ -24,6 +24,7 @@ import {
 	CodeSubmitButton,
 	CodeRefreshButton,
 	ErrorIndicator,
+	ErrorXButton,
 } from "../../../components/ExerciseLesson/CodeEditor/CodeEditor.styles";
 import { runCode } from "../../../game/runCode";
 import { LessonI } from "../../Home/getUserProgress";
@@ -39,7 +40,8 @@ function ExerciseLesson(props: ExerciseLessonProps) {
 	const [editorState, setEditorState] = useState("");
 	const [boardConfig, setBoardConfig] = useState<LessonBoardProps | null>();
 
-	const [exerciseInfo, setExerciseInfo] = useState<ExerciseInfoProps | null>();
+	const [exerciseInfo, setExerciseInfo] =
+		useState<ExerciseInfoProps | null>();
 	let lessonData = useRef();
 	let initialBoardConfigData: React.MutableRefObject<
 		LessonBoardProps | null | undefined
@@ -48,7 +50,9 @@ function ExerciseLesson(props: ExerciseLessonProps) {
 	useEffect(() => {
 		lessonData.current = props.lessonData;
 
-		initialBoardConfigData.current = getBoardConfigFromApi(lessonData.current);
+		initialBoardConfigData.current = getBoardConfigFromApi(
+			lessonData.current
+		);
 		setEditorState(getInitialEditorState(lessonData.current));
 		setBoardConfig(initialBoardConfigData.current);
 		setExerciseInfo(getExerciseInfoFromApi(lessonData.current));
@@ -78,19 +82,22 @@ function ExerciseLesson(props: ExerciseLessonProps) {
 						<ButtomContainer>
 							<ErrorIndicator id="error-indicator">
 								<span id="error-message"></span>
-								<button
-									onClick={(event) =>
-										(document.getElementById("error-indicator")!.style.display =
-											"none")
+								<ErrorXButton
+									onClick={(event: any) =>
+										(document.getElementById(
+											"error-indicator"
+										)!.style.display = "none")
 									}
 								>
-									X
-								</button>
+									✖
+								</ErrorXButton>
 							</ErrorIndicator>
 							<CodeSubmitButton
 								onClick={() => {
 									console.log(boardConfig);
-									setBoardConfig(initialBoardConfigData.current);
+									setBoardConfig(
+										initialBoardConfigData.current
+									);
 
 									runCode(c_index, l_index, editorState);
 								}}
@@ -99,8 +106,12 @@ function ExerciseLesson(props: ExerciseLessonProps) {
 							</CodeSubmitButton>
 							<CodeRefreshButton
 								onClick={() => {
-									setEditorState(refreshEditorState(lessonData.current!));
-									setBoardConfig(initialBoardConfigData.current);
+									setEditorState(
+										refreshEditorState(lessonData.current!)
+									);
+									setBoardConfig(
+										initialBoardConfigData.current
+									);
 									fireSignal("boardReset", {});
 								}}
 							>

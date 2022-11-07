@@ -12,7 +12,7 @@ export const getOne = async (req: Request, res: Response) => {
 	}
 	const lessonData = lesson.data();
 
-	console.log(lessonData!.board_config.elements);
+	//console.log(lessonData!.board_config.elements);
 
 	const solution = await lessonModel.getSolution(
 		chapterIndex,
@@ -63,5 +63,5 @@ export const complete = async (req: Request, res: Response) => {
 
 	await lessonModel.completeLesson(req.userId, chapterIndex, lessonIndex);
 
-	res.status(200).json({message: "Lesson completed!"});
-}
+	res.status(200).json({ message: "Lesson completed!" });
+};

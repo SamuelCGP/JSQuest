@@ -5,10 +5,23 @@ import CodeMirror from "@uiw/react-codemirror";
 export const ErrorIndicator = styled.div`
 	grid-column: 1 / 4;
 	padding: 10px;
-	background-color: red;
+	background-color: ${ColorPalette.secondary};
 	color: white;
 	display: none;
 	justify-content: space-between;
+	overflow-y: scroll;
+`;
+
+export const ErrorXButton = styled.button`
+	background: none;
+	outline: none;
+	border: none;
+	color: white;
+	cursor: pointer;
+	aspect-ratio: 1/1;
+	@media (min-width: 900px) {
+		font-size: 1rem;
+	}
 `;
 
 export const ButtomContainer = styled.div`
@@ -20,13 +33,17 @@ export const ButtomContainer = styled.div`
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
 	background-color: #272822;
+	gap: 0.5rem;
+	@media (min-width: 900px) {
+		gap: 1rem;
+	}
 `;
 
 export const CodeSubmitButton = styled.button`
 	display: flex;
 	grid-column: 5;
 	grid-row: 1;
-	width: 90%;
+	width: 100%;
 	align-self: center;
 	justify-self: center;
 	height: 2.5rem;
@@ -40,9 +57,6 @@ export const CodeSubmitButton = styled.button`
 	border-radius: 20px;
 	&:hover {
 		background-color: ${ColorPalette.yellowOrange + "8f"};
-	}
-	@media (min-width: 900px) {
-		width: 50%;
 	}
 `;
 
