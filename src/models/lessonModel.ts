@@ -1,5 +1,5 @@
 import { getDocById, db, save } from "../firestore";
-import { getRefById } from "./userModel";
+import { getRefById, updateById } from "./userModel";
 
 const lessonCollecName = "lessons";
 const solutionsSubcollecName = "solutions";
@@ -30,7 +30,7 @@ export interface Lesson {
 
 export const getAllFromChapter = async (
 	chapterIndex: number,
-	completedLessons: boolean[]
+	completedLessons: string[]
 ) => {
 	interface ChapterData {
 		id: string;
@@ -43,8 +43,10 @@ export const getAllFromChapter = async (
 		.get();
 	const lessons: ChapterData[] = [];
 
+	console.log(completedLessons);
+
 	snapshot.forEach(async (lesson) => {
-		const completed = completedLessons[parseInt(lesson.id)] ? true : false;
+		const completed = completedLessons.includes(`${chapterIndex}.${lesson.id}`);
 		const chapterData: ChapterData = {
 			id: lesson.id,
 			...lesson.data(),
@@ -52,7 +54,6 @@ export const getAllFromChapter = async (
 		};
 		lessons.push(chapterData);
 	});
-	console.log(lessons);
 	return lessons;
 };
 
@@ -111,4 +112,20 @@ export const create = async (
 		.collection(`/chapters/${chapterIndex}/${lessonCollecName}/`)
 		.doc(lessonIndex)
 		.set(lesson, { merge: true });
+};
+
+export const completeLesson = async (
+	userId: string,
+	chapterIndex: string,
+	lessonIndex: string
+) => {
+	const user = await getDocById("users", userId);
+
+	const userCompletedLessons: string[] = user.data()!.completed_lessons;
+
+	userCompletedLessons.push(`${chapterIndex}.${lessonIndex}`);
+
+	db.collection("users")
+		.doc(userId)
+		.set({ completed_lessons: userCompletedLessons }, { merge: true });
 };

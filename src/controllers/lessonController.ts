@@ -56,3 +56,12 @@ export const create = async (req: Request, res: Response) => {
 	await lessonModel.create(chapterIndex, lessonIndex, lesson);
 	res.status(200).json({ message: "Lesson saved!" });
 };
+
+export const complete = async (req: Request, res: Response) => {
+	const chapterIndex = req.params.chapterIndex;
+	const lessonIndex = req.params.lessonIndex;
+
+	await lessonModel.completeLesson(req.userId, chapterIndex, lessonIndex);
+
+	res.status(200).json({message: "Lesson completed!"});
+}

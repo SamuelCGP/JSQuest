@@ -63,6 +63,7 @@ export const getDocById = async function (
 	collectionName: string,
 	docId: string
 ): Promise<FirebaseFirestore.DocumentSnapshot<FirebaseFirestore.DocumentData>> {
+	console.log(docId);
 	return await db.collection(collectionName).doc(docId).get();
 };
 
