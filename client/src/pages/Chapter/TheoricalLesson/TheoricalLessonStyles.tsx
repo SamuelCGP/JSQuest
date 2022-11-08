@@ -23,7 +23,7 @@ export const MainCard = styled.div`
 	background-color: #e8e8f1;
 	display: flex;
 	justify-content: center;
-	overflow-y: scroll;
+	overflow-y: auto;
 `;
 
 export const ContentCard = styled.div`

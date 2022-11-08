@@ -12,6 +12,7 @@ export const GlobalStyle = createGlobalStyle`
     height: 100vh;
     font-family: calibri;
     overflow-x: hidden;
+    overflow-y: auto;
   }
   ::-webkit-scrollbar{
     width: .5rem;

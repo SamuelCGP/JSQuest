@@ -13,7 +13,7 @@ export const DialogContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	overflow-y: scroll;
+	overflow-y: auto;
 `;
 
 export const DialogArea = styled.div`

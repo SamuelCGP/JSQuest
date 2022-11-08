@@ -31,6 +31,10 @@ export const CollapseButton = styled.div`
 		right: ${(props: Collapsables) => (props.open ? "calc(32.5%)" : 0)};
 		top: 0;
 		user-select: none;
+		cursor: pointer;
+		&:hover {
+			background-color: ${ColorPalette.yellowOrange + "8f"};
+		}
 	}
 `;
 
@@ -87,7 +91,7 @@ export const LessonText = styled.div`
 	height: calc(100% - 4rem);
 	padding: 2rem;
 	transition: 0.2s;
-	overflow-y: scroll;
+	overflow-y: auto;
 	display: flex;
 	justify-content: center;
 	background-color: ${ColorPalette.blueWhite};

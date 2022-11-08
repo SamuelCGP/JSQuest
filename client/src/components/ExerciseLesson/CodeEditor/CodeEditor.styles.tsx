@@ -55,6 +55,7 @@ export const CodeSubmitButton = styled.button`
 	outline: none;
 	border: none;
 	border-radius: 20px;
+	cursor: pointer;
 	&:hover {
 		background-color: ${ColorPalette.yellowOrange + "8f"};
 	}
@@ -65,6 +66,7 @@ export const CodeRefreshButton = styled(CodeSubmitButton)`
 	grid-column: 4;
 	grid-row: 1;
 	color: white;
+	cursor: pointer;
 	&:hover {
 		background-color: ${ColorPalette.primary + "8f"};
 	}
