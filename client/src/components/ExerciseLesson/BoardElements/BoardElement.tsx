@@ -1,7 +1,18 @@
 import { useEffect, useState } from "react";
 import { BoardElementProps } from "./BoardElementProps";
 import { listenToSignal } from "../../../game/signals";
-import { RobotSymbol, BoxSymbol, MetalBoxSymbol, StarSymbol } from "./Symbols";
+import {
+	RobotSymbol,
+	BoxSymbol,
+	MetalBoxSymbol,
+	StarSymbol,
+	DialogContainer,
+	DialogArea,
+} from "./Symbols";
+import ReactMarkdown from "react-markdown";
+import gfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+import rehypeHighlight from "rehype-highlight";
 
 export function BoardElement(props: BoardElementProps) {
 	const [x, setX] = useState(props.positionX - 1);
@@ -11,6 +22,7 @@ export function BoardElement(props: BoardElementProps) {
 		left: 0,
 	});
 	const [isVisible, setIsVisible] = useState(true);
+	const [text, setText] = useState<Array<string>>([""]);
 
 	const cellWidthInPercentage = 100 / props.columnNumber;
 	const cellHeightInPercentage = 100 / props.rowNumber;
@@ -30,6 +42,14 @@ export function BoardElement(props: BoardElementProps) {
 			location.detail.originalCoords.y === props.positionY - 1
 		) {
 			setIsVisible(false);
+		}
+	});
+	listenToSignal(`${props.type}Dialog`, (data) => {
+		console.log(data.detail.dialog);
+		if (data.detail.dialog !== text) {
+			let newText = text;
+			newText = newText.concat(data.detail.dialog);
+			setText(newText);
 		}
 	});
 	listenToSignal(`boardReset`, (location) => {
@@ -63,6 +83,7 @@ export function BoardElement(props: BoardElementProps) {
 	const reset = () => {
 		setIsVisible(true);
 		moveTo(props.positionX - 1, props.positionY - 1);
+		setText([""]);
 	};
 
 	//---------
@@ -108,6 +129,29 @@ export function BoardElement(props: BoardElementProps) {
 					columnNumber={props.columnNumber}
 					rowNumber={props.rowNumber}
 				/>
+			);
+		case "dialog":
+			return (
+				<DialogContainer
+					positionX={relativeCoordinates.left}
+					positionY={relativeCoordinates.top}
+					columnNumber={props.columnNumber}
+					rowNumber={props.rowNumber}
+				>
+					<DialogArea>
+						{text ? (
+							text.map((p: string) => (
+								<ReactMarkdown
+									children={p}
+									remarkPlugins={[gfm]}
+									rehypePlugins={[rehypeRaw, rehypeHighlight]}
+								/>
+							))
+						) : (
+							<></>
+						)}
+					</DialogArea>
+				</DialogContainer>
 			);
 		default:
 			return (

@@ -11,7 +11,6 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${ColorPalette.primary};
     height: 100vh;
     font-family: calibri;
-    overflow-y: scroll;
     overflow-x: hidden;
   }
   ::-webkit-scrollbar{

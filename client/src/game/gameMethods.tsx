@@ -40,6 +40,13 @@ export const gameMethods: GameMethods = {
 		}
 	},
 
+	dialog: function (dialog: string) {
+		const splitedDialog = dialog.split("\\");
+		signals.fireSignal("dialogDialog", {
+			dialog: splitedDialog,
+		});
+	},
+
 	randomId: () => {
 		let s4 = () => {
 			return Math.floor((1 + Math.random()) * 0x10000)
