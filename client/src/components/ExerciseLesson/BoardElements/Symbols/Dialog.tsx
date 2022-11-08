@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { BoardElementProps } from "../BoardElementProps";
-import ColorPalette from "../../../../utils/ColorPalette";
 
 export const DialogContainer = styled.div`
 	position: absolute;
