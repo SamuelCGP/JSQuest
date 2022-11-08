@@ -29,10 +29,10 @@ export function Navbar() {
 					</NavItem>
 					<HorizontalLine />
 					<NavItem>
-						<NavLink to={"/home"}>
+						<NavButton>
 							<MaterialsIcon />
 							<LinkText>Materiais</LinkText>
-						</NavLink>
+						</NavButton>
 					</NavItem>
 					<HorizontalLine dInvisible />
 					<LastItem

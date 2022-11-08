@@ -1,23 +1,27 @@
-import { useRef, useEffect, useState } from "react";
 import { MainContainer, MainCard, ContentCard } from "./TheoricalLessonStyles";
 import ReactMarkdown from "react-markdown";
+import gfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+import rehypeHighlight from "rehype-highlight";
 
 interface TheoricalLessonProps {
 	lessonData: any;
 }
 
 function TheoricalLesson(props: TheoricalLessonProps) {
-	const [content, setContent] = useState("");
-
-	useEffect(() => {
-		setContent(props.lessonData.lesson.text);
-	}, []);
+	const text = props.lessonData.lesson.text.split("\\");
 
 	return (
 		<MainContainer>
 			<MainCard>
 				<ContentCard>
-					<ReactMarkdown children={content} />
+					{text.map((p: string) => (
+						<ReactMarkdown
+							children={p}
+							remarkPlugins={[gfm]}
+							rehypePlugins={[rehypeRaw, rehypeHighlight]}
+						/>
+					))}
 				</ContentCard>
 			</MainCard>
 		</MainContainer>

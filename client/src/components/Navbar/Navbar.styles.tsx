@@ -118,6 +118,9 @@ export const LinkText = styled(Tooltip)`
 		${NavLink}:hover & {
 			display: block;
 		}
+		${NavButton}:hover & {
+			display: block;
+		}
 	}
 `;
 
