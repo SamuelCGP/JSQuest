@@ -5,7 +5,13 @@ import {
 	LessonTitle,
 	LessonText,
 	MainPopup,
+	LessonTextArea,
 } from "./ExerciseInfo.styles";
+
+import ReactMarkdown from "react-markdown";
+import gfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+import rehypeHighlight from "rehype-highlight";
 
 export interface ExerciseInfoProps {
 	title: string;
@@ -28,12 +34,25 @@ export function ExerciseInfo(props: ExerciseInfoProps) {
 			setVisible(!isVisible);
 		}, 10);
 	}
+
+	const text = props.text.split("\\");
+
 	return (
 		<>
 			<MainContainer display={+hasDisplay} open={+isVisible}>
 				<MainPopup display={+hasDisplay} open={+isVisible}>
-					<LessonTitle open={+isVisible}>{props.title}</LessonTitle>
-					<LessonText open={+isVisible}>{props.text}</LessonText>
+					<LessonTitle>{props.title}</LessonTitle>
+					<LessonText>
+						<LessonTextArea>
+							{text.map((p: string) => (
+								<ReactMarkdown
+									children={p}
+									remarkPlugins={[gfm]}
+									rehypePlugins={[rehypeRaw, rehypeHighlight]}
+								/>
+							))}
+						</LessonTextArea>
+					</LessonText>
 				</MainPopup>
 			</MainContainer>
 			<CollapseButton open={+isVisible} onClick={handleCollapse}>

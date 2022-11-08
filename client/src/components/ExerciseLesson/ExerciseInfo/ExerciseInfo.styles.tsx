@@ -53,7 +53,7 @@ export const MainContainer = styled.div`
 export const MainPopup = styled.div`
 	display: flex;
 	right: 0;
-	width: 100%;
+	width: 100vw;
 	height: calc((100vh - 3.5rem));
 	background-color: ${ColorPalette.primaryDark};
 	transition: 0.2s
@@ -80,16 +80,24 @@ export const LessonTitle = styled.div`
 	align-items: center;
 	justify-content: center;
 	transition: 0.2s;
-	opacity: ${(props: Collapsables) => (props.open ? "100%" : "0")};
 `;
 
 export const LessonText = styled.div`
 	width: 100%;
 	height: calc(100% - 4rem);
-	font-size: 1rem;
-	color: ${ColorPalette.white};
 	padding: 2rem;
 	transition: 0.2s;
-	opacity: ${(props: Collapsables) => (props.open ? "100%" : "0")};
 	overflow-y: scroll;
+	display: flex;
+	justify-content: center;
+	background-color: ${ColorPalette.blueWhite};
+`;
+
+export const LessonTextArea = styled.div`
+	width: 100%;
+	height: fit-content;
+	text-align: justify;
+	color: ${ColorPalette.black};
+	font-size: 1.5rem;
+	font-weight: lighter;
 `;
