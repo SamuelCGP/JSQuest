@@ -1,5 +1,6 @@
 import { verifySolution } from "../api/solution";
 import { gameMethods } from "./gameMethods";
+import { finishGame } from "./finishGame";
 
 export interface Command {
 	[key: string]: any[];
@@ -39,6 +40,8 @@ const handleSolutionSuccess = (res: any) => {
 	const commands: Command[] = res.data.codeToExec!;
 	const interval = 500;
 
+	let awaitTime = 0;
+
 	commands.forEach((command, index) => {
 		setTimeout(function () {
 			const commandName: string = Object.keys(command)[0];
@@ -46,5 +49,11 @@ const handleSolutionSuccess = (res: any) => {
 
 			gameMethods[commandName](...args);
 		}, index * interval);
+
+		awaitTime = index * interval + 1000;
 	});
+
+	setTimeout(function () {
+		finishGame();
+	}, awaitTime);
 };

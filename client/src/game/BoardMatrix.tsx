@@ -8,6 +8,7 @@ export class BoardMatrix {
 	robot: Element = new Element("robot", 0, 0);
 	matrix: any;
 	previousMoveId: string;
+	hasStar: boolean = false;
 
 	constructor(
 		collumnNumber: number,
@@ -41,6 +42,9 @@ export class BoardMatrix {
 						);
 						if (element.element === "robot") {
 							this.robot = bidimensional[y][x];
+						}
+						if (element.element === "star") {
+							this.hasStar = true;
 						}
 					}
 				});

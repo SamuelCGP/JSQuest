@@ -31,28 +31,36 @@ function Completion() {
 				let nextChapter = Number(c_index);
 				let nextLesson = Number(l_index);
 
-				nextLesson = nextLesson++;
+				nextLesson = nextLesson + 1;
 
 				if (nextChapter !== 0) {
 					if (nextLesson > 3) {
-						nextChapter = nextChapter++;
+						nextChapter = nextChapter + 1;
 						nextLesson = 0;
 					}
 				} else {
 					if (nextLesson > 2) {
-						nextChapter = nextChapter++;
+						nextChapter = nextChapter + 1;
 						nextLesson = 0;
 					}
 				}
 
-				setNavigation(`/chapter/${nextChapter}/lesson/${nextLesson}`);
+				console.log(`/chapter/${nextChapter}/lesson/${nextLesson}`);
+				setNavigation(
+					`${window.location.protocol}//${window.location.host}/chapter/${nextChapter}/lesson/${nextLesson}`
+				);
 				break;
 		}
 	};
 
 	//------------------------------------------------
 
-	if (navigation) return <Navigate to={navigation} />;
+	if (navigation) {
+		const path = navigation;
+		// <Navigate to={path}/> doesn't work well here, because the states must be reloaded
+		window.location.href = path;
+		return <></>;
+	}
 
 	return (
 		<ModalCard bgColor={ColorPalette.white}>

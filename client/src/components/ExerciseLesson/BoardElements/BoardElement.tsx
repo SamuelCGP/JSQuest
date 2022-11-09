@@ -45,7 +45,6 @@ export function BoardElement(props: BoardElementProps) {
 		}
 	});
 	listenToSignal(`${props.type}Dialog`, (data) => {
-		console.log(data.detail.dialog);
 		if (data.detail.dialog !== text) {
 			let newText = text;
 			newText = newText.concat(data.detail.dialog);

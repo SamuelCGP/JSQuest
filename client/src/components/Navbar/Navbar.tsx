@@ -18,7 +18,7 @@ import { fireSignal } from "../../game/signals";
 export function Navbar() {
 	return (
 		<>
-			<Popup type={"config"}></Popup>
+			<Popup type={"config"} />
 			<NavContainer>
 				<NavNav>
 					<NavItem>

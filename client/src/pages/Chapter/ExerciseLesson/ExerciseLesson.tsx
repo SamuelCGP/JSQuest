@@ -15,6 +15,7 @@ import {
 	ExerciseInfo,
 	ExerciseInfoProps,
 	LessonBoard,
+	Popup,
 } from "../../../components";
 import { getInitialEditorState } from "./getInitialEditorState";
 import { getBoardConfigFromApi } from "./getBoardConfigFromApi";
@@ -66,65 +67,70 @@ function ExerciseLesson(props: ExerciseLessonProps) {
 
 	if (boardConfig !== null && boardConfig !== undefined && exerciseInfo)
 		return (
-			<MainContainer>
-				<SplitContainer direction="vertical" minSize={[300, 100]}>
-					<Container1>
-						<LessonBoard config={boardConfig}></LessonBoard>
-					</Container1>
-					<Container2>
-						<CodeEditor
-							value={editorState}
-							setEditorState={setEditorState}
-							saveCode={saveCode}
-							c_index={c_index}
-							l_index={l_index}
-						/>
-						<ButtomContainer>
-							<ErrorIndicator id="error-indicator">
-								<span id="error-message"></span>
-								<ErrorXButton
-									onClick={(event: any) =>
-										(document.getElementById(
-											"error-indicator"
-										)!.style.display = "none")
-									}
-								>
-									✖
-								</ErrorXButton>
-							</ErrorIndicator>
-							<CodeSubmitButton
-								onClick={() => {
-									console.log(boardConfig);
-									setBoardConfig(
-										initialBoardConfigData.current
-									);
+			<>
+				<Popup type={"completion"} />
+				<MainContainer>
+					<SplitContainer direction="vertical" minSize={[300, 100]}>
+						<Container1>
+							<LessonBoard config={boardConfig}></LessonBoard>
+						</Container1>
+						<Container2>
+							<CodeEditor
+								value={editorState}
+								setEditorState={setEditorState}
+								saveCode={saveCode}
+								c_index={c_index}
+								l_index={l_index}
+							/>
+							<ButtomContainer>
+								<ErrorIndicator id="error-indicator">
+									<span id="error-message"></span>
+									<ErrorXButton
+										onClick={(event: any) =>
+											(document.getElementById(
+												"error-indicator"
+											)!.style.display = "none")
+										}
+									>
+										✖
+									</ErrorXButton>
+								</ErrorIndicator>
+								<CodeSubmitButton
+									onClick={() => {
+										console.log(boardConfig);
+										setBoardConfig(
+											initialBoardConfigData.current
+										);
 
-									runCode(c_index, l_index, editorState);
-								}}
-							>
-								Enviar
-							</CodeSubmitButton>
-							<CodeRefreshButton
-								onClick={() => {
-									setEditorState(
-										refreshEditorState(lessonData.current!)
-									);
-									setBoardConfig(
-										initialBoardConfigData.current
-									);
-									fireSignal("boardReset", {});
-								}}
-							>
-								Recomeçar
-							</CodeRefreshButton>
-						</ButtomContainer>
-					</Container2>
-				</SplitContainer>
-				<ExerciseInfo
-					title={exerciseInfo.title}
-					text={exerciseInfo.text}
-				></ExerciseInfo>
-			</MainContainer>
+										runCode(c_index, l_index, editorState);
+									}}
+								>
+									Enviar
+								</CodeSubmitButton>
+								<CodeRefreshButton
+									onClick={() => {
+										setEditorState(
+											refreshEditorState(
+												lessonData.current!
+											)
+										);
+										setBoardConfig(
+											initialBoardConfigData.current
+										);
+										fireSignal("boardReset", {});
+									}}
+								>
+									Recomeçar
+								</CodeRefreshButton>
+							</ButtomContainer>
+						</Container2>
+					</SplitContainer>
+					<ExerciseInfo
+						title={exerciseInfo.title}
+						text={exerciseInfo.text}
+					></ExerciseInfo>
+				</MainContainer>
+			</>
 		);
 
 	if (boardConfig === null) return <Navigate to="/home" replace />;

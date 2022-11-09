@@ -27,6 +27,7 @@ export function LessonBoard(props: { config: LessonBoardProps }) {
 	const [boardMatrix, setBoardMatrix] = useState<BoardMatrix>(
 		new BoardMatrix(columns, rows, elements)
 	);
+	let hasStar = boardMatrix.hasStar;
 
 	signals.listenToSignal("robotReqMovement", (movement) => {
 		boardMatrix.attemptMovement(
@@ -38,6 +39,16 @@ export function LessonBoard(props: { config: LessonBoardProps }) {
 
 	signals.listenToSignal("boardReset", () => {
 		setBoardMatrix(new BoardMatrix(columns, rows, elements));
+	});
+
+	signals.listenToSignal("starDestruction", () => {
+		hasStar = false;
+	});
+
+	signals.listenToSignal("reqFinishGame", () => {
+		if (!hasStar) {
+			signals.fireSignal("completionPopupCall", {});
+		}
 	});
 
 	return (
