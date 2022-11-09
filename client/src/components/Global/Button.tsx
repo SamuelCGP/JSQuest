@@ -27,6 +27,35 @@ export const Button = styled.button`
 		background-color: ${ColorPalette.primaryDark + "30"};
 		cursor: pointer;
 	}
+
+	&.loading:after {
+		content: "";
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		left: 50%;
+		transform: translateY(-50%) translateX(50%);
+		border: 4px solid transparent;
+		border-top-color: #ffffff;
+		border-radius: 50%;
+		animation: btn-loading-spinner 1s ease infinite;
+	}
+	  
+	@keyframes btn-loading-spinner {
+		from {
+			transform: rotate(0turn);
+		}
+	  
+		to {
+		  transform: rotate(1turn);
+		}
+	}
+
+	&.loading .btn-text {
+		visibility: hidden;
+		opacity: 0;
+	}
+
 	${(props: ButtonProps) =>
 		props.primary &&
 		css`

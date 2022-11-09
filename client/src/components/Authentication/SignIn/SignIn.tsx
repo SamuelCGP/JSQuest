@@ -32,12 +32,13 @@ export function SignIn(props: SignInProps) {
 			<Formik
 				initialValues={{ email: "", password: "" }}
 				validationSchema={SignInSchema}
-				onSubmit={(values, { setSubmitting }) => {
-					props.onSubmit(values);
+				onSubmit={async (values, { setSubmitting }) => {
+					await props.onSubmit(values);
 					setSubmitting(false);
 				}}
 			>
 				{({ isSubmitting }) => (
+
 					<SignInForm onChange={handleChanges}>
 						<Heading inverse mb={"10px"}>
 							Login
@@ -58,13 +59,14 @@ export function SignIn(props: SignInProps) {
 							<FormMessage>{props.message}</FormMessage>
 							<Button
 								type="submit"
+								className={isSubmitting ? "loading" : ""}
 								disabled={isSubmitting}
 								primary
 								padding={"20px"}
 								fontSize={"1em"}
 								mb={"10px"}
 							>
-								{isSubmitting ? "Aguarde..." : "Entrar"}
+								<span className="btn-text">Entrar</span>
 							</Button>
 							<ForgotPassword
 								onClick={() => {

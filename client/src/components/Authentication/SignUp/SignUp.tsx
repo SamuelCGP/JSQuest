@@ -37,10 +37,11 @@ export function SignUp(props: SignUpProps) {
 					confirm_password: "",
 				}}
 				validationSchema={SignUpSchema}
-				onSubmit={(values, { setSubmitting }) => {
-					props.onSubmit(values);
+				onSubmit={async (values, { setSubmitting }) => {
+					await props.onSubmit(values);
 					setSubmitting(false);
 				}}
+
 			>
 				{({ isSubmitting }) => (
 					<SignUpForm>
@@ -80,13 +81,14 @@ export function SignUp(props: SignUpProps) {
 						<FormMessage>{props.message}</FormMessage>
 						<Button
 							type="submit"
+							className={isSubmitting ? "loading" : ""}
 							disabled={isSubmitting}
 							primary
 							padding={"20px"}
 							fontSize={"1em"}
 							mb={"10px"}
 						>
-							{isSubmitting ? "Aguarde..." : "Registrar"}
+							<span className="btn-text">Registrar</span>
 						</Button>
 						<SignInCall>Já possui uma conta?</SignInCall>
 						<SignInCall

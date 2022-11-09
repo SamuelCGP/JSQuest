@@ -35,10 +35,11 @@ function Authentication() {
 				<AuthCard isSigned={isSigned}>
 					<SignIn
 						onSubmit={async (input: Object) => {
-							const message = await handleLoginSubmit(input);
-							setSignInMessage(message);
-							if (message === "Acesso permitido")
-								setRedirect("/home");
+							return handleLoginSubmit(input).then(message => {
+								setSignInMessage(message);
+								if (message === "Acesso permitido")
+									setRedirect("/home");
+							});
 						}}
 						onForgotPassword={async (email: string) => {
 							const message = await handleForgotPassword(email);
@@ -54,7 +55,9 @@ function Authentication() {
 					/>
 					<SignUp
 						onSubmit={async (input: Object) => {
-							setSignUpMessage(await handleRegisterSubmit(input));
+							return handleRegisterSubmit(input).then(message => {
+								setSignUpMessage(message);
+							})
 						}}
 						message={signUpMessage}
 						isVisible={!isSigned}
