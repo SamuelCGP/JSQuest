@@ -23,37 +23,38 @@ export const Button = styled.button`
 	margin-top: ${(props: ButtonProps) => (props.mt ? props.mt : "")};
 	margin-bottom: ${(props: ButtonProps) => (props.mb ? props.mb : "")};
 	font-weight: bold;
+	cursor: pointer;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
 	&:hover {
 		background-color: ${ColorPalette.primaryDark + "30"};
-		cursor: pointer;
 	}
 
 	&.loading:after {
 		content: "";
-		position: absolute;
-		width: 16px;
-		height: 16px;
-		left: 50%;
-		transform: translateY(-50%) translateX(50%);
+		width: 1rem;
+		height: 1rem;
 		border: 4px solid transparent;
 		border-top-color: #ffffff;
 		border-radius: 50%;
 		animation: btn-loading-spinner 1s ease infinite;
 	}
-	  
+
 	@keyframes btn-loading-spinner {
 		from {
 			transform: rotate(0turn);
 		}
-	  
+
 		to {
-		  transform: rotate(1turn);
+			transform: rotate(1turn);
 		}
 	}
 
 	&.loading .btn-text {
-		visibility: hidden;
-		opacity: 0;
+		display: none;
 	}
 
 	${(props: ButtonProps) =>
@@ -62,10 +63,10 @@ export const Button = styled.button`
 			background-color: ${ColorPalette.primary};
 			border-bottom: 4px solid ${ColorPalette.primaryDark + "80"};
 			color: ${ColorPalette.white};
+			cursor: pointer;
 			&:hover {
 				filter: brightness(1.1);
 				background-color: ${ColorPalette.primary};
-				cursor: pointer;
 			}
 		`};
 `;
