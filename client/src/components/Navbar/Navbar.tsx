@@ -9,7 +9,6 @@ import {
 	MaterialsIcon,
 	ConfigIcon,
 	HorizontalLine,
-	ProfileIcon,
 	NavButton,
 } from "./Navbar.styles";
 import { Popup } from "../Popups";

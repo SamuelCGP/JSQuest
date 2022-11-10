@@ -1,6 +1,6 @@
 import ColorPalette from "../../../utils/ColorPalette";
 import { Heading } from "../../Global";
-import { ModalCard, ModalText } from "../Popup.styles";
+import { ModalCard } from "../Popup.styles";
 import {
 	ButtonContainer,
 	ActionButton,

@@ -23,7 +23,7 @@ export function ExerciseInfo(props: ExerciseInfoProps) {
 	const [hasDisplay, setDisplay] = useState(true);
 
 	function handleCollapse() {
-		if (hasDisplay == true) {
+		if (hasDisplay === true) {
 			setTimeout(function () {
 				setDisplay(!hasDisplay);
 			}, 200);

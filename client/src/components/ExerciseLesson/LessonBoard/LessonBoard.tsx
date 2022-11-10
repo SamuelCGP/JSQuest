@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Board, Cell } from "./LessonBoard.styles";
 import getBoardElementFromObject from "../BoardElements/GetBoardElementFromObject";
 import { BoardMatrix } from "../../../game/BoardMatrix";

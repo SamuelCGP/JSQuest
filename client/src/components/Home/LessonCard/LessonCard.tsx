@@ -13,7 +13,11 @@ export function LessonCard(props: LessonCardProps) {
 		<LessonCardWrapper onClick={props.onClick}>
 			<LessonIcon>
 				<LessonCircle value={props.completed ? 1 : 0} maxValue={1} />
-				<img src={props.icon} className="lessonImg"></img>
+				<img
+					src={props.icon}
+					className="lessonImg"
+					alt={props.title}
+				></img>
 			</LessonIcon>
 			<LessonName>{props.title}</LessonName>
 		</LessonCardWrapper>

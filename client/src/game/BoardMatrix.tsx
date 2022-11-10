@@ -119,7 +119,7 @@ export class BoardMatrix {
 						box.x >= 0 &&
 						box.y < this.y &&
 						box.y >= 0 &&
-						this.matrix[box.y][box.x] == undefined
+						this.matrix[box.y][box.x] === undefined
 					) {
 						//box will not colide, movement is possible
 						this.matrix[box.y][box.x] = box;

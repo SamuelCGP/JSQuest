@@ -1,5 +1,5 @@
-import { Params, useParams, Navigate } from "react-router-dom";
-import { get, save } from "../../api/lesson";
+import { Params, useParams } from "react-router-dom";
+import { get } from "../../api/lesson";
 import { useEffect, useState } from "react";
 import { MainHeading } from "../../components";
 import ExerciseLesson from "./ExerciseLesson/ExerciseLesson";
