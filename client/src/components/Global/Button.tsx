@@ -33,6 +33,10 @@ export const Button = styled.button`
 		background-color: ${ColorPalette.primaryDark + "30"};
 	}
 
+	&.loading {
+		cursor: not-allowed;
+	}
+
 	&.loading:after {
 		content: "";
 		width: 1rem;
