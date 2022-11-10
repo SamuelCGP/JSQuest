@@ -3,7 +3,7 @@ import { BoardElementProps } from "../BoardElementProps";
 
 export const DialogContainer = styled.div`
 	position: absolute;
-	background-color: #2c2631;
+	background-color: #262931;
 	width: calc(100% / ${(props: BoardElementProps) => props.columnNumber});
 	height: calc(100% / ${(props: BoardElementProps) => props.rowNumber});
 	left: ${(props: BoardElementProps) => props.positionX}%;
@@ -21,5 +21,5 @@ export const DialogArea = styled.div`
 	height: fit-content;
 	font-size: 1.5rem;
 	text-align: justify;
-	color: #af61ee;
+	color: #6163ee;
 `;

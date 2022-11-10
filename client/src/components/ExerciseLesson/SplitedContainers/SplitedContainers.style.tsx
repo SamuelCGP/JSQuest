@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import ColorPalette from "../../../utils/ColorPalette";
 import Split from "react-split";
 
 export const SplitContainer = styled(Split)`
@@ -14,22 +13,14 @@ export const SplitContainer = styled(Split)`
 `;
 
 export const Container1 = styled.div`
-	background: radial-gradient(
-		circle,
-		${ColorPalette.secondary} 5%,
-		${ColorPalette.secondaryDark} 100%
-	);
+	background-color: #1f4881;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 `;
 
 export const Container2 = styled.div`
-	background: radial-gradient(
-		circle,
-		${ColorPalette.secondary} 5%,
-		${ColorPalette.secondaryDark} 100%
-	);
+	background-color: #1f4881;
 	display: flex;
 	position: relative;
 	flex-direction: column;

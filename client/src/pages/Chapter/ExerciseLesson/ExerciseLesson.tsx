@@ -137,7 +137,7 @@ function ExerciseLesson(props: ExerciseLessonProps) {
 
 	return (
 		<MainContainer>
-			<MainHeading>Processando</MainHeading>;
+			<MainHeading>Processando...</MainHeading>;
 		</MainContainer>
 	);
 }
