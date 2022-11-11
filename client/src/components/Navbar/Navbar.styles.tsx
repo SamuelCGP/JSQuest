@@ -124,6 +124,82 @@ export const LinkText = styled(Tooltip)`
 	}
 `;
 
+// Material Menu
+
+export const MaterialMenu = styled.div`
+	position: fixed;
+	z-index: 2;
+	background-color: hsl(240, 7%, 10%);
+	backdrop-filter: blur(2px);
+	@media (min-width: 900px) {
+		width: 20rem;
+		height: 100%;
+		left: 0;
+	}
+`;
+
+export const MaterialLink = styled(Link)`
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	display: flex;
+	text-decoration: none;
+`;
+
+export const MaterialSectionTitle = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: verdana;
+	color: hsl(240, 7%, 60%);
+	font-weight: bold;
+	@media (min-width: 900px) {
+		width: calc(100% - 10px - 4rem);
+		margin-left: calc(4rem + 5px);
+		margin-top: 5px;
+		margin-bottom: 5px;
+		height: 4rem;
+		font-size: 2rem;
+	}
+`;
+
+export const MaterialCard = styled.div`
+	border: 2px solid hsl(240, 7%, 25%);
+	@media (min-width: 900px) {
+		width: calc(100% - 10px - 4rem);
+		margin-left: calc(4rem + 5px);
+		margin-top: 5px;
+		margin-bottom: 5px;
+		height: 4rem;
+	}
+`;
+
+export const MaterialIcon = styled.div`
+	background: url(${(props: { image?: string }) => props.image});
+	background-color: ${ColorPalette.primary};
+	border-radius: 100%;
+	@media (min-width: 900px) {
+		height: calc(4rem - 5px);
+		aspect-ratio: 1/1;
+	}
+`;
+
+export const MaterialTitle = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: hsl(240, 7%, 60%);
+	font-size: 1.2rem;
+	font-family: Verdana;
+	font-weight: bold;
+	@media (min-width: 900px) {
+		width: calc(100% - 4rem);
+		height: calc(4rem - 5px);
+	}
+`;
+
+// ICONS
+
 export const HomeIcon = styled(JSQuestLogo)`
 	width: 2.5rem;
 	height: 2.5rem;
