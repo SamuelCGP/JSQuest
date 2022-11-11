@@ -11,6 +11,7 @@ import gfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
 import { finishGame } from "../../../game/finishGame";
+import { listenToSignal, fireSignal } from "../../../game/signals";
 
 interface TheoricalLessonProps {
 	lessonData: any;
@@ -18,6 +19,10 @@ interface TheoricalLessonProps {
 
 function TheoricalLesson(props: TheoricalLessonProps) {
 	const text = props.lessonData.lesson.text.split("\\");
+
+	listenToSignal("reqFinishGame", () => {
+		fireSignal("completionPopupCall", {});
+	});
 
 	return (
 		<>
