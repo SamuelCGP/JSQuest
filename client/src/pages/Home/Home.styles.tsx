@@ -89,6 +89,7 @@ export const LessonGroup = styled.div`
 		justify-content: ${(props: LessonGroupProps) =>
 			props.center ? "center" : "space-between"};
 		align-items: center;
+		flex-wrap: wrap;
 	}
 `;
 

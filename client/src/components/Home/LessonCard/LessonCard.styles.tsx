@@ -9,6 +9,7 @@ export const LessonCardWrapper = styled.div`
 	margin: 5px;
 	border-radius: 1.1rem;
 	cursor: pointer;
+	flex: 1;
 	@media (min-width: 900px) {
 		flex-direction: row;
 		padding-top: 8px;

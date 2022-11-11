@@ -15,8 +15,8 @@ import getUserProgress, { ChapterI, UserProgressI } from "./getUserProgress";
 import { LessonCard } from "../../components";
 import Logout from "../../utils/Logout";
 import { useNavigate } from "react-router-dom";
-import { LessonI } from './getUserProgress';
-import * as enviroment from '../../api/config/enviroment';
+import { LessonI } from "./getUserProgress";
+import * as enviroment from "../../api/config/enviroment";
 
 function Home() {
 	const navigate = useNavigate();
@@ -42,12 +42,13 @@ function Home() {
 
 				{data.chapters.map((chapter, chapterIndex) => (
 					<ChapterContainer>
-						
 						<ChapterIcon>
 							<ProgressCircle
 								value={chapter.data.lessons.reduce(
 									(total: number, currentValue: LessonI) =>
-										currentValue.completed ? total + 1 : total,
+										currentValue.completed
+											? total + 1
+											: total,
 									0
 								)}
 								maxValue={chapter.data.lessons.length}
@@ -55,14 +56,16 @@ function Home() {
 							<HiVariable className="chapterSvg" />
 						</ChapterIcon>
 						<ChapterName>{chapter.data.title}</ChapterName>
-						<LessonGroup>
+						<LessonGroup center={true}>
 							{chapter.data.lessons.map((lesson, lessonIndex) => (
 								<LessonCard
 									title={lesson.title}
 									icon={`${enviroment.SERVER_URL}/images/chapter/${chapterIndex}/${lessonIndex}.png`}
 									completed={lesson.completed}
 									onClick={() => {
-										navigate(`/chapter/${chapterIndex}/lesson/${lessonIndex}`);
+										navigate(
+											`/chapter/${chapterIndex}/lesson/${lessonIndex}`
+										);
 									}}
 								></LessonCard>
 							))}
