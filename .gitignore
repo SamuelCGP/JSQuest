@@ -2,3 +2,4 @@ node_modules/
 src/config/.env
 serviceAccountKey.json
 dist/
+app.yaml

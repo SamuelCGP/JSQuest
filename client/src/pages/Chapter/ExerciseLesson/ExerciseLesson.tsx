@@ -40,9 +40,9 @@ function ExerciseLesson(props: ExerciseLessonProps) {
 	const { c_index, l_index }: Readonly<Params<string>> = useParams();
 	const [editorState, setEditorState] = useState("");
 	const [boardConfig, setBoardConfig] = useState<LessonBoardProps | null>();
+	const [isSubmitting, setSubmitting] = useState(false);
 
-	const [exerciseInfo, setExerciseInfo] =
-		useState<ExerciseInfoProps | null>();
+	const [exerciseInfo, setExerciseInfo] = useState<ExerciseInfoProps | null>();
 	let lessonData = useRef();
 	let initialBoardConfigData: React.MutableRefObject<
 		LessonBoardProps | null | undefined
@@ -51,9 +51,7 @@ function ExerciseLesson(props: ExerciseLessonProps) {
 	useEffect(() => {
 		lessonData.current = props.lessonData;
 
-		initialBoardConfigData.current = getBoardConfigFromApi(
-			lessonData.current
-		);
+		initialBoardConfigData.current = getBoardConfigFromApi(lessonData.current);
 		setEditorState(getInitialEditorState(lessonData.current));
 		setBoardConfig(initialBoardConfigData.current);
 		setExerciseInfo(getExerciseInfoFromApi(lessonData.current));
@@ -96,27 +94,25 @@ function ExerciseLesson(props: ExerciseLessonProps) {
 									</ErrorXButton>
 								</ErrorIndicator>
 								<CodeSubmitButton
+									className={isSubmitting ? "loading" : ""}
+									disabled={isSubmitting}
 									onClick={() => {
-										console.log(boardConfig);
-										setBoardConfig(
-											initialBoardConfigData.current
-										);
-
-										runCode(c_index, l_index, editorState);
+										setSubmitting(true);
+										
+										setBoardConfig(initialBoardConfigData.current);
+										
+										runCode(c_index, l_index, editorState).then(res => {
+											console.log(res)
+											setSubmitting(false);
+										});
 									}}
 								>
-									Enviar
+									<span className="btn-text">Enviar</span>
 								</CodeSubmitButton>
 								<CodeRefreshButton
 									onClick={() => {
-										setEditorState(
-											refreshEditorState(
-												lessonData.current!
-											)
-										);
-										setBoardConfig(
-											initialBoardConfigData.current
-										);
+										setEditorState(refreshEditorState(lessonData.current!));
+										setBoardConfig(initialBoardConfigData.current);
 										fireSignal("boardReset", {});
 									}}
 								>

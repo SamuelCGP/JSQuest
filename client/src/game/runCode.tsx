@@ -6,25 +6,24 @@ export interface Command {
 	[key: string]: any[];
 }
 
-export const runCode = (
+export const runCode = async (
 	chapterIndex: number | any,
 	lessonIndex: number | any,
 	code: any
 ) => {
-	verifySolution(chapterIndex, lessonIndex, code).then((res) => {
-		switch (res.status) {
-			case 200:
-				gameMethods.reset();
-				setTimeout(() => {
-					handleSolutionSuccess(res);
-				}, 500);
-				break;
-			default:
-				handleSolutionFailure(res);
-				break;
-		}
-		return res;
-	});
+	const res = await verifySolution(chapterIndex, lessonIndex, code);
+	switch (res.status) {
+		case 200:
+			gameMethods.reset();
+			setTimeout(() => {
+				handleSolutionSuccess(res);
+			}, 200);
+			break;
+		default:
+			handleSolutionFailure(res);
+			break;
+	}
+	return res;
 };
 
 const handleSolutionFailure = (res: any) => {

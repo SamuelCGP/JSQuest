@@ -59,6 +59,38 @@ export const CodeSubmitButton = styled.button`
 	&:hover {
 		background-color: ${ColorPalette.yellowOrange + "8f"};
 	}
+
+	&:active {
+		background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
+	}
+
+	&.loading {
+		cursor: not-allowed;
+	}
+
+	&.loading:after {
+		content: "";
+		width: 1rem;
+		height: 1rem;
+		border: 4px solid transparent;
+		border-top-color: #ffffff;
+		border-radius: 50%;
+		animation: btn-loading-spinner 1s ease infinite;
+	}
+
+	@keyframes btn-loading-spinner {
+		from {
+			transform: rotate(0turn);
+		}
+
+		to {
+			transform: rotate(1turn);
+		}
+	}
+
+	&.loading .btn-text {
+		display: none;
+	}
 `;
 
 export const CodeRefreshButton = styled(CodeSubmitButton)`
@@ -69,6 +101,38 @@ export const CodeRefreshButton = styled(CodeSubmitButton)`
 	cursor: pointer;
 	&:hover {
 		background-color: ${ColorPalette.primary + "8f"};
+	}
+
+	&:active {
+		background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
+	}
+
+	&.loading {
+		cursor: not-allowed;
+	}
+
+	&.loading:after {
+		content: "";
+		width: 1rem;
+		height: 1rem;
+		border: 4px solid transparent;
+		border-top-color: #ffffff;
+		border-radius: 50%;
+		animation: btn-loading-spinner 1s ease infinite;
+	}
+
+	@keyframes btn-loading-spinner {
+		from {
+			transform: rotate(0turn);
+		}
+
+		to {
+			transform: rotate(1turn);
+		}
+	}
+
+	&.loading .btn-text {
+		display: none;
 	}
 `;
 

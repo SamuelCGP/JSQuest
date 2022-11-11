@@ -27,6 +27,7 @@ function Authentication() {
 		setSignInMessage("⠀");
 		setSignUpMessage("⠀");
 	}
+	
 	return (
 		<ContainerFull>
 			<GlobalStyle />

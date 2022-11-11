@@ -19,11 +19,20 @@ import {
 } from "./Navbar.styles";
 import { Popup } from "../Popups";
 import { fireSignal } from "../../game/signals";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getAll } from "../../api/chapter";
+import { ChapterI } from '../../pages/Home/getUserProgress';
 
 export function Navbar() {
 	const [materialTab, setMaterialTab] = useState<boolean>(false);
 	const [navigation, setNavigation] = useState("");
+	const [chapters, setChapters] = useState([]);
+
+	useEffect(() => {
+		getAll().then(res => {
+			setChapters(res.data.chapters);
+		})
+	}, []);
 
 	if (navigation) {
 		const path = `${window.location.protocol}//${window.location.host}${navigation}`;
@@ -71,50 +80,18 @@ export function Navbar() {
 			<MaterialMenu open={materialTab}>
 				<MaterialSectionTitle>Materiais</MaterialSectionTitle>
 
-				<MaterialCard>
-					<MaterialLink
+				{(chapters as ChapterI[]).map(chapter =>
+					<MaterialCard>
+						<MaterialLink
 						onClick={() => {
-							setNavigation("/chapter/0/lesson/0");
+							setNavigation(`/chapter/${chapter.id}/lesson/0`);
 						}}
 					>
-						{
-							// MaterialIcon has a prop "image", use it to put an image inside it
-						}
-						<MaterialIcon />
-						<MaterialTitle children={"Variáveis"} />
-					</MaterialLink>
-				</MaterialCard>
-
-				{
-					// -----------------
-				}
-
-				<MaterialCard>
-					<MaterialLink
-						onClick={() => {
-							setNavigation("/chapter/2/lesson/0");
-						}}
-					>
-						{
-							// MaterialIcon has a prop "image", use it to put an image inside it
-						}
-						<MaterialIcon />
-						<MaterialTitle children={"Operadores"} />
-					</MaterialLink>
-				</MaterialCard>
-				<MaterialCard>
-					<MaterialLink
-						onClick={() => {
-							setNavigation("/chapter/3/lesson/0");
-						}}
-					>
-						{
-							// MaterialIcon has a prop "image", use it to put an image inside it
-						}
-						<MaterialIcon />
-						<MaterialTitle children={"Booleanos"} />
-					</MaterialLink>
-				</MaterialCard>
+						<MaterialIcon image=""/>
+						<MaterialTitle children={chapter.data.title} />
+					</MaterialLink>	
+					</MaterialCard>
+				)}
 			</MaterialMenu>
 		</>
 	);

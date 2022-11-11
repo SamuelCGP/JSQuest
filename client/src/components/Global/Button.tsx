@@ -33,6 +33,10 @@ export const Button = styled.button`
 		background-color: ${ColorPalette.primaryDark + "30"};
 	}
 
+	&:active {
+		background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
+	}
+
 	&.loading {
 		cursor: not-allowed;
 	}
