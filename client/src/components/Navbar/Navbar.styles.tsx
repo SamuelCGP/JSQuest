@@ -129,21 +129,32 @@ export const LinkText = styled(Tooltip)`
 export const MaterialMenu = styled.div`
 	position: fixed;
 	z-index: 2;
-	background-color: hsl(240, 7%, 10%);
+	background-color: #18181bf8;
 	backdrop-filter: blur(2px);
+	width: 100%;
+	height: 100%;
+	top: 0;
 	@media (min-width: 900px) {
+		background-color: hsl(240, 7%, 10%);
 		width: 20rem;
 		height: 100%;
 		left: 0;
+		transform: ${(props: { open?: boolean }) =>
+			props.open ? "translateX(0%)" : "translateX(-100%)"};
+		transition: 0.7s;
 	}
 `;
 
-export const MaterialLink = styled(Link)`
+export const MaterialLink = styled.div`
 	width: 100%;
 	height: 100%;
 	cursor: pointer;
 	display: flex;
 	text-decoration: none;
+	background-color: hsl(240, 7%, 10%);
+	&:hover {
+		background-color: hsl(240, 7%, 25%);
+	}
 `;
 
 export const MaterialSectionTitle = styled.div`
@@ -153,24 +164,32 @@ export const MaterialSectionTitle = styled.div`
 	font-family: verdana;
 	color: hsl(240, 7%, 60%);
 	font-weight: bold;
+	width: 100%;
+	height: 4rem;
+	font-size: 2rem;
 	@media (min-width: 900px) {
 		width: calc(100% - 10px - 4rem);
 		margin-left: calc(4rem + 5px);
 		margin-top: 5px;
 		margin-bottom: 5px;
-		height: 4rem;
-		font-size: 2rem;
 	}
 `;
 
 export const MaterialCard = styled.div`
 	border: 2px solid hsl(240, 7%, 25%);
+	transition: 0.5s;
+	width: calc(100% - 3rem);
+	margin-left: 1.5rem;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	height: 4rem;
 	@media (min-width: 900px) {
 		width: calc(100% - 10px - 4rem);
 		margin-left: calc(4rem + 5px);
 		margin-top: 5px;
-		margin-bottom: 5px;
-		height: 4rem;
+		&:hover {
+			margin-left: calc(5rem + 5px);
+		}
 	}
 `;
 
@@ -178,10 +197,8 @@ export const MaterialIcon = styled.div`
 	background: url(${(props: { image?: string }) => props.image});
 	background-color: ${ColorPalette.primary};
 	border-radius: 100%;
-	@media (min-width: 900px) {
-		height: calc(4rem - 5px);
-		aspect-ratio: 1/1;
-	}
+	height: calc(4rem - 5px);
+	aspect-ratio: 1/1;
 `;
 
 export const MaterialTitle = styled.div`
@@ -192,10 +209,8 @@ export const MaterialTitle = styled.div`
 	font-size: 1.2rem;
 	font-family: Verdana;
 	font-weight: bold;
-	@media (min-width: 900px) {
-		width: calc(100% - 4rem);
-		height: calc(4rem - 5px);
-	}
+	width: calc(100% - 4rem);
+	height: calc(4rem - 5px);
 `;
 
 // ICONS

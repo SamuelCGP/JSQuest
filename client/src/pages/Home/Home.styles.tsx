@@ -25,6 +25,7 @@ export const ChapterContainer = styled(Container)`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	flex-wrap: wrap;
 	position: relative;
 	border-bottom: 10px solid ${ColorPalette.blueGray};
 	-webkit-box-shadow: 1px 9px 13px 2px rgba(0, 0, 0, 0.1);
