@@ -14,7 +14,7 @@ export function ProgressCircle(props: ProgressCircleProps) {
 				maxValue={props.maxValue}
 				styles={buildStyles({
 					textColor: ColorPalette.black,
-					pathColor: ColorPalette.blueGray,
+					pathColor: ColorPalette.progressBlue,
 				})}
 			/>
 		</div>

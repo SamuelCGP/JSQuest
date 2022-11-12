@@ -60,7 +60,7 @@ function Home() {
 							{chapter.data.lessons.map((lesson, lessonIndex) => (
 								<LessonCard
 									title={lesson.title}
-									icon={`${enviroment.SERVER_URL}/images/chapter/${chapterIndex}/${lessonIndex}.png`}
+									icon={`${enviroment.CLOUDINARY_URL}/lesson-icons/${chapterIndex}-${lessonIndex}.png`}
 									completed={lesson.completed}
 									onClick={() => {
 										navigate(

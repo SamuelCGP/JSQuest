@@ -5,6 +5,7 @@ interface ColorPaletteObject {
 	secondary: Color;
 	secondaryLight: Color;
 	primaryDark: Color;
+	progressBlue: Color;
 	primary: Color;
 	primaryLight: Color;
 	blueWhite: Color;
@@ -22,6 +23,7 @@ const ColorPalette: ColorPaletteObject = {
 	secondaryLight: "#c067e9",
 	primaryDark: "#00547a",
 	primary: "#009ec2",
+	progressBlue: "#3F5EE9",
 	primaryLight: "#52f7e1",
 	blueWhite: "#dfe7f8",
 	blueGray: "#787ca9",
