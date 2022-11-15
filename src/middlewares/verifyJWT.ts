@@ -2,11 +2,7 @@ import { NextFunction, Request, Response } from "express";
 
 import jwt, { JwtPayload } from "jsonwebtoken";
 
-export default function (
-	req: Request,
-	res: Response,
-	next: NextFunction
-) {
+export default function (req: Request, res: Response, next: NextFunction) {
 	let token = req.headers["authorization"];
 
 	if (!token) {
@@ -15,7 +11,9 @@ export default function (
 		token = token.split(" ")[1];
 		jwt.verify(token, process.env.JWT_SECRET!, (error, decoded) => {
 			if (error)
-				res.status(401).json({ message: "Invalid or expired access token" });
+				res.status(401).json({
+					message: "Invalid or expired access token",
+				});
 			else {
 				const decodedPayload = decoded as JwtPayload;
 
@@ -24,4 +22,4 @@ export default function (
 			}
 		});
 	}
-};
+}
