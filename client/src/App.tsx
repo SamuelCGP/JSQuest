@@ -15,14 +15,14 @@ function App() {
 
 			<Routes>
 				<Route path="/" element={<PrivateRoutes />}>
-					<Route path="/home" element={<Navbar />} />
+					<Route path="/" element={<Navbar />} />
 					<Route path="/chapter/*" element={<Navbar />} />
 				</Route>
 			</Routes>
 
 			<Routes>
 				<Route path="/" element={<PrivateRoutes />}>
-					<Route path="/home" element={<Home />} />
+					<Route path="/" element={<Home />} />
 					<Route path="*" element={<Message />} />
 					<Route path="/message/:messageType" element={<Message />} />
 					<Route

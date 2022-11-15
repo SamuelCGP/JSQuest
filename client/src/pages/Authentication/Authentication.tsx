@@ -39,7 +39,7 @@ function Authentication() {
 							return handleLoginSubmit(input).then(message => {
 								setSignInMessage(message);
 								if (message === "Acesso permitido")
-									setRedirect("/home");
+									setRedirect("/");
 							});
 						}}
 						onForgotPassword={async (email: string) => {

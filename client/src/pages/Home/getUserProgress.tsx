@@ -5,9 +5,10 @@ export default async ()=> {
 	let status: number = 102;
 	let data: UserProgressI;
 
-	const response: any = await Chapter.getAll().then((response) => {
-		return response;
-	});
+	const chapters = localStorage.getItem("chaptersResponse");
+	const response: any = chapters !== null ? JSON.parse(chapters) : await Chapter.getAll()
+
+	console.log(response);
 
 	status = response.status;
 	data = response.data as UserProgressI;

@@ -3,6 +3,7 @@ import { Board, Cell } from "./LessonBoard.styles";
 import getBoardElementFromObject from "../BoardElements/GetBoardElementFromObject";
 import { BoardMatrix } from "../../../game/BoardMatrix";
 import * as signals from "../../../game/signals";
+import { complete } from "../../../api/lesson/complete";
 
 export interface Elements {
 	x: number;
@@ -18,7 +19,7 @@ export interface LessonBoardProps {
 	elements: Elements[];
 }
 
-export function LessonBoard(props: { config: LessonBoardProps }) {
+export function LessonBoard(props: { chapterIndex: string, lessonIndex: string, config: LessonBoardProps }) {
 	const columns = props.config.build.columns;
 	const rows = props.config.build.rows
 		? props.config.build.rows
@@ -47,6 +48,7 @@ export function LessonBoard(props: { config: LessonBoardProps }) {
 
 	signals.listenToSignal("reqFinishGame", () => {
 		if (!hasStar) {
+			complete(props.chapterIndex, props.lessonIndex)
 			signals.fireSignal("completionPopupCall", {});
 		}
 	});

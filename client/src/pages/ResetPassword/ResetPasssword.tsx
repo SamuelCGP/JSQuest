@@ -22,7 +22,7 @@ function ResetPassword() {
 	if (redirect) return <Navigate to={redirect}></Navigate>;
 
 	//checa se algum parâmetro está vazio
-	if (userId === undefined || token === undefined) setRedirect("/");
+	if (userId === undefined || token === undefined) setRedirect("/login");
 
 	handleTokenVerification(`${userId}`, `${token}`).then((response) => {
 		if (response.isValid) {

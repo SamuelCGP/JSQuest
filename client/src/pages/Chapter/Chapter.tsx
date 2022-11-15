@@ -22,11 +22,11 @@ export default function Chapter() {
 	}, []);
 
 	if (lessonType === "practical") {
-		return <ExerciseLesson lessonData={lessonData} />;
+		return <ExerciseLesson chapterIndex={c_index!} lessonIndex={l_index!} lessonData={lessonData} />;
 	}
 
 	if (lessonType === "theorical") {
-		return <TheoricalLesson lessonData={lessonData} />;
+		return <TheoricalLesson chapterIndex={c_index!} lessonIndex={l_index!} lessonData={lessonData} />;
 	}
 
 	return <MainHeading>Processando...</MainHeading>;

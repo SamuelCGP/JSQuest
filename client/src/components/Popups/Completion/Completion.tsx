@@ -20,7 +20,7 @@ function Completion() {
 	const navigationHandler = (location: string) => {
 		switch (location) {
 			case "home":
-				setNavigation("/home");
+				setNavigation("/");
 				break;
 			case "none":
 				fireSignal("completionPopupCall", {});

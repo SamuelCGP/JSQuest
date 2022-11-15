@@ -21,7 +21,7 @@ import { Popup } from "../Popups";
 import { fireSignal } from "../../game/signals";
 import { useState, useEffect } from "react";
 import { getAll } from "../../api/chapter";
-import { ChapterI } from '../../pages/Home/getUserProgress';
+import { ChapterI } from "../../pages/Home/getUserProgress";
 
 export function Navbar() {
 	const [materialTab, setMaterialTab] = useState<boolean>(false);
@@ -29,9 +29,13 @@ export function Navbar() {
 	const [chapters, setChapters] = useState([]);
 
 	useEffect(() => {
-		getAll().then(res => {
-			setChapters(res.data.chapters);
-		})
+		const chapters = localStorage.getItem("chaptersResponse");
+		console.log(JSON.parse(chapters!))
+		chapters
+			? setChapters(JSON.parse(chapters).data.chapters)
+			: getAll().then((res) => {
+					setChapters(res.data.chapters);
+			  });
 	}, []);
 
 	if (navigation) {
@@ -47,7 +51,7 @@ export function Navbar() {
 			<NavContainer>
 				<NavNav>
 					<NavItem>
-						<NavLink to={"/home"}>
+						<NavLink to={"/"}>
 							<HomeIcon />
 							<LinkText>Home</LinkText>
 						</NavLink>
@@ -80,25 +84,29 @@ export function Navbar() {
 			<MaterialMenu open={materialTab}>
 				<MaterialSectionTitle>Materiais</MaterialSectionTitle>
 
-				{(chapters as ChapterI[]).map(chapter =>
-					<MaterialCard>
-						<MaterialLink
-						onClick={() => {
-							setNavigation(`/chapter/${chapter.id}/lesson/0`);
-						}}
-					>
-						<MaterialIcon image=""/>
-						<MaterialTitle children={chapter.data.title} />
-					</MaterialLink>	
-					</MaterialCard>
-				)}
+				{(chapters as ChapterI[]).map((chapter) => {
+					if (!chapter.data.lessons[0].completed) return null;
+
+					return (
+						<MaterialCard>
+							<MaterialLink
+								onClick={() => {
+									setNavigation(`/chapter/${chapter.id}/lesson/0`);
+								}}
+							>
+								<MaterialIcon image="" />
+								<MaterialTitle children={chapter.data.title} />
+							</MaterialLink>
+						</MaterialCard>
+					);
+				})}
 			</MaterialMenu>
 		</>
 	);
 }
 /*
 					<NavItem mInvisible>
-						<NavLink to={"/home"}>
+						<NavLink to={"/"}>
 							<ProfileIcon />
 							<LinkText>Perfil</LinkText>
 						</NavLink>

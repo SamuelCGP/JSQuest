@@ -12,15 +12,19 @@ import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
 import { finishGame } from "../../../game/finishGame";
 import { listenToSignal, fireSignal } from "../../../game/signals";
+import { complete } from "../../../api/lesson/complete";
 
 interface TheoricalLessonProps {
 	lessonData: any;
+	chapterIndex: string;
+	lessonIndex: string;
 }
 
 function TheoricalLesson(props: TheoricalLessonProps) {
 	const text = props.lessonData.lesson.text.split("\\");
 
 	listenToSignal("reqFinishGame", () => {
+		complete(props.chapterIndex, props.lessonIndex)
 		fireSignal("completionPopupCall", {});
 	});
 

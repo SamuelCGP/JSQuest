@@ -34,6 +34,8 @@ import { fireSignal } from "../../../game/signals";
 
 interface ExerciseLessonProps {
 	lessonData: any;
+	chapterIndex: string;
+	lessonIndex: string;
 }
 
 function ExerciseLesson(props: ExerciseLessonProps) {
@@ -58,8 +60,8 @@ function ExerciseLesson(props: ExerciseLessonProps) {
 	}, []);
 
 	const saveCode = (code: string) => {
-		if (c_index && l_index) {
-			save(parseInt(c_index), parseInt(l_index), code);
+		if (props.chapterIndex && props.lessonIndex) {
+			save(props.chapterIndex, props.lessonIndex, code);
 		}
 	};
 
@@ -70,7 +72,7 @@ function ExerciseLesson(props: ExerciseLessonProps) {
 				<MainContainer>
 					<SplitContainer direction="vertical" minSize={[300, 100]}>
 						<Container1>
-							<LessonBoard config={boardConfig}></LessonBoard>
+							<LessonBoard chapterIndex={c_index!} lessonIndex={l_index!} config={boardConfig}></LessonBoard>
 						</Container1>
 						<Container2>
 							<CodeEditor
@@ -129,7 +131,7 @@ function ExerciseLesson(props: ExerciseLessonProps) {
 			</>
 		);
 
-	if (boardConfig === null) return <Navigate to="/home" replace />;
+	if (boardConfig === null) return <Navigate to="/" replace />;
 
 	return (
 		<MainContainer>

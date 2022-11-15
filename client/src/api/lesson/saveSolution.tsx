@@ -1,6 +1,6 @@
 import { HTTPMethods, makeRequest } from "../http";
 
-export async function save(chapterIndex: number, lessonIndex: number, solution: string) {
+export async function save(chapterIndex: string, lessonIndex: string, solution: string) {
     
     const data = {
         solution
