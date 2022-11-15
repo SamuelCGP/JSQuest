@@ -134,6 +134,9 @@ export const MaterialMenu = styled.div`
 	width: 100%;
 	height: 100%;
 	top: 0;
+	transform: ${(props: { open?: boolean }) =>
+		props.open ? "translateY(0%)" : "translateY(100%)"};
+	transition: 0.7s;
 	@media (min-width: 900px) {
 		background-color: hsl(240, 7%, 10%);
 		width: 20rem;
@@ -141,7 +144,6 @@ export const MaterialMenu = styled.div`
 		left: 0;
 		transform: ${(props: { open?: boolean }) =>
 			props.open ? "translateX(0%)" : "translateX(-100%)"};
-		transition: 0.7s;
 	}
 `;
 
