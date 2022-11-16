@@ -1,5 +1,6 @@
 import * as enviroment from "./config/enviroment";
 import axios, { AxiosRequestHeaders } from "axios";
+import { Navigate, useNavigate } from 'react-router-dom';
 export enum HTTPMethods {
 	GET = "GET",
 	POST = "POST",
@@ -17,9 +18,12 @@ export async function makeRequest(
 		...(headers ? { headers } : {}),
 	})
 		.then((res) => {
+			console.log(res);
 			return res;
 		})
 		.catch((error) => {
+			console.log(error)
+			//coloca nessa linha pra redirecionar o cara pra pagina de login
 			return error.response;
 		});
 }
