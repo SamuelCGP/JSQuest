@@ -1,11 +1,21 @@
+import { useNavigate } from "react-router";
 import ColorPalette from "../../../utils/ColorPalette";
-import { Heading } from "../../Global";
-import { ModalCard, ModalText } from "../Popup.styles";
+import { ModalCard } from "../Popup.styles";
+import { UserCard, Heading, LogoutButton } from "./Config.styles";
 
 function Config() {
+	const navigate = useNavigate();
+	function logout() {
+		if (localStorage.getItem("token")) localStorage.removeItem("token");
+		navigate("/login");
+	}
+
 	return (
 		<ModalCard bgColor={ColorPalette.blueWhite}>
-			<Heading inverse>Configurações</Heading>
+			<Heading>Configurações</Heading>
+			<UserCard>
+				<LogoutButton onClick={logout}>Sair</LogoutButton>
+			</UserCard>
 		</ModalCard>
 	);
 }
