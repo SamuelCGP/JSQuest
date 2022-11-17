@@ -1,6 +1,6 @@
 import * as enviroment from "./config/enviroment";
 import axios, { AxiosRequestHeaders } from "axios";
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from "react-router-dom";
 export enum HTTPMethods {
 	GET = "GET",
 	POST = "POST",
@@ -22,8 +22,8 @@ export async function makeRequest(
 			return res;
 		})
 		.catch((error) => {
-			console.log(error)
-			//coloca nessa linha pra redirecionar o cara pra pagina de login
+			console.log(error);
+			window.location.href = `${window.location.protocol}//${window.location.host}/login`;
 			return error.response;
 		});
 }
