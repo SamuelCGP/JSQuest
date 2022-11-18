@@ -51,7 +51,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"server": "nodemon src/index.ts",
 		"start": "NODE_PATH=./dist node dist/index.js",
-		"deploy": "npm run build && gcloud app deploy",
+		"deploy": "docker push us-central1-docker.pkg.dev/jsquest-5f6e7/jsquest-docker-repo/jsquest-image:prod",
 		"client": "npm start --prefix client",
 		"dev": "concurrently \"npm run server\" \"npm run client\"",
 		"build": "npx tsc -p . && npm run build --prefix client"

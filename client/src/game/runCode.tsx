@@ -34,7 +34,6 @@ const handleSolutionFailure = (res: any) => {
 };
 
 const handleSolutionSuccess = (res: any) => {
-	console.log(res);
 
 	const commands: Command[] = res.data.codeToExec!;
 	const interval = 500;

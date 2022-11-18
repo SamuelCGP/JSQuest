@@ -21,7 +21,6 @@ export const CodeEditor = (props: CodeEditorProps) => {
 	useEffect(() => () => props.saveCode(valueRef.current), []);
 
 	const handleTabClose = (event: any) => {
-		console.log("tab close");
 		props.saveCode(valueRef.current);
 	};
 

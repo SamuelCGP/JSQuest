@@ -11,6 +11,13 @@ export async function makeRequest(
 	headers?: AxiosRequestHeaders,
 	data?: object
 ) {
+	if(headers) {
+		if(headers.Authorization === "Bearer null") {
+			window.location.href = `${window.location.protocol}//${window.location.host}/login`;
+			return
+		}
+	}
+	
 	return await axios({
 		url: enviroment.SERVER_URL + "/api/" + endpoint,
 		method,
@@ -18,12 +25,10 @@ export async function makeRequest(
 		...(headers ? { headers } : {}),
 	})
 		.then((res) => {
-			console.log(res);
 			return res;
 		})
 		.catch((error) => {
 			console.log(error);
-			window.location.href = `${window.location.protocol}//${window.location.host}/login`;
 			return error.response;
 		});
 }

@@ -101,7 +101,6 @@ export const forgotPassword = async (
 		//usuário existe
 
 		const userData = user.data();
-		console.log(user.id);
 		const userId = user.id;
 		const password = userData.password;
 		const secret = process.env.JWT_SECRET + password;

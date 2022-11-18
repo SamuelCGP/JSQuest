@@ -43,7 +43,6 @@ export const getAllFromChapter = async (
 		.get();
 	const lessons: ChapterData[] = [];
 
-	console.log(completedLessons);
 
 	snapshot.forEach(async (lesson) => {
 		const completed = completedLessons.includes(`${chapterIndex}.${lesson.id}`);

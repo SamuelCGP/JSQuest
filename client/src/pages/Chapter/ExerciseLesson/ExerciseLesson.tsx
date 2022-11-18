@@ -104,7 +104,6 @@ function ExerciseLesson(props: ExerciseLessonProps) {
 										setBoardConfig(initialBoardConfigData.current);
 										
 										runCode(c_index, l_index, editorState).then(res => {
-											console.log(res)
 											setSubmitting(false);
 										});
 									}}

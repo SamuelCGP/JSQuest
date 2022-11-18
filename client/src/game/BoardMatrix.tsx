@@ -74,8 +74,6 @@ export class BoardMatrix {
 			this.robot.move();
 
 			this.matrix[this.robot.y][this.robot.x] = this.robot;
-
-			console.log(this.matrix);
 		}
 	}
 

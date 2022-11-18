@@ -30,9 +30,8 @@ export function Navbar() {
 
 	useEffect(() => {
 		const chapters = localStorage.getItem("chaptersResponse");
-		console.log(JSON.parse(chapters!))
-		chapters != ("{}" && null)
-			? setChapters(JSON.parse(chapters!).data.chapters)
+		chapters !== ("{}" && null)
+			? setChapters(JSON.parse(chapters).data.chapters)
 			: getAll().then((res) => {
 					setChapters(res.data.chapters);
 			  });

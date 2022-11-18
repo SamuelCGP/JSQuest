@@ -45,7 +45,6 @@ function Completion() {
 					}
 				}
 
-				console.log(`/chapter/${nextChapter}/lesson/${nextLesson}`);
 				setNavigation(
 					`${window.location.protocol}//${window.location.host}/chapter/${nextChapter}/lesson/${nextLesson}`
 				);

@@ -7,7 +7,7 @@ import {
 } from "./TheoricalLessonStyles";
 import { Popup } from "../../../components";
 import ReactMarkdown from "react-markdown";
-import gfm from "remark-gfm";
+import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
 import { finishGame } from "../../../game/finishGame";
@@ -21,10 +21,11 @@ interface TheoricalLessonProps {
 }
 
 function TheoricalLesson(props: TheoricalLessonProps) {
-	const text = props.lessonData.lesson.text.split("\\");
+	const text = (props.lessonData.lesson.text as string).replaceAll("\\", "\n");
+	console.log(text);
 
 	listenToSignal("reqFinishGame", () => {
-		complete(props.chapterIndex, props.lessonIndex)
+		complete(props.chapterIndex, props.lessonIndex);
 		fireSignal("completionPopupCall", {});
 	});
 
@@ -34,16 +35,19 @@ function TheoricalLesson(props: TheoricalLessonProps) {
 			<MainContainer>
 				<MainCard>
 					<ContentCard>
-						{text.map((p: string) => (
+						<ReactMarkdown
+							children={text}
+							remarkPlugins={[remarkGfm]}
+							rehypePlugins={[rehypeRaw, rehypeHighlight]}
+						/>
+						{/*text.map((p: string) => (
 							<ReactMarkdown
 								children={p}
-								remarkPlugins={[gfm]}
+								remarkPlugins={[remarkGfm]}
 								rehypePlugins={[rehypeRaw, rehypeHighlight]}
 							/>
-						))}
-						<FinishButton onClick={finishGame}>
-							Concluir
-						</FinishButton>
+						))*/}
+						<FinishButton onClick={finishGame}>Concluir</FinishButton>
 						<Blank />
 					</ContentCard>
 				</MainCard>

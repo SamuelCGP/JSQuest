@@ -11,7 +11,6 @@ export const getOne = async (
 		.where("lesson_index", "==", lessonIndex)
 		.where("chapter_index", "==", chapterIndex)
 		.get();
-	console.log(snapshot);
 	if (snapshot.empty) {
 		return false;
 	} else return snapshot.docs[0];
