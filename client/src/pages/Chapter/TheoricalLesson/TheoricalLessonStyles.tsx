@@ -21,7 +21,7 @@ export const MainCard = styled.div`
 		width: 90%;
 		height: 90%;
 	}
-	background-color: #e8e8f1;
+	background-color: #ffffff;
 	display: flex;
 	justify-content: center;
 	overflow-y: auto;
@@ -31,7 +31,7 @@ export const ContentCard = styled.div`
 	margin-top: 1rem;
 	width: 100%;
 	height: fit-content;
-	font-size: 1.5rem;
+	font-size: 1.2rem;
 	text-align: justify;
 	@media (min-width: 900px) {
 		width: 70%;

@@ -1,0 +1,68 @@
+.lesson-text {
+	font-family: Georgia, Cambria, serif;
+}
+
+h1,
+h2,
+h3 {
+	font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial,
+		sans-serif !important;
+}
+
+h2,
+h3 {
+	color: rgb(44, 44, 44);
+}
+
+p {
+	margin-top: 0.6rem;
+	margin-bottom: 0.6rem;
+	color: #373d49;
+}
+
+code {
+	background-color: rgb(226, 226, 255);
+	color: rgb(66, 76, 209);
+}
+
+/* tabelas */
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.table {
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: 20px;
+}
+
+.table-bordered,
+.table-bordered > thead > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > th,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > th,
+.table-bordered > tfoot > tr > td {
+	border: 1px solid #ddd;
+}
+
+tbody tr:nth-child(odd) {
+	background-color: #fff;
+}
+
+tbody tr:nth-child(even) {
+	background-color: #eee;
+}
+
+th,
+td {
+	padding: 12px;
+}
+
+blockquote {
+	border-left: 5px solid rgb(39, 113, 252);
+	padding: 5px;
+	background-color: rgb(226, 226, 255);
+}

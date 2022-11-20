@@ -13,6 +13,8 @@ import rehypeHighlight from "rehype-highlight";
 import { finishGame } from "../../../game/finishGame";
 import { listenToSignal, fireSignal } from "../../../game/signals";
 import { complete } from "../../../api/lesson/complete";
+import ReactHtmlParser from "react-html-parser";
+import "./TheoricalStyles.css";
 
 interface TheoricalLessonProps {
 	lessonData: any;
@@ -21,8 +23,7 @@ interface TheoricalLessonProps {
 }
 
 function TheoricalLesson(props: TheoricalLessonProps) {
-	const text = (props.lessonData.lesson.text as string).replaceAll("\\", "\n");
-	console.log(text);
+	const text = props.lessonData.lesson.text;
 
 	listenToSignal("reqFinishGame", () => {
 		complete(props.chapterIndex, props.lessonIndex);
@@ -35,19 +36,12 @@ function TheoricalLesson(props: TheoricalLessonProps) {
 			<MainContainer>
 				<MainCard>
 					<ContentCard>
-						<ReactMarkdown
-							children={text}
-							remarkPlugins={[remarkGfm]}
-							rehypePlugins={[rehypeRaw, rehypeHighlight]}
-						/>
-						{/*text.map((p: string) => (
-							<ReactMarkdown
-								children={p}
-								remarkPlugins={[remarkGfm]}
-								rehypePlugins={[rehypeRaw, rehypeHighlight]}
-							/>
-						))*/}
-						<FinishButton onClick={finishGame}>Concluir</FinishButton>
+						<div className="lesson-text">
+							{ReactHtmlParser(text)}
+						</div>
+						<FinishButton onClick={finishGame}>
+							Concluir
+						</FinishButton>
 						<Blank />
 					</ContentCard>
 				</MainCard>
