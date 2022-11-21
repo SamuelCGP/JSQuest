@@ -196,6 +196,7 @@ export const MaterialCard = styled.div`
 `;
 
 export const MaterialIcon = styled.div`
+	background-size: 100%;
 	background: url(${(props: { image?: string }) => props.image});
 	background-color: ${ColorPalette.primary};
 	border-radius: 100%;

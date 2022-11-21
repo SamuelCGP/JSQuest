@@ -45,8 +45,8 @@ export const ChapterIcon = styled.div`
 	justify-content: center;
 	& .chapterSvg {
 		position: absolute;
-		width: 60%;
-		height: 60%;
+		width: 75%;
+		height: 75%;
 	}
 `;
 

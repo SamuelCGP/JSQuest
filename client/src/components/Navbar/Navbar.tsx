@@ -22,6 +22,7 @@ import { fireSignal } from "../../game/signals";
 import { useState, useEffect } from "react";
 import { getAll } from "../../api/chapter";
 import { ChapterI } from "../../pages/Home/getUserProgress";
+import * as enviroment from "../../api/config/enviroment";
 
 export function Navbar() {
 	const [materialTab, setMaterialTab] = useState<boolean>(false);
@@ -83,7 +84,7 @@ export function Navbar() {
 			<MaterialMenu open={materialTab}>
 				<MaterialSectionTitle>Materiais</MaterialSectionTitle>
 
-				{(chapters as ChapterI[]).map((chapter) => {
+				{(chapters as ChapterI[]).map((chapter, index) => {
 					if (!chapter.data.lessons[0].completed) return null;
 
 					return (
@@ -93,7 +94,7 @@ export function Navbar() {
 									setNavigation(`/chapter/${chapter.id}/lesson/0`);
 								}}
 							>
-								<MaterialIcon image="" />
+								<MaterialIcon image={`${enviroment.CLOUDINARY_URL}/chapter-icons/${index}.png`} />
 								<MaterialTitle children={chapter.data.title} />
 							</MaterialLink>
 						</MaterialCard>

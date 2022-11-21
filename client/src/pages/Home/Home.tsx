@@ -53,7 +53,7 @@ function Home() {
 								)}
 								maxValue={chapter.data.lessons.length}
 							/>
-							<HiVariable className="chapterSvg" />
+							<img className="chapterSvg" src={`${enviroment.CLOUDINARY_URL}/chapter-icons/${chapterIndex}.png`} />
 						</ChapterIcon>
 						<ChapterName>{chapter.data.title}</ChapterName>
 						<LessonGroup center={true}>
