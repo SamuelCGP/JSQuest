@@ -177,9 +177,13 @@ export const checkEmailConfirmed = async (
 	res: Response,
 	next: NextFunction
 ) => {
-	if (await userModel.isEmailConfirmed(req.user.id)) {
-		next();
-	} else res.status(401).json({ message: "Email not confirmed" });
+	next();
+
+	//TODO: implementar verificação de email (ou não)
+
+	// if (await userModel.isEmailConfirmed(req.user.id)) {
+	// 	next();
+	// } else res.status(401).json({ message: "Email not confirmed" });
 };
 
 export const confirmEmail = async (req: Request, res: Response) => {

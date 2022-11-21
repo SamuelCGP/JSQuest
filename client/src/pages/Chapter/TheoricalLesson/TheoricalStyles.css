@@ -2,6 +2,17 @@
 	font-family: Georgia, Cambria, serif;
 }
 
+.inline {
+	display: inline;
+}
+
+strong {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	margin-top: 5px;
+}
+
 h1,
 h2,
 h3 {
@@ -11,6 +22,7 @@ h3 {
 
 h2,
 h3 {
+	margin-top: 30px;
 	color: rgb(44, 44, 44);
 }
 
@@ -23,6 +35,8 @@ p {
 code {
 	background-color: rgb(226, 226, 255);
 	color: rgb(66, 76, 209);
+	display: block;
+	margin: 10px 0;
 }
 
 /* tabelas */
