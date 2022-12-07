@@ -1,3 +1,4 @@
+import { firestore } from "firebase-admin";
 import { getDocById, db, save } from "../firestore";
 import { getRefById, updateById } from "./userModel";
 
@@ -43,9 +44,10 @@ export const getAllFromChapter = async (
 		.get();
 	const lessons: ChapterData[] = [];
 
-
 	snapshot.forEach(async (lesson) => {
-		const completed = completedLessons ? completedLessons.includes(`${chapterIndex}.${lesson.id}`) : false;
+		const completed = completedLessons
+			? completedLessons.includes(`${chapterIndex}.${lesson.id}`)
+			: false;
 		const chapterData: ChapterData = {
 			id: lesson.id,
 			...lesson.data(),
@@ -118,13 +120,11 @@ export const completeLesson = async (
 	chapterIndex: string,
 	lessonIndex: string
 ) => {
-	const user = await getDocById("users", userId);
-
-	const userCompletedLessons: string[] = user.data()!.completed_lessons;
-
-	userCompletedLessons.push(`${chapterIndex}.${lessonIndex}`);
-
 	db.collection("users")
 		.doc(userId)
-		.set({ completed_lessons: userCompletedLessons }, { merge: true });
+		.update({
+			completed_lessons: firestore.FieldValue.arrayUnion(
+				`${chapterIndex}.${lessonIndex}`
+			),
+		});
 };

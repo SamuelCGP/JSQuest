@@ -19,6 +19,7 @@ export const create = async (username: string, email: string, password: string) 
 			email,
 			password,
 			emailConfirmed: false,
+			completedLessons: []
 		});
 	else throw "User already exists";
 }
